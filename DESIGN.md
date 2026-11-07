@@ -16,6 +16,7 @@ colors:
   primary-hover: "#27272a"
   accent: "#2563eb"
   accent-bg: "#eff4ff"
+  accent-line: "#dbe4ff"
   ok: "#15803d"
   ok-bg: "#ecfdf3"
   bad: "#b42318"
