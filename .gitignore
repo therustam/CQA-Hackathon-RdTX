@@ -1,0 +1,15 @@
+# secrets
+.env
+
+# local data: real call transcripts and signed recording links stay out of the public repo
+data/*
+!data/README.md
+docs/source/
+*.db
+*.db-journal
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
