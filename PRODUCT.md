@@ -39,7 +39,7 @@ Internal back-office tool, desktop. Demo on a projector / big screen in Russian.
 
 ## Brand Commitments
 
-Follow Freedom Broker's look as seen in the organizers' materials: deep green as the brand anchor with light-green accents. No official logo or brand assets are on hand — do not fabricate them.
+No brand colour is required by the brief; the owner chose a neutral, monochrome product look (near-black primary, colour only for meaning), modelled on modern admin dashboards. No official logo or brand assets are on hand, so do not fabricate them.
 
 ## Evidence on Hand
 

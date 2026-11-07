@@ -15,9 +15,8 @@ Quality specialist and reviewer at Freedom Broker support; jury watches on a pro
 
 ## Direction contract
 
-THESIS: Each conversation is a chart: vitals on top, every finding flagged and cited to a numbered message, the reviewer co-signs; refuses the KPI-tile SaaS dashboard with sidebar and cards.
-OWN-WORLD: White ruled chart paper, flat deep-green #12392B bands, light-green #A6E07B signal, red alert band for gross errors, amber for pending review; result flags as boxed glyphs (✓ ✗ N/A, step/max); tabular numerals; no shadows, gradients or glass; m-ids and 01-08 as primary index type.
-STORY: See the dataset, open a chart, click any verdict to land on its message, dispute one finding, watch the reviewer co-sign and the total move.
-FIRST VIEWPORT: Card screen. Full-width green vitals strip: conversation id large, channel, language, total 88.13 at display size, section bars, gross-error alert band beneath when flagged. Below: left 42% transcript notes with m-ids and timestamps; right 58% results table, one fixed-furniture row per criterion. Primary action (Оценить / Апелляция) at strip right.
-FORM: Clinical Chart, position 7 of 7, seed 4bdc5a6a. Signature interaction: audio position marker runs down the call transcript; evidence chips seek and highlight.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+THESIS: A calm product dashboard: fixed sidebar + top bar, white panels on a grey canvas, every verdict cited to a numbered message. Replaces the earlier green Clinical Chart direction (owner decision, 2026-11-07).
+OWN-WORLD: Neutral zinc palette, near-black primary, one blue accent for links only, meaning colours (ok/warn/bad) always next to text, yellow for evidence; tabular numerals; soft card shadows, no gradients or glass.
+STORY: Open the overview, see where points are lost, drill into the dialogs, open a card, click a verdict to land on its message, dispute it, watch the reviewer decide in the inbox and the total move.
+FIRST VIEWPORT: Overview: four KPI panels, score distribution, segment averages, criteria-loss table.
+FORM: See DESIGN.md (tokens, shell, screens, rules).
