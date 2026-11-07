@@ -8,6 +8,12 @@ docs/source/
 *.db
 *.db-journal
 
+# design-skill scratch (screenshots contain DEV data); surfaces/ (direction contract) is kept
+.impeccable/review/
+.impeccable/questions/
+.impeccable/build/
+.impeccable/hook.cache.json
+
 # python
 __pycache__/
 *.pyc

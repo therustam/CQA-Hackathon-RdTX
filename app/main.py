@@ -27,6 +27,15 @@ app = FastAPI(title="CQA — Conversation Quality Analytics")
 WEB = Path(__file__).parent.parent / "web"
 
 
+@app.middleware("http")
+async def revalidate_ui(request, call_next):
+    """Browsers otherwise cache cqa.js/cqa.css heuristically and show a stale UI after an update."""
+    response = await call_next(request)
+    if not request.url.path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 # ---------- models (validation at the API boundary) ----------
 
 class Step(BaseModel):

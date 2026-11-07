@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CQA — контроль качества диалогов</title>
+  <link rel="stylesheet" href="cqa.css">
+  <style>body { margin: 0; background: #ffffff; }</style>
+</head>
+<body>
+  <!-- Single mount point: in Dynamics 365 the same div + cqa.css + js/cqa.js become an HTML web resource. -->
+  <div id="cqa-root"></div>
+  <script type="module">
+    import { mount } from "./js/cqa.js";
+    mount(document.getElementById("cqa-root"), { apiBaseUrl: "" });
+  </script>
+</body>
+</html>
