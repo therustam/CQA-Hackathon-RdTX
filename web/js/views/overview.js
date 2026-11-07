@@ -10,7 +10,8 @@ export async function viewOverview(ctx) {
   if (S.group) q.set("group_id", S.group);
   if (S.checklistId) q.set("checklist_id", S.checklistId);
   let st;
-  try { st = await api(`/api/stats?${q}`); } catch (e) { toast(e.message, true); return; }
+  try { st = await api(`/api/stats?${q}`); } catch (e) { if (ctx.isCurrent()) toast(e.message, true); return; }
+  if (!ctx.isCurrent()) return;
 
   const groupSelect = h("select", { onchange: (e) => { S.group = e.target.value; store("cqa.group", S.group); ctx.route_(); } },
     h("option", { value: "" }, "Все"),

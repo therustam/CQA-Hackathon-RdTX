@@ -12,7 +12,8 @@ export async function viewAppeals(ctx, status) {
     const [open, decided] = await Promise.all([api("/api/appeals?status=open"), api("/api/appeals?status=decided")]);
     counts = { open: open.length, decided: decided.length };
     rows = status === "open" ? open : decided;
-  } catch (e) { toast(e.message, true); }
+  } catch (e) { if (!ctx.isCurrent()) return; toast(e.message, true); }
+  if (!ctx.isCurrent()) return;
   let selectedId = rows.length ? rows[0].id : null;
 
   const list = h("div", { class: "cqa-scroll cqa-inbox-list", role: "listbox", "aria-label": "Апелляции" });
@@ -63,9 +64,9 @@ export async function viewAppeals(ctx, status) {
     if (a.status !== "open") decision = decidedBlock(a, meta);
     else if (S.role === "reviewer") {
       decision = decisionForm(ctx, a, meta, (r) => {
-        decision.replaceWith(decidedBlock(r, meta));
-        a.status = "decided";
+        Object.assign(a, r);
         renderList();
+        renderDetail();
         ctx.refreshShared().then(ctx.renderTop).catch(() => {});
       });
     } else {

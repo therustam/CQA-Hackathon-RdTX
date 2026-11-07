@@ -61,10 +61,11 @@ export function mount(root, config = {}) {
   const currentChecklist = () => S.checklists.find((c) => c.id === S.checklistId) || S.checklists[0];
   const checklistQuery = () => (S.checklistId ? `checklist_id=${S.checklistId}` : "");
 
-  async function refreshShared() {
+  async function refreshShared(isCurrent = () => true) {
     const [cfg, lists, groups, appeals] = await Promise.all([
       api("/api/config"), api("/api/checklists"), api("/api/groups"), api("/api/appeals?status=open"),
     ]);
+    if (!isCurrent()) return;
     S.config = cfg;
     S.checklists = lists;
     S.groups = groups;
@@ -179,17 +180,13 @@ export function mount(root, config = {}) {
   }
 
   const ctx = {
-    S, base, root, main, api, toast, refreshShared, canEvaluate, NO_KEY, currentChecklist, checklistQuery,
-    checklistSelect, statusTags, setTop, startJob,
-    route_: () => route_(),
-    renderTop: () => renderSide(), // views call this after data changes (open-appeal count)
-    onJob: (fn) => { jobListener = fn; },
-    // a screen with unsaved work registers isDirty(); leaving then asks first
-    guardLeave: (isDirty) => { dirtyCheck = isDirty; },
+    S, base, root, main, api, toast, canEvaluate, NO_KEY, currentChecklist, checklistQuery,
+    checklistSelect, statusTags, startJob,
   };
 
   // ---------- router ----------
   let dirtyCheck = null;
+  let routeVersion = 0;
   let lastHash = location.hash;
   const onUnload = (e) => { if (dirtyCheck && dirtyCheck()) e.preventDefault(); };
   window.addEventListener("beforeunload", onUnload);
@@ -202,46 +199,59 @@ export function mount(root, config = {}) {
     lastHash = location.hash;
     jobListener = null;
     const hash = location.hash || "#/";
+    const version = ++routeVersion;
+    const isCurrent = () => version === routeVersion && hash === (location.hash || "#/");
+    const viewCtx = {
+      ...ctx, isCurrent,
+      refreshShared: () => refreshShared(isCurrent),
+      setTop: (...args) => { if (isCurrent()) setTop(...args); },
+      renderTop: () => { if (isCurrent()) renderSide(); },
+      route_: () => { if (isCurrent()) route_(); },
+      onJob: (fn) => { if (isCurrent()) jobListener = fn; },
+      guardLeave: (fn) => { if (isCurrent()) dirtyCheck = fn; },
+    };
     try {
-      await refreshShared();
+      await refreshShared(isCurrent);
     } catch (e) {
+      if (!isCurrent()) return;
       renderSide();
       setTop([["Ошибка"]]);
       main.replaceChildren(h("div", { class: "cqa-page" }, h("div", { class: "cqa-notice cqa-notice-error" }, icon("alert"),
         `Сервер недоступен: ${e.message}`)));
       return;
     }
+    if (!isCurrent()) return;
     main.scrollTop = 0;
     if (hash.startsWith("#/c/")) {
       const cid = decodeURIComponent(hash.slice(4));
       current = "list";
       renderSide();
       setTop([["Диалоги", "#/dialogs"], [cid]]);
-      return viewCard(ctx, cid);
+      return viewCard(viewCtx, cid);
     }
     if (hash.startsWith("#/appeals")) {
       current = "appeals";
       renderSide();
       setTop([["Апелляции"]]);
-      return viewAppeals(ctx, hash.includes("decided") ? "decided" : "open");
+      return viewAppeals(viewCtx, hash.includes("decided") ? "decided" : "open");
     }
     if (hash.startsWith("#/checklist")) {
       current = "checklist";
       renderSide();
       setTop([["Чек-листы"]]);
-      return viewChecklist(ctx);
+      return viewChecklist(viewCtx);
     }
     if (hash.startsWith("#/dialogs")) {
       current = "list";
       renderSide();
-      return viewList(ctx);
+      return viewList(viewCtx);
     }
     current = "overview";
     renderSide();
-    return viewOverview(ctx);
+    return viewOverview(viewCtx);
   }
   window.addEventListener("hashchange", route_);
 
   route_();
-  return { destroy: () => { window.removeEventListener("hashchange", route_); window.removeEventListener("beforeunload", onUnload); clearInterval(pollTimer); } };
+  return { destroy: () => { ++routeVersion; window.removeEventListener("hashchange", route_); window.removeEventListener("beforeunload", onUnload); clearInterval(pollTimer); } };
 }

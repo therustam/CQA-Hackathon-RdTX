@@ -109,9 +109,9 @@ def summarize(checklist, finals):
             missed, earned = sum(r.get("answer") == "yes" for r in judged), None
         else:
             judged = [r for r in rows if r["status"] == "scored" and r["points"] is not None]
-            missed = sum(Decimal(str(r["points"])) < Decimal(str(r["weight"])) for r in judged)
+            missed = sum(_fraction(c, r) < 1 for r in judged)
             weight = sum((Decimal(str(r["weight"])) for r in judged), ZERO)
-            earned = _num(sum((Decimal(str(r["points"])) for r in judged), ZERO) * HUNDRED / weight) if weight else None
+            earned = _num(sum((Decimal(str(r["weight"])) * _fraction(c, r) for r in judged), ZERO) * HUNDRED / weight) if weight else None
         criteria.append({"id": c["id"], "title": c["title"], "section": c.get("section"), "type": c["type"],
                          "judged": len(judged), "na": sum(r["status"] == "na" for r in rows),
                          "missed": missed, "earned_percent": earned})

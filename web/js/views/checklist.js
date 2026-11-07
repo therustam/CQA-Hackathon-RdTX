@@ -11,7 +11,8 @@ export async function viewChecklist(ctx) {
   const { S, api, toast, main } = ctx;
   const version = ctx.currentChecklist() || {};
   let saved;
-  try { saved = (await api(`/api/checklists/${version.id}`)).data; } catch (e) { toast(e.message, true); return; }
+  try { saved = (await api(`/api/checklists/${version.id}`)).data; } catch (e) { if (ctx.isCurrent()) toast(e.message, true); return; }
+  if (!ctx.isCurrent()) return;
   saved.sections = saved.sections || [];
   let draft = structuredClone(saved);
   let editing = false;
@@ -227,11 +228,11 @@ export async function viewChecklist(ctx) {
     try {
       const { id } = await api("/api/checklists", { body: draft });
       dirty = false; // saved: leaving is safe now
-      S.checklistId = null; // the new version is the latest
+      if (ctx.isCurrent()) S.checklistId = null; // the new version is the latest
       if (apply) {
         ctx.startJob(await api("/api/batch", { body: { group_id: S.group || null, checklist_id: id } }));
         toast(`Чек-лист v${id} сохранён, оценка набора запущена`);
-        location.hash = "#/dialogs";
+        if (ctx.isCurrent()) location.hash = "#/dialogs";
       } else {
         toast(`Сохранено как версия v${id}`);
         ctx.route_();

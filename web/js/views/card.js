@@ -92,10 +92,12 @@ export async function viewCard(ctx, cid) {
       api(`/api/conversations/${encodeURIComponent(cid)}/evaluation?${ctx.checklistQuery()}`),
     ]);
   } catch (e) {
+    if (!ctx.isCurrent()) return;
     main.replaceChildren(h("div", { class: "cqa-page" }, h("div", { class: "cqa-notice cqa-notice-error" }, icon("alert"), e.message),
       h("a", { href: "#/dialogs" }, "К списку диалогов")));
     return;
   }
+  if (!ctx.isCurrent()) return;
   const isCall = conv.channel === "voice call";
   const msgs = conv.messages;
   const order = new Map(msgs.map((m, i) => [m.id, i]));
@@ -352,6 +354,7 @@ export async function viewCard(ctx, cid) {
   }
 
   function renderAll() {
+    if (!ctx.isCurrent()) return;
     renderTop();
     renderSummary();
     renderResults();

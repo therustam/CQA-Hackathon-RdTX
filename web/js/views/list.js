@@ -54,6 +54,7 @@ function openImport(ctx) {
 export async function viewList(ctx) {
   const { S, api, toast, base } = ctx;
   let items = [];
+  let loadVersion = 0;
 
   const exportLink = h("a", { class: "cqa-btn", download: "results.json",
     title: "Результаты набора в формате организаторов (JSON 1.0)" }, icon("download"), "results.json");
@@ -179,11 +180,19 @@ export async function viewList(ctx) {
   }
 
   async function load() {
+    const version = ++loadVersion;
     const q = new URLSearchParams();
     if (S.group) q.set("group_id", S.group);
     if (S.checklistId) q.set("checklist_id", S.checklistId);
     exportLink.href = `${base}/api/export?${q}`;
-    try { items = (await api(`/api/conversations?${q}`)).items; } catch (err) { toast(err.message, true); }
+    try {
+      const data = await api(`/api/conversations?${q}`);
+      if (!ctx.isCurrent() || version !== loadVersion) return;
+      items = data.items;
+    } catch (err) {
+      if (!ctx.isCurrent() || version !== loadVersion) return;
+      toast(err.message, true);
+    }
     renderRows();
   }
   ctx.onJob(load);

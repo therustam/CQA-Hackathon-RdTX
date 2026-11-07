@@ -140,3 +140,17 @@ def test_summarize_overview_aggregates():
     assert (crit["04"]["judged"], crit["04"]["missed"], crit["04"]["earned_percent"]) == (2, 1, 87.5)
     assert (crit["02"]["judged"], crit["02"]["na"]) == (0, 2)
     assert (crit["08"]["judged"], crit["08"]["missed"], crit["08"]["earned_percent"]) == (2, 0, None)
+
+
+@pytest.mark.parametrize("criterion,raw,expected,missed", [
+    ({"id": "x", "title": "X", "type": "scale", "weight": 5.55,
+      "scale": [{"value": 10}, {"value": 7}, {"value": 0}]}, step(7), 70, 1),
+    ({"id": "x", "title": "X", "type": "binary", "weight": 10.004}, yes(), 100, 0),
+])
+def test_overview_uses_exact_fractions_for_fractional_weights(criterion, raw, expected, missed):
+    from app.scorer import summarize
+    checklist = {"criteria": [criterion]}
+    final = score(checklist, {"x": raw})
+    aggregate = summarize(checklist, [({}, final)])["criteria"][0]
+    assert final["total"] == expected
+    assert (aggregate["earned_percent"], aggregate["missed"]) == (expected, missed)
