@@ -1,0 +1,5425 @@
+{
+  "schema_version": "1.0",
+  "team_name": "RdTX",
+  "model": {
+    "mode": "external_api",
+    "name": "gpt-6-luna"
+  },
+  "results": [
+    {
+      "conversation_id": "p1-en-001",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Установление контакта — Да: в первом ответе оператор поздоровался по-английски и представился: “Hi, I'm Maya from support.”",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: до ответа оператора клиент подтвердил, что закрыл прежний аккаунт, поэтому данных хватало, чтобы ответить на вопрос о занятом логине.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор дал общий ответ о том, почему логин занят, и предложил использовать другой; раскрытия данных аккаунта или защищённого действия не было.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Консультация — 20: оператор объяснил, что логин остаётся в системе после закрытия аккаунта, и дал понятный следующий шаг — выбрать другой логин. Клиент подтвердил, что понял ответ: “Right, I thought I'd just have to wait.”",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Эмпатия и клиентоориентированность — Да: оператор общался вежливо, клиент выразил благодарность, а оператор ответил: “You're welcome. Take care!” Жалоб или описания неудобства, требовавших отдельной реакции, не было.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Управление диалогом — 10: оператор ясно и последовательно объяснил причину проблемы и что делать дальше. Явного ожидания со стороны оператора не было.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Завершение — Нет: оператор попрощался фразой “Take care!”, но не предложил дальнейшую помощь; отдельного подведения итога или такого предложения нет.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Грубых ошибок не выявлено: в репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-002",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на английском и представился в первом ответе: “Hi, I'm Noah.”",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: исходного запроса и контекста хватало, чтобы указать, где открыть торговую платформу. Оператор дал такой ответ: “Open tradernet.global for the browser version”.",
+          "evidence_turns": [
+            1,
+            4
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спрашивал, где находится вход на сайте, а оператор лишь указал платформу и приложение. Идентификация для такого запроса не нужна.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос о том, где войти, закрыт: оператор указал веб-версию tradernet.global и приложение, а клиент подтвердил, что веб-версия работает: “The web version works.”",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор вежлив и отреагировал на растерянность клиента, указав нужный сайт и альтернативу в виде приложения. Затем клиент подтвердил, что смог воспользоваться веб-версией.",
+          "evidence_turns": [
+            5,
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ сформулирован ясно и последовательно: указаны веб-версия, приложение и причина, по которой на информационном сайте нет входа. Явного ожидания или непонятных формулировок не было.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Оператор обозначил результат словами “Glad you got in” и попрощался: “Have a good day!”",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-003",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась по-английски и представилась: «Hi, I'm Eva».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: вопрос клиента «Where can I see my current pricing plan? I'm using the website» содержал достаточно информации для ответа.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спросил только, где найти свой тарифный план; личные данные не раскрывались и защищённое действие не выполнялось.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Клиент хотел узнать, где на сайте посмотреть тарифный план; оператор указала путь в область аккаунта и место под именем. Клиент подтвердил, что нашёл его: «Found it».",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор была вежлива и предложила альтернативу скачиванию отчёта после того, как клиент сказал, что не хочет загружать его ради этой информации.",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ дан ясно и последовательно: оператор указала, куда перейти и где находится тарифный план. Пауза была до первого ответа оператора, поэтому предупреждение перед ней оператор дать не могла.",
+          "evidence_turns": [
+            9,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась, но не подвела итог и не предложила дальнейшую помощь, как требует критерий. Это видно в последнем сообщении: «Great. Thanks for reaching out, and goodbye!»",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В сообщениях оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-004",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался по-английски и представился в первом ответе: “Hi, I'm Alex.” Основание — m9.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент попросил брокерский отчёт за прошлый год и уточнил, что хочет пройти процесс с агентом; бот уже указал раздел приложения, где доступен отчёт. Основание — “I need my broker statement for last year” и “Can an agent walk me through it?” в m0 и m4, а также подсказка бота в m3.",
+          "evidence_turns": [
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор объяснил, как открыть раздел, выбрать отчёт и период, не обращаясь к данным клиента. Основание — “Open Reports and Documents, choose Broker Report” в m9.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Все вопросы закрыты: оператор объяснил, где найти Broker Report и как выбрать даты, а на вопрос о скачивании подтвердил следующий шаг. Клиент подтвердил, что получилось: “That worked.” Основание — m9, m11 и m12.",
+          "evidence_turns": [
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо и доброжелательно; клиент не выражал недовольства. В конце оператор ответил “You're welcome. Have a good day!” (m13).",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Инструкции изложены ясно и последовательно: сначала выбор отчёта и периода, затем подтверждение скачивания. До ответа оператора бот сообщил клиенту: “Please wait. An agent will join the chat shortly” (m7); во время консультации оператор не создавал дополнительного ожидания.",
+          "evidence_turns": [
+            8,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался фразой “Have a good day!”, но не подвёл итог и не предложил дальнейшую помощь. Для критерия требуются прощание и итог либо предложение помощи; основание — последнее сообщение оператора m13.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации не обнаружено.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-005",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на английском и представился в первом ответе: “Hi, I'm Lina.”",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос клиента был конкретным, а бот до перевода уже сообщил, что реквизиты можно скачать в приложении. Уточнять дополнительные данные перед ответом не требовалось.",
+          "evidence_turns": [
+            1,
+            4
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор объяснил путь к банковским реквизитам и выбор валюты; идентификация для такой навигационной консультации не требовалась.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20: оператор объяснил, где открыть банковские реквизиты, а на вопрос о евро уточнил, что нужно выбрать нужную валюту перед скачиванием. Существенные вопросы закрыты.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо и отреагировал на опасение клиента взять в отделение неверные реквизиты: объяснил, где их получить, и указал выбрать нужную валюту.",
+          "evidence_turns": [
+            5,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Ответы понятные и последовательные, но перед первой репликой оператора была пауза 1:53 без предупреждения; это один заметный сбой в управлении ожиданием.",
+          "evidence_turns": [
+            9,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался фразой “Goodbye!”, но не подвёл итог и не предложил дальнейшую помощь. Поэтому оба элемента завершения не выполнены.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 85.38,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-006",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Установление контакта — Да. В первом ответе оператор поздоровался и представился: «Hello, I'm Sam» (m10).",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Выявление потребности — Да. Оператор учёл, что перевод уже отправлен и банк показывает его как отправленный (m9), уточнил валюту до передачи случая на проверку (m13), а затем запросил примерное время перевода и добавил его к делу (m18, m20).",
+          "evidence_turns": [
+            10,
+            14,
+            19,
+            21
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": true,
+          "rationale": "Идентификация — Да. Оператор сообщил, что для проверки счёта потребуется подтвердить личность (m10); система подтвердила проверку до передачи случая на рассмотрение (m12, m15).",
+          "evidence_turns": [
+            11,
+            13,
+            16
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Консультация — 20. По переводу оператор передал случай на проверку, сообщил, что команда проверит брокерскую сторону и ответит в чате; также пояснил, что уже сообщённые детали останутся в деле (m15, m20, m22). На вопрос о брокерском отчёте дал путь в приложении и объяснил выбор периода датами начала и окончания (m25, m27); существенные вопросы закрыты или дан корректный следующий шаг.",
+          "evidence_turns": [
+            16,
+            21,
+            23,
+            26,
+            28,
+            30
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Эмпатия и клиентоориентированность — Да. На беспокойство клиента оператор отреагировал конкретно: «I understand why you'd want to check» (m10), далее общался вежливо и ответил на дополнительные вопросы.",
+          "evidence_turns": [
+            1,
+            11,
+            30
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Управление диалогом — 7. Ответы в целом ясные и последовательные, но перед первым ответом оператора была явная пауза 01:07 после сообщения клиента (m9–m10), и оператор заранее не предупредил об ожидании. Это заметный сбой, не мешающий понять дальнейшие инструкции.",
+          "evidence_turns": [
+            10,
+            11,
+            26,
+            28
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Завершение — Да. Оператор обозначил дальнейший шаг по переводу — «We'll follow up here about the transfer» — и попрощался: «Goodbye!» (m29).",
+          "evidence_turns": [
+            30
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Грубых ошибок не выявлено: в репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            11,
+            16,
+            30
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 95.5,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-007",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Да: в первом ответе оператор поздоровался на английском и представился: «Hi, I'm Chris» (m9).",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос о месте подачи и сроке повторной попытки уже сформулирован клиентом; необходимость уточнений для выявления потребности отсутствовала (m4).",
+          "evidence_turns": [
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спросил, где подать запрос и когда можно повторить попытку, а оператор дал общий маршрут в приложении (m4, m9).",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "10: оператор указал путь подачи запроса: «Menu, Orders, Personal Details, then Change of Details» (m9), но существенный вопрос о том, можно ли сразу повторить вывод, остался без ответа (m10–m11).",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да: оператор был вежлив и ответил инструкцией на описанную проблему с выводом и обновлением профиля; грубости или игнорирования неудобства нет (m9).",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "7: инструкция в m9 изложена понятно, однако на уточняющий вопрос клиента о повторной отправке вывода оператор ответил только «That's where the profile request is» (m11), что создаёт заметный сбой в последовательности диалога.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет: оператор попрощался фразой «Bye», но не подвёл итог и не предложил дальнейшую помощь (m11).",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет: в репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации (m9, m11).",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 70.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-008",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась на английском и представилась: «Hi, I'm Sofia».",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: оператор мог дать инструкцию по поиску акции по уже известному тикеру, не запрашивая дополнительных данных.",
+          "evidence_turns": [
+            1,
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спрашивал, как найти акцию и отключить Use Margin, а не запрашивал данные по счёту или защищённое действие.",
+          "evidence_turns": [
+            1,
+            15,
+            17
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "Поиск акции и переход к результату разъяснены в m10 и m12; отключение Use Margin — в m15. Существенный вопрос о влиянии настройки на уже имеющуюся позицию остался без прямого ответа: в m17 оператор пояснила, что настройка относится к текущему ордеру, но не уточнила, влияет ли она на существующую позицию.",
+          "evidence_turns": [
+            11,
+            13,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо; клиент не выражал недовольства или неудобства, требующего отдельной реакции.",
+          "evidence_turns": [
+            11,
+            20
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Инструкции в целом изложены последовательно, но ответ «That setting is for the order you're entering now. It doesn't answer what's happening with an existing position» сформулирован неоднозначно и не даёт ясного ответа на вопрос о текущей позиции.",
+          "evidence_turns": [
+            17,
+            18
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась словами «Have a good day!», но не подвела итог и не предложила дальнейшую помощь.",
+          "evidence_turns": [
+            20
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            11,
+            13,
+            16,
+            18,
+            20
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 70.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-009",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на английском и представился в первом сообщении: «Hi, I'm Leo».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Для ответа оператору не требовалось уточнять дополнительные сведения: клиент уже описал нужную настройку и ситуацию. Основание — «There's a Use Margin option on the order screen. How do I switch it off?» и «I haven't sent the order yet».",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Клиент спросил, как выключить Use Margin; запрос не требует раскрытия персональных данных или защищённого действия. Основание — вопрос клиента об опции на экране ордера.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос закрыт: оператор указал открыть Order Settings и снять отметку Use Margin до отправки ордера; клиент сообщил, что нашёл настройку. Существенных открытых вопросов нет.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор ответил вежливо и по делу; клиент не выражал недовольства или неудобства. Основание — спокойная инструкция оператора и благодарность клиента.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Инструкция ясная и последовательная, клиент сразу нашёл настройку. В транскрипте нет явного ожидания, перед которым оператор должен был предупредить.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "Система сообщает о потере соединения после ответа и благодарности клиента, поэтому оператор не смог завершить диалог обычным образом.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В диалоге нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-010",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась на английском и представилась в первом сообщении: «Hi, I'm Nina».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: вопрос можно было решить без дополнительных уточнений; бот сообщил, что D account предназначен для сбережений, а trading account — для сделок с ценными бумагами.",
+          "evidence_turns": [
+            1,
+            4
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спросил, можно ли использовать D account для покупки акций, — это общий вопрос о назначении счетов.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Все существенные вопросы закрыты: оператор пояснила, что средства с D account нельзя использовать для покупки напрямую, и указала, что для ордера нужно выбрать trading account.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и ответила на запрос без грубости; клиент выразил понимание и поблагодарил.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ оператора краткий и понятный: она пояснила ограничение для D account и указала, какой счёт выбрать. До первого ответа оператора ожидание сопровождалось сообщением бота «An agent will join the chat shortly», поэтому явного ожидания, которое оператору следовало бы отдельно предупредить, не было.",
+          "evidence_turns": [
+            8,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась фразой «Bye!», но не подвела итог и не предложила дальнейшую помощь, поэтому оба элемента завершения не выполнены.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В сообщениях оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-011",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась и представилась в первом сообщении: «Hi, I'm Julia».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос о языке формы был сформулирован полностью, уточнять дополнительные сведения не требовалось. Это подтверждают вопросы клиента в m0 и m4.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор сообщил только, что форма 1042-S предоставляется на английском; раскрытия данных клиента или защищённого действия не было.",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Оператор ответила на существенный вопрос клиента: «the 1042-S form is provided in English». Запрос подтверждения языка формы закрыт полностью.",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо, а клиент не выражал недовольства или неудобства, требующего отдельной реакции. В конце оператор ответила: «Happy to help».",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ краткий и понятный, последовательность диалога не нарушена. До подключения оператора бот предупредил: «Please wait. An agent will join the chat shortly»; в сообщениях оператора нет неясных формулировок.",
+          "evidence_turns": [
+            8,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась словами «Goodbye!», но не подвела итог и не предложила дальнейшую помощь. Чат завершился обычным образом, а не из-за обрыва.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-012",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на английском и представился в первом сообщении: “Hello, I'm Daniel.”",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A — запрос был сформулирован достаточно конкретно, чтобы сразу указать путь к финансовой информации. Это видно из вопроса клиента и просьбы подсказать нужное меню.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A — оператор указал, где находится публичная информация на сайте, не раскрывая данные аккаунта и не выполняя защищённое действие.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Все существенные вопросы закрыты: оператор указал точный путь “Investors, then Financial Information”, а клиент подтвердил, что это нужная страница.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо и доброжелательно: поздоровался, поблагодарил клиента и пожелал хорошего дня. Клиент не выражал недовольства или неудобства, требующего отдельной реакции.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ оператора краткий и понятный, последовательность действий указана ясно. До подключения оператору бот предупредил: “Please wait. An agent will join the chat shortly”; оператор не уходил на проверку информации в ходе разговора.",
+          "evidence_turns": [
+            8,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался фразой “Have a good day!”, но не подвёл итог и не предложил дальнейшую помощь, поэтому выполнено только одно из двух необходимых условий.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-en-013",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался по-английски и представился в первом сообщении: «Hi, I'm Adrian».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: для ответа не требовалось уточнений, поскольку бот уже дал конкретный способ поиска облигаций.",
+          "evidence_turns": [
+            1,
+            4
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спрашивал, как найти облигации в приложении; идентификация для такой инструкции не нужна.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Существенный вопрос о том, как найти облигации, закрыт: оператор указал открыть Quotes и искать по названию облигации или тикеру. Это корректная и достаточная инструкция.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "После простого вопроса о приложении оператор предложил платную частную консультацию, а после отказа клиента и уточнения «I'm only asking for help with the app» не ответил на это уточнение. Это не соответствует клиентоориентированному ведению диалога.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Инструкция в m9 ясная и последовательная; явное ожидание перед подключением агента было обозначено ботом: «Please wait. An agent will join the chat shortly».",
+          "evidence_turns": [
+            8,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор не подвёл итог, не предложил дальнейшую помощь и не попрощался; чат был закрыт оператором.",
+          "evidence_turns": [
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Оператор предложил клиенту прислать личный номер и оплатить частную консультацию: «Send me your personal number» и «I charge for private advice».",
+          "evidence_turns": [
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 69.23,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-en-014",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на английском и представился в первом ответе: «Hi, I'm Tyler».",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: с самого начала было понятно, что нужно проверить причину блокировки вывода; оператор также увидел ограничение и сообщил, что направит запрос команде на проверку.",
+          "evidence_turns": [
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": false,
+          "rationale": "Оператор раскрыл, что на аккаунте клиента установлено ограничение, до подтверждения идентификации: «I can see a withdrawal restriction on your account». Позже оператор прямо сказал, что проверку можно пропустить.",
+          "evidence_turns": [
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 5,
+          "rationale": "Клиент спрашивал, почему выводы заблокированы, и уточнил, получит ли ответ здесь. Причина не сообщена, а вопрос о том, где клиент услышит ответ, остался без ответа; направление запроса команде — лишь общий следующий шаг, без ясного порядка дальнейших действий.",
+          "evidence_turns": [
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался без грубости и прямо отреагировал на беспокойство клиента по поводу проверки личности: «We can skip that». Этот ответ некорректен с точки зрения идентификации, но реакция на высказанную проблему была.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Реплики в целом понятны и последовательны, но оператор не ответил на прямой вопрос «Will I hear back here?» и завершил разговор фразой «Goodbye». Это заметный сбой ведения диалога, хотя формулировки сами по себе ясны.",
+          "evidence_turns": [
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался словом «Goodbye», но не подвёл итог и не предложил дальнейшую помощь, поэтому оба элемента завершения не выполнены.",
+          "evidence_turns": [
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Оператор раскрыл не прошедшему проверку клиенту конфиденциальные сведения о статусе аккаунта: «I can see a withdrawal restriction on your account».",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 47.65,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-en-015",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": false,
+          "rationale": "Нет: в первом ответе оператор не поздоровался и не представился, а сразу дал инструкцию: “Open settings then go back and log in again.”",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": false,
+          "rationale": "Нет: клиент сообщил только, что не может войти в аккаунт, но оператор не уточнил, пользуется ли клиент приложением или сайтом, и сразу предложил шаги для настроек. Необходимость уточнения подтверждается тем, что клиент оказался на сайте компании и не нашёл вход.",
+          "evidence_turns": [
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент попросил помочь войти в аккаунт, а оператор дал общие инструкции по навигации; запроса на раскрытие данных или защищённое действие не было.",
+          "evidence_turns": [
+            1,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20: вопрос о входе в аккаунт решён — после уточнения, что клиент находится на информационном сайте компании, оператор направил его на tradernet.global, и клиент подтвердил, что это сработало. Первоначальная инструкция оказалась неподходящей, но итоговый шаг был корректным и запрос закрыт.",
+          "evidence_turns": [
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да: оператор общался без грубости; клиент сообщил о проблеме со входом, а оператор дал инструкции и уточнил нужный сайт после пояснения клиента. В репликах нет выраженного недовольства, на которое требовалась бы отдельная эмпатическая реакция.",
+          "evidence_turns": [
+            1,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 4,
+          "rationale": "4: первоначальная инструкция “Open settings then go back and log in again” была неясной для ситуации клиента, и ему пришлось переспросить: “Settings where?” Затем оператор прояснил, что нужно перейти на tradernet.global.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет: оператор попрощался словом “Bye.”, но не подвёл итог и не предложил дальнейшую помощь.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет: в сообщениях оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 51.25,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-001",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Да. В первом сообщении оператор поздоровалась по-казахски и представилась: «Сәлеметсіз бе, менің атым Аружан».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A. Клиент сразу спросил, где посмотреть текущий тариф, а затем сообщил, что он за компьютером; данных для указания места просмотра хватало.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A. Клиент спросил, где увидеть тариф, а не запросил сведения по счёту или действие, требующее идентификации.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20. Существенный вопрос о том, где посмотреть тариф, закрыт: оператор объяснила, что в веб-версии нужно открыть «Кабинет», где тариф указан под ФИО. Клиент подтвердил, что нашёл его: «Көрдім, рақмет».",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да. Оператор общалась вежливо; клиент не выражал недовольства или неудобства, на которые требовалось бы отдельно отреагировать.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "10. Инструкция дана ясно и последовательно; явного ожидания или паузы, о которой требовалось предупредить, не было.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет. Оператор попрощалась словами «Сау болыңыз!», но не подвела итог и не предложила дальнейшую помощь.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет. В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-002",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на казахском и представился: «Сәлеметсіз бе! Мен Нұрланмын».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос был понятен с самого начала — «Брокерлік шотқа банк арқылы ақша аударғым келеді. Деректемелер қайда?»",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: запрос касался навигации по приложению, а не получения защищённых данных или выполнения действия по счёту.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Все существенные вопросы закрыты: оператор указал путь «Меню → Пополнить → Перевод по реквизитам», объяснил выбор валюты и загрузку реквизитов; клиент подтвердил: «Таптым».",
+          "evidence_turns": [
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо и отреагировал на затруднение клиента, указав конкретный путь в приложении; клиент подтвердил, что нашёл нужное.",
+          "evidence_turns": [
+            5,
+            10,
+            13
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы последовательные и понятные: сначала оператор назвал раздел меню, затем объяснил выбор валюты и загрузку реквизитов. Явного ожидания или паузы в участке оператора не было.",
+          "evidence_turns": [
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался фразой «Күніңіз сәтті өтсін!», но не предложил дальнейшую помощь и не подвёл итог; одного прощания недостаточно для выполнения обоих условий.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации в репликах оператора не выявлено.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-003",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался казахша және өзін таныстырды: «Сәлеметсіз бе, мен Дана». Бұл — оператордың алғашқы жауабы.",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Бастапқы ақпарат аударымды тексеруге жеткіліксіз болды. Оператор белгілі деректерді ескеріп, валютасын және аударымның шамамен қашан жасалғанын нақтылады: «Ақшаны қай валютамен аудардыңыз?» және «Алдымен аударымның шамамен қашан жасалғанын айтыңыз».",
+          "evidence_turns": [
+            1,
+            10,
+            14,
+            17
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": true,
+          "rationale": "Нақты төлемді тексермес бұрын оператор жеке басты растау керегін айтты, кейін жүйе клиенттің жеке басы расталғанын белгіледі. Төлем туралы мәліметті мамандарға жолдау содан кейін ғана айтылды.",
+          "evidence_turns": [
+            11,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Аударым көрінбеуі бойынша оператор сұрауды мамандарға жолдап, жауапты осы чатқа жіберетінін айтты — бұл дұрыс келесі қадам. Есепті жүктеу жолын және бір айлық кезеңді таңдау тәсілін түсіндірді, сондықтан маңызды сұрақтардың бәрі қамтылды.",
+          "evidence_turns": [
+            14,
+            19,
+            22,
+            24,
+            26
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор сыпайы сөйлеп, клиенттің ақша көрінбей тұрғанына алаңдағанын нақты атап өтті: «алаңдайтыныңыз түсінікті». Диалогтың соңында да сыпайы қоштасты.",
+          "evidence_turns": [
+            11,
+            26
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Оператордың жауаптары түсінікті және ретімен берілген: есепті қайдан ашу керегін, кезеңді қалай көрсету керегін нақты түсіндірді. Белгіленген пауза оператордың ақпарат тексеріп жатқанын көрсетпейді, сондықтан ескерту талап етілетін айқын күту жағдайы болмаған.",
+          "evidence_turns": [
+            22,
+            24
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Оператор аударым бойынша жауапты осы чатқа жіберетінін айтып, әрі қарайғы қадамды қорытындылады және қоштасты: «Сау болыңыз!».",
+          "evidence_turns": [
+            26
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Диалогта клиентті қорлау, компаниядан тыс ақылы қызмет ұсыну немесе құпия ақпаратты жариялау байқалмайды.",
+          "evidence_turns": [
+            1,
+            26
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-004",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Да. В первом ответе оператор поздоровался по-казахски и представился: «Сәлеметсіз бе, мен Айбекпін».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A. Для ответа о том, где отправить задание, уточнения не требовались: запрос и контекст уже были известны оператору.",
+          "evidence_turns": [
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A. Оператор указал путь к заданию и объяснил, когда можно повторно подать заявку; личные данные не раскрывались и защищённое действие не выполнялось.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20 — оба существенных вопроса закрыты: оператор указал, где отправить задание («Меню → Поручения → Персональные данные → Изменение сведений»), и пояснил, что повторно запросить вывод можно после обновления данных и выполнения задания.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да. Оператор общался вежливо и ответил на вопросы клиента; выраженного недовольства или неудобства, требующего отдельной реакции, не было.",
+          "evidence_turns": [
+            10,
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "10 — ответы ясные и последовательные: сначала оператор указал путь к заданию, затем объяснил условие для повторной подачи заявки на вывод. Во время общения оператора явного ожидания без предупреждения не было.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет. Оператор попрощался («Сау болыңыз!»), но не подвёл итог и не предложил дальнейшую помощь.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет. В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-005",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Да. В первом сообщении оператор поздоровалась на казахском и представилась: «Сәлеметсіз бе, мен Мадина». Основание — m9.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A. Запрос о том, где обновить данные, и уже известное название задачи давали достаточно информации для указания пути.",
+          "evidence_turns": [
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A. Навигационная консультация не требовала идентификации клиента.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20 — существенный запрос о расположении раздела закрыт: после уточнения пути «Меню → Поручения → Персональные данные → Изменение сведений» клиент подтвердил, что нашёл его. Основание — m11–m12.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да. Оператор общалась вежливо и отреагировала на то, что клиент не нашёл нужный раздел, указав точный путь: «Меню → Поручения → Персональные данные → Изменение сведений». Основание — m10–m11.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "7 — оператор сначала дала слишком общий ориентир «Профильге кіріңіз де, тапсырмалардан іздеңіз», после чего клиент сообщил, что такого раздела не видит; затем путь был уточнён и стал понятным. Основание — m9–m11.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет. Последняя реплика оператора — «Жақсы», в ней нет ни предложения дальнейшей помощи или итога, ни прощания.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет. В сообщениях оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 85.38,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-006",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась на казахском и представилась в первом ответе: «Сәлеметсіз бе, мен Әсел».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос был понятен без дополнительных уточнений — клиенту нужен отчёт за прошлый год и помощь с выбором дат.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор объяснил, где открыть отчёт и как выбрать период; для такой общей инструкции идентификация не требовалась.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной запрос закрыт: оператор указал открыть «Отчёт брокера», выбрать начало и конец прошлого года и загрузить отчёт. Существенных открытых вопросов не осталось.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо; клиент не выражал недовольства или неудобства. В конце оператор доброжелательно ответила: «Көмегім тигеніне қуаныштымын».",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Инструкция оператора ясная и последовательная, однако перед отмеченной паузой в 2 минуты 12 секунд оператор не предупредила клиента об ожидании. Это один заметный сбой, не мешающий понять ответ.",
+          "evidence_turns": [
+            9,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась словами «Сау болыңыз!», но не подвела итог и не предложила дальнейшую помощь.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 85.38,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-007",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Иә: в первом ответе оператор поздоровался на казахском и представился: «Сәлеметсіз бе, менің атым Ермек».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: уже из сообщений «Ескі шот жабылған» и «логин бос емес дейді» можно было ответить, почему старый логин недоступен; дополнительное уточнение не требовалось.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спрашивал, освободится ли старый логин после закрытия счёта; оператор сообщил общее правило, не раскрывая персональные или счётные данные.",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20: вопрос о том, станет ли старый логин доступен после закрытия счёта, закрыт ответом: «Бұрын қолданылған логин шот жабылғаннан кейін де жүйеде қалады». Оператор также дал понятный следующий шаг — выбрать другой логин.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Иә: оператор общался вежливо и прямо отреагировал на проблему с занятым логином, объяснив причину и предложив выбрать другой.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "10: ответ изложен ясно и последовательно; ожидания или паузы, о которых следовало бы предупредить, не было.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет: оператор попрощался фразой «Сау болыңыз!», но не подвёл итог и не предложил дальнейшую помощь. Оператор мог завершить диалог; сообщения об обрыве нет.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет: в сообщениях оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": false,
+          "rationale": "Нет: оператор поздоровался на казахском, но в первом сообщении не представился. Основание — m9: «Сәлем. Қай сайтқа кірдіңіз?»",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент сразу описал проблему, а затем уточнил, что речь о сайте Freedom Finance Global; для ответа дополнительных данных не требовалось. Основание — m0 и m4.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор дал общую инструкцию, где войти в торговый счёт; идентификация для такого запроса не требовалась. Основание — вопрос клиента о входе на сайт в m0.",
+          "evidence_turns": [
+            1,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20: основной вопрос закрыт — оператор пояснил, что сайт информационный, и указал войти через tradernet.global или приложение Freedom Broker; клиент подтвердил, что получилось. Основание — m11 и m12.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Нет: после повторного вопроса оператора клиент выразил недовольство, что уже указал сайт («Жоғарыда жаздым ғой»), но оператор не отреагировал на эту конкретную проблему. Основание — m10–m11.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "7: основное объяснение ясное и последовательное, но оператор заметно повторил вопрос о сайте, который клиент уже сообщил до перевода и в m4. Клиент всё же понял ответ и подтвердил, что вход открылся. Основание — m4, m9–m12.",
+          "evidence_turns": [
+            5,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет: в диалоге нет итогового предложения дальнейшей помощи и прощания оператора; последнее сообщение оператора — инструкция в m11, после которой клиент поблагодарил. Основание — m11–m12.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет: в репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации. Проверен участок оператора m9–m11.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 46.92,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-009",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался казахша и представился в первом сообщении: «Сәлеметсіз бе! Мен Айсұлумын».",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент сообщил «Тикері бар» и «Тикерді жазып алдым», поэтому оператор мог без дополнительных уточнений объяснить, как найти бумагу по тикеру.",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор объяснял общий порядок поиска бумаги и подачи заявки, не раскрывал данные клиента и не выполнял защищённое действие.",
+          "evidence_turns": [
+            11,
+            13
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основные вопросы закрыты: оператор объяснил, как открыть результат с нужным тикером и перейти к заявке, а также уточнил, что отправлять её нужно только если клиент решил купить. Это соответствует запросу клиента, который хотел сначала изучить параметры и не отправлять заявку сразу.",
+          "evidence_turns": [
+            11,
+            13,
+            16,
+            18
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент не выражал недовольства или неудобства, требующего отдельной реакции. В конце оператор ответил «Оқасы жоқ».",
+          "evidence_turns": [
+            18,
+            20
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы оператора ясные и последовательные: он объяснил поиск по тикеру, переход к заявке и возможность не отправлять её, пока клиент не готов. Явного ожидания или паузы, требующей предупреждения, не было.",
+          "evidence_turns": [
+            11,
+            13,
+            18
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался фразой «Сау болыңыз!», но не подвёл итог и не предложил дальнейшую помощь, поэтому оба элемента завершения не выполнены.",
+          "evidence_turns": [
+            19,
+            20
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в репликах оператора нет.",
+          "evidence_turns": [
+            11,
+            20
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-010",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на казахском и представился: «Сәлеметсіз бе, мен Алма».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос был конкретным — «Оны алып тастауға бола ма?» и «Қай жерін басамын?»; оператор мог сразу указать нужный путь в настройках.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: это общий вопрос о настройке заявки, для ответа на который идентификация не требовалась.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Существенный вопрос о том, как убрать использование маржи, закрыт: оператор указал открыть «Настройки приказа» и снять отметку, после чего клиент подтвердил: «Өшірдім».",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо и дал инструкцию без резкости; клиент поблагодарил, а оператор попрощался.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Инструкция сформулирована ясно и последовательно. Перед ответом была пауза после перевода чата оператору, но предупреждения об ожидании не было.",
+          "evidence_turns": [
+            9,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался: «Сау болыңыз!», но не подвёл итог и не предложил дальнейшую помощь — обязательный элемент завершения отсутствует.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в сообщениях оператора нет.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 85.38,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-011",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на казахском и представился в первом сообщении: «Сәлеметсіз бе, мен Саматпын».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент прямо спросил, можно ли купить акции средствами D-шота; дополнительных сведений для ответа не требовалось. Это видно из сообщения клиента «D-шоттағы ақшамен бірден акция ала аламын ба?».",
+          "evidence_turns": [
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент уточнял, с какого счёта покупать акции; запрос не требовал идентификации. Основание — вопрос «D-шоттағы ақшамен бірден акция ала аламын ба?».",
+          "evidence_turns": [
+            5,
+            11
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Все существенные вопросы закрыты: бот объяснил различие счетов, оператор ответил, что средства D-шота нельзя использовать для покупки напрямую, а для покупки нужно выбрать сауда шоты; затем подтвердил это клиенту. Основание — «D-шот жинақтауға, ал сауда шоты бағалы қағаздармен операция жасауға арналған» и ответы оператора «D-шоттағы қаражат акция сатып алуға тікелей қолданылмайды» и «акция сатып алу үшін сауда шотын қараңыз».",
+          "evidence_turns": [
+            4,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент не выражал недовольства или неудобства, требующего отдельной реакции. Основание — приветствие оператора и спокойное завершение обмена репликами клиента «Жақсы».",
+          "evidence_turns": [
+            10,
+            13
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы оператора ясные и последовательные: он объяснил, что D-шот напрямую не подходит для покупки акций, и подтвердил выбор торгового счёта. Перед подключением оператора бот предупредил клиента: «Күте тұрыңыз, оператор жақында чатқа қосылады».",
+          "evidence_turns": [
+            8,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "N/A: после сообщения клиента «Жақсы» система зафиксировала обрыв связи; оператору не дали возможности подвести итог и попрощаться.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в репликах оператора нет.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-012",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Установление контакта — Да. В первом ответе оператор поздоровался по-казахски и представился: «Сәлеметсіз бе, мен Дидармын».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Выявление потребности — Да. По сообщению «отклонён» и общей информации о покупке облигации данных для проверки не хватало; оператор уточнил тикер, затем попросил прислать его и сообщение на экране.",
+          "evidence_turns": [
+            1,
+            5,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация не требовалась: оператор только запросил тикер облигации и текст сообщения об ошибке для уточнения и проверки.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Корректная и полная консультация — 20. На запрос о непринятой заявке оператор запросил необходимые для уточнения сведения и обозначил следующий шаг: «қай өтінім туралы екенін нақтылап, тексеруге жолдай аламын»; клиент решил прислать их позже, поэтому предложенный путь решения корректен.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Эмпатия и клиентоориентированность — Да. Оператор общался вежливо; клиент не выражал недовольства или неудобства, требующего отдельной реакции.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Управление диалогом — 10. Оператор ясно и последовательно уточнил, какие данные нужны, а затем обозначил, что сможет сделать после их получения; явного ожидания проверки со стороны оператора не было.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Завершение — Да. Оператор обозначил дальнейший шаг — прислать сведения, когда клиент будет готов, — и попрощался: «Сау болыңыз!»",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Грубых ошибок не выявлено: оператор не оскорблял клиента, не предлагал платную услугу в обход компании и не раскрывал конфиденциальную информацию.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-013",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась по-казахски и представилась в первом сообщении: «Сәлеметсіз бе, мен Айданамын».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент спросил, где смотреть облигации, и оператору не требовалось уточнять детали; бот уже подсказал раздел «Котировки».",
+          "evidence_turns": [
+            1,
+            4
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор сообщил только, где искать облигации; защищённых данных или действий не было.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Вопрос о том, где смотреть облигации, закрыт: оператор указал раздел «Котировки» и поиск по названию, после чего клиент подтвердил: «Таптым». Других конкретных вопросов о покупке клиент не сформулировал.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо; клиент не выражал недовольства или неудобства, на которые требовалось бы отдельно отреагировать.",
+          "evidence_turns": [
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ оператора был ясным и последовательным, клиент подтвердил, что нашёл нужное. Перед подключением оператору бот сообщил: «Күте тұрыңыз, оператор жақында чатқа қосылады».",
+          "evidence_turns": [
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "После отказа клиента оператор не подвёл итог, не предложил дальнейшую помощь и не попрощался; чат был закрыт оператором.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Оператор предложила оставить личный номер, чтобы после работы за плату сообщить, «какие қағаз алу керегін» — это предложение платной услуги в обход компании.",
+          "evidence_turns": [
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-kz-014",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась и представилась на казахском: «Сәлеметсіз бе, мен Ләззатпын».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Уточнять ничего не требовалось: вопрос клиента был сформулирован полностью, оператор сразу ответила на него.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Клиент спросил только, доступна ли форма 1042-S на казахском; идентификация для такого общего вопроса не требуется.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Единственный существенный вопрос — можно ли получить форму 1042-S на казахском — закрыт: оператор сообщила, что форма предоставляется на английском языке.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и дала прямой ответ; клиент недовольства или неудобства не выражал.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ сформулирован ясно и непосредственно по вопросу; явного ожидания, о котором нужно было бы предупредить, не было.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась словами «Сау болыңыз!», но не предложила дальнейшую помощь и не подвела итог в завершении диалога.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-015",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался на казахском и представился в первом сообщении: «Сәлеметсіз бе, мен Мұратпын».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "С самого начала было понятно, что клиент спрашивает о причине ограничения вывода; оператор учёл это, сообщил об ограничении и сказал, что отправит его на проверку. Дополнительные сведения от клиента для следующего шага не запрашивались.",
+          "evidence_turns": [
+            1,
+            10,
+            14
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": false,
+          "rationale": "Оператор раскрыл состояние счёта до подтверждения идентификации: «Сіздің шотыңызда ақша шығаруға шектеу қойылғанын көріп тұрмын». Клиент прямо сказал, что ещё не подтвердил личность, а оператор ответил, что подтверждение не нужно.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Клиент спросил причину блокировки вывода. Причину оператор не назвал, но сообщил, что отправит запрос на проверку: «Оны тексеруге жіберемін» — это следующий шаг по выяснению причины.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо и ответил на замечание клиента о неподтверждённой личности: «Қазір растаудың қажеті жоқ». Грубости или игнорирования клиента нет.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы короткие и понятные: оператор сообщил об ограничении, затем пообещал отправить его на проверку. Явной паузы или ожидания, о котором нужно было бы предупредить, в транскрипте не отмечено.",
+          "evidence_turns": [
+            10,
+            14
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Оператор обозначил следующий шаг — отправить вопрос на проверку — и попрощался: «Оны тексеруге жіберемін. Сау болыңыз».",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Оператор раскрыл конфиденциальные сведения о счёте — наличие ограничения на вывод — до подтверждения личности клиента: «Сіздің шотыңызда ақша шығаруға шектеу қойылғанын көріп тұрмын».",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 80.0,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-ru-001",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор в первом сообщении поздоровалась и представилась: «Здравствуйте! Меня зовут Алина».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: из сообщений клиента уже известны задача и важное ограничение, поэтому оператор мог сразу предложить способ просмотра тарифа без уточнений.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спросил, где посмотреть тариф; оператор указала расположение раздела, не раскрывая защищённые сведения и не выполняя защищённое действие.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос закрыт: оператор указала открыть «Кабинет» и пояснила, где отображается тариф; клиент подтвердил, что нашёл его. Существенных открытых вопросов нет.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и предложила способ посмотреть тариф без скачивания отчёта — именно это ограничение обозначил клиент. Основание: «отчёт качать не хочу» и ответ оператора о веб-версии.",
+          "evidence_turns": [
+            5,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ сформулирован ясно и последовательно: оператор дала конкретный путь в веб-версии и указала, где будет название тарифа. Явного ожидания или паузы не было.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась фразой «Хорошего вечера!», но не подвела итог и не предложила дальнейшую помощь. Поэтому выполнен только один из двух требуемых элементов завершения.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в диалоге нет.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-002",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте, я Тимур».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Причину изменения тарифа нельзя было определить по исходным данным. Оператор уточнил, где клиент сравнивал тарифы, учёл ответ и обозначил, какие сведения нужны для проверки: «Напишите, где и когда вы видели каждое название тарифа».",
+          "evidence_turns": [
+            10,
+            11,
+            15
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": false,
+          "rationale": "Проверка личного счёта требовала идентификации, но она не была подтверждена: оператор предупредил о её необходимости, а клиент отказался пока проходить её. Основание — «понадобится идентификация» и «Давайте пока без неё».",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос о причине изменения тарифа не был разрешён, но оператор корректно объяснил, что не видит причину по переписке, и предложил проверку счёта после идентификации. На вопрос, что подготовить, дал понятный следующий шаг — сообщить страницу и дату; уточнил, что сам отчёт отправлять пока не нужно.",
+          "evidence_turns": [
+            12,
+            15,
+            17
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор был вежлив и отреагировал на беспокойство из-за неожиданного изменения тарифа: «Понимаю, что неожиданное изменение тарифа может беспокоить».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы последовательны и понятны: оператор разделил сверку дат и проверку счёта, а также ясно объяснил, какие сведения сообщить и нужен ли отчёт. Явного ожидания проверки в транскрипте не обозначено.",
+          "evidence_turns": [
+            12,
+            15,
+            17
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Оператор предложил обратиться снова, если вопрос останется, и попрощался: «Если вопрос останется, напишите нам. До свидания!»",
+          "evidence_turns": [
+            19
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации в репликах оператора нет.",
+          "evidence_turns": [
+            10,
+            12,
+            15,
+            17,
+            19
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 80.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-003",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась и представилась в первом ответе: «Добрый день! Я Лера из поддержки» (m10).",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос о комиссии на покупку акций по тарифу «Инвестор» уточнён до международного рынка и покупки, а не вывода.",
+          "evidence_turns": [
+            1,
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: вопросы касаются комиссии и навигации по кабинету, поэтому идентификация не требовалась.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "Часть запроса закрыта: оператор объяснила, где посмотреть название тарифа — «Откройте „Кабинет“, название тарифа под ФИО» (m12). Существенный вопрос о комиссии за покупку акций остался без ответа; на вопрос «А комиссию где искать?» оператор ответила только про название тарифа (m13–m14).",
+          "evidence_turns": [
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо, грубости или выраженного клиентом недовольства в диалоге нет; завершила фразой «Хорошего дня!» (m14).",
+          "evidence_turns": [
+            11,
+            15
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "В целом ответы понятны, но на вопрос о том, где искать комиссию, оператор повторила, где смотреть название тарифа: «Название тарифа смотрите там же» (m14). Это заметный сбой в ведении диалога, хотя дальнейший ход разговора остаётся понятным.",
+          "evidence_turns": [
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась фразой «Хорошего дня!», но не подвела итог и не предложила дальнейшую помощь.",
+          "evidence_turns": [
+            15
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В сообщениях оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            11,
+            13,
+            15
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 70.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-004",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом ответе: «Здравствуйте, я Артём».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос клиента был сформулирован достаточно конкретно для ответа о пополнении через банк.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спросил об общем способе пополнения счёта, а не о персональных данных или действиях по его счёту.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос о пополнении через банк закрыт инструкцией «Меню → Пополнить → Перевод по реквизитам»; на вопрос о евро оператор пояснил, что можно скачать реквизиты в нужной валюте. Существенные вопросы закрыты.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент не выражал недовольства или неудобства, на которые требовалась бы отдельная реакция.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Инструкции изложены ясно и последовательно, а клиент подтвердил: «Нашёл, теперь понятно». Оператор не уходил проверять информацию во время диалога.",
+          "evidence_turns": [
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался словами «Хорошего дня!», но не подвёл итог и не предложил дальнейшую помощь, поэтому оба элемента завершения не выполнены.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-005",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Да. В первом сообщении оператор поздоровалась по-русски и представилась: «Добрый день, меня зовут Нина».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": false,
+          "rationale": "Нет. Клиент уже сообщил, что перевод будет по реквизитам из отделения, но оператор не уточнила недостающие условия и не ответила, кто именно берёт комиссию; вместо этого сказала, что не может назвать её сумму без условий банка.",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A. Клиент спрашивал о комиссии при пополнении и где найти реквизиты, поэтому идентификация для ответа не требовалась.",
+          "evidence_turns": [
+            1,
+            11
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "10. Вопрос о том, где найти реквизиты, решён: оператор уточнила путь «Меню → Пополнить → Перевод по реквизитам», и клиент подтвердил, что видит его. Существенный вопрос о том, кто берёт комиссию, остался открытым: оператор не ответила по существу и предложила проверить комиссию в банке.",
+          "evidence_turns": [
+            10,
+            11,
+            14,
+            15,
+            16
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да. Оператор общалась вежливо, извинилась за неясное объяснение и уточнила путь к реквизитам; клиент не выражал недовольства.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 4,
+          "rationale": "4. Первое объяснение о том, где найти реквизиты, было размытым: после «Там же где перевод, не в отчете, сверху вниз в меню» клиенту пришлось переспросить: «В каком меню?». Оператор затем дала понятный путь.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Да. Оператор обозначила следующий шаг — «Перед переводом проверьте комиссию в банке» — и попрощалась: «До свидания!».",
+          "evidence_turns": [
+            16
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет. В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14,
+            16
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 57.5,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-006",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте, меня зовут Роман».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Клиент сообщил, что платеж уже отправлен и деньги не поступили; оператор учёл это и уточнил валюту, чтобы добавить её к обращению. Основание — «в какой валюте был перевод» и ответ клиента «В тенге».",
+          "evidence_turns": [
+            1,
+            5,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": true,
+          "rationale": "Перед проверкой счёта оператор запросил подтверждение личности, а система подтвердила его до передачи вопроса специалистам. Основание — m9 и m11; дальнейшее действие указано в m12.",
+          "evidence_turns": [
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Запрос клиента — проверить зачисление уже отправленного пополнения — передан специалистам; оператор добавил валюту и сообщил, что ответ придёт в этом чате. Дан корректный следующий шаг по существенному вопросу.",
+          "evidence_turns": [
+            1,
+            5,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор вежлив и отреагировал на беспокойство клиента конкретно: «Понимаю, что вы переживаете из-за платежа».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы изложены последовательно: оператор объяснил необходимость проверки личности, запросил валюту для обращения и сообщил дальнейший порядок. Перед добавлением валюты он обозначил действие словами «чтобы я добавил это к обращению», поэтому последующая пауза не оставила клиента без контекста.",
+          "evidence_turns": [
+            10,
+            13,
+            15
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Оператор сообщил дальнейший порядок («мы сообщим вам в этом чате») и попрощался: «До свидания!»",
+          "evidence_turns": [
+            15
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            13,
+            15
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-007",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом ответе: «Здравствуйте, я Дамир».",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос сформулирован достаточно конкретно, чтобы дать инструкции и пояснить порядок повторной подачи на вывод.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: для ответа на вопрос о пути в приложении идентификация не требовалась.",
+          "evidence_turns": [
+            5,
+            11
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "Путь к поручению «Изменение сведений» оператор указал, но существенный вопрос о том, можно ли сразу после отправки снова подать заявку на вывод, остался без ответа: на него оператор ответил лишь «Путь к обновлению я указал».",
+          "evidence_turns": [
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Оператор был вежлив, но клиент сообщил, что не может вывести деньги, а на конкретный вопрос о повторной подаче оператор не ответил и завершил репликой «Путь к обновлению я указал».",
+          "evidence_turns": [
+            1,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Инструкция о пути в приложении дана ясно, но ответ на последующий вопрос клиента не последовал: вместо пояснения оператор повторил, что путь уже указал. Это заметный сбой, хотя ход диалога в целом понятен.",
+          "evidence_turns": [
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался словами «Хорошего дня!», но не подвёл содержательный итог и не предложил дальнейшую помощь.",
+          "evidence_turns": [
+            13
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            11,
+            13
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 46.92,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-008",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась по-русски и представилась в первом ответе: «Добрый день! Меня зовут Вера».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент сообщил, что изменение сведений ещё в обработке, и оператор мог сразу разъяснить порядок действий. Это подтверждают сообщения клиента «Я вчера отправил изменение сведений» и «Оно всё ещё в обработке».",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спрашивал, нужно ли подавать вторую заявку, а не запрашивал сведения по счёту или выполнение защищённого действия.",
+          "evidence_turns": [
+            1,
+            11
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Оператор разъяснила, что нужно дождаться исполнения поручения и обновления данных, а затем повторить вывод; на вопрос о второй заявке ответила «Да, сначала дождитесь обновления, затем повторите вывод». Существенные вопросы закрыты.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и ответила на вопросы клиента; недовольства или описания неудобства в диалоге нет.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы оператора короткие, ясные и последовательные; явного ожидания проверки информации не было.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась фразой «До свидания!», но не подвела итог и не предложила дальнейшую помощь, поэтому оба элемента завершения не выполнены.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-009",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор в первом ответе поздоровался по-русски и представился: «Здравствуйте, я Руслан».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Данных для ответа с самого начала не хватало; оператор уточнил, какое сообщение видит клиент, и получил уточнение, что сообщения нет, а кнопка не нажимается. Это произошло до ответа о состоянии счёта.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": false,
+          "rationale": "Оператор раскрыл состояние счёта — «на вашем счёте есть ограничение на вывод» — до подтверждения личности. Клиент указал, что ещё не подтверждал, что это его счёт; оператор ответил, что подтверждение не нужно.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "Клиент просил проверить счёт и выяснить причину ограничения вывода. Оператор сообщил, что ограничение есть, и обещал передать вопрос на проверку, но причину не назвал — существенный вопрос остался открытым.",
+          "evidence_turns": [
+            11,
+            12,
+            15,
+            16
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Клиент описал неудобство: вывод перестал работать, а кнопка не нажимается. Оператор не отреагировал на эту проблему с сочувствием или признанием неудобства и перешёл к уточнениям и проверке.",
+          "evidence_turns": [
+            1,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы оператора в целом ясные и связные: он уточнил проблему, сообщил результат проверки и обозначил следующий шаг — передать вопрос на проверку. В транскрипте нет явной длительной паузы, перед которой требовалось бы предупреждение.",
+          "evidence_turns": [
+            10,
+            12,
+            16
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Оператор обозначил дальнейшее действие — «Передам вопрос на проверку» — и попрощался: «До свидания».",
+          "evidence_turns": [
+            16
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Оператор раскрыл конфиденциальную информацию о состоянии счёта клиента: сообщил, что на счёте установлено ограничение на вывод, хотя проверка личности не была подтверждена.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 55.0,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-ru-010",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Да. В первом ответе оператор поздоровалась по-русски и представилась: «Здравствуйте, я Соня» (m10).",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Да. Для проверки конкретной пропавшей позиции оператор уточнила, где клиент смотрит портфель, и попросила название бумаги (m10, m15), учитывая, что сделок не было и пропала одна строка (m0, m9).",
+          "evidence_turns": [
+            1,
+            10,
+            11,
+            16
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": true,
+          "rationale": "Да. Оператор начала идентификацию перед проверкой конкретной позиции, а система подтвердила личность до передачи вопроса специалистам (m12, m14, m15).",
+          "evidence_turns": [
+            13,
+            15,
+            16
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20. По пропавшей позиции оператор сообщил, что передаст вопрос специалистам и уточнит отображение именно этой позиции (m18, m31). На вопрос об отчёте дал путь в приложении, а для сверки посоветовал недельный отчёт, если в этот период позиция ещё отображалась (m20, m27); существенные вопросы закрыты или дан следующий шаг.",
+          "evidence_turns": [
+            19,
+            21,
+            28,
+            32
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да. Оператор общалась вежливо и отреагировала на конкретное неудобство: признала, что пропавшая строка беспокоит клиента, и предложила проверить отображение (m10, m18).",
+          "evidence_turns": [
+            11,
+            19
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "10. Ответы оператора ясные и последовательные: она уточнила, где клиент смотрит портфель, объяснила следующий шаг и отдельно дала понятный путь к отчёту (m10, m18, m20). После подключения оператора явных пауз ожидания без предупреждения не отмечено.",
+          "evidence_turns": [
+            11,
+            19,
+            21
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Да. В последнем сообщении оператор подвела итог — «Вопрос о позиции передан» — и попрощалась: «Хорошего вечера!» (m31).",
+          "evidence_turns": [
+            32
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет. В диалоге не выявлено оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            1,
+            32
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-011",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась по-русски и представилась в первом ответе: «Здравствуйте! Я Лиза».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: до подключения оператора клиент указал вид отчёта и период — «Отчёт брокера за прошлый год».",
+          "evidence_turns": [
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор дала общую инструкцию по разделам приложения, не раскрывая персональные сведения и не выполняя защищённое действие.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной запрос о том, где найти отчёт брокера за прошлый год, закрыт инструкцией выбрать «Меню → Отчёты и документы → Отчёт брокера» и период; уточнение о датах года также подтверждено. Клиент сообщил, что документ скачался.",
+          "evidence_turns": [
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо; клиент не выражал недовольства или неудобства, требующих отдельной реакции.",
+          "evidence_turns": [
+            10,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Инструкция дана ясно и последовательно, а на уточнение о периоде оператор ответила прямо. Клиент смог скачать отчёт; заметных проблем с пониманием или порядком ответов нет.",
+          "evidence_turns": [
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась словами «Хорошего дня!», но не подвела итог и не предложила дальнейшую помощь, поэтому выполнен только один из двух необходимых элементов завершения.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-012",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте. Я Илья».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: вопросы о языке формы не требовали уточнений; оператор мог сразу сообщить, что форма предоставляется на английском языке.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент задал общий информационный вопрос о языке документа, поэтому идентификация не требовалась.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Вопрос о языке 1042-S был закрыт: бот сообщил, что форма на английском, а оператор подтвердил это, тем самым ответив и на уточнение о наличии русской версии. Существенных вопросов без ответа не осталось.",
+          "evidence_turns": [
+            4,
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент не выражал недовольства или неудобства, требующих отдельной реакции.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ оператора короткий, ясный и согласуется с сообщением бота. Ожидание подключения было обозначено сообщением бота «Оператор скоро подключится к чату»; оператор не уходил проверять информацию.",
+          "evidence_turns": [
+            8,
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "N/A: клиент сообщил, что больше ничего не хотел узнать, после чего соединение прервалось; оператор не получил возможности подвести итог и попрощаться.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-013",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась и представилась в первом сообщении: «Здравствуйте! Я Кира».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос и информация бота позволяли дать маршрут по сайту без дополнительных уточнений. Основание — «Где отчётность вашей компании посмотреть?» и сообщение бота о сайте компании.",
+          "evidence_turns": [
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор помог найти публичный раздел сайта, не раскрывая персональные данные и не выполняя защищённое действие. Основание — запрос о местонахождении отчётности и указание разделов сайта.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос закрыт: оператор указала открыть Investors, затем Financial Information; клиент подтвердил, что искал в новостях, и поблагодарил. Существенных открытых вопросов нет.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и конкретно подсказала путь к нужной отчётности после того, как клиент сообщил, что не может найти раздел. Основание — инструкция в m9 и доброжелательное завершение в m11.",
+          "evidence_turns": [
+            5,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы ясные и последовательные: оператор назвала два пункта меню в нужном порядке, а затем подтвердила, что раздел находится в меню для инвесторов. Явного ожидания проверки информации со стороны оператора не было.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": true,
+          "rationale": "Оператор подтвердила расположение раздела и попрощалась словами «Хорошего дня!».",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в репликах оператора нет.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-014",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": false,
+          "rationale": "Нет: в первом ответе оператор поздоровался («Привет»), но не представился. Основание — первое сообщение оператора m9.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент назвал сайт до подключения оператора, поэтому для ответа не требовалось уточнять, где он ищет вход. Оператор всё же повторно спросил об этом в m9.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спросил, где найти личный кабинет на сайте; идентификация для такой общей справки не требовалась.",
+          "evidence_turns": [
+            1,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20: существенный вопрос закрыт — оператор указал tradernet.global и мобильное приложение Freedom Broker для доступа к счёту, после чего клиент сообщил, что зашёл. Основание — m11–m12.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да: оператор общался вежливо и дал конкретный ответ на затруднение клиента с поиском входа. Основание — клиент просит помощи, поскольку «я запутался» (m4), оператор объясняет, где открыть доступ (m11).",
+          "evidence_turns": [
+            5,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "7: основной ответ сформулирован ясно, но оператор повторно спросил, где клиент ищет вход, хотя клиент уже уточнил сайт до перевода; клиенту пришлось указать: «Я уже писал» (m10). Затем оператор дал понятную инструкцию (m11).",
+          "evidence_turns": [
+            5,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет: оператор попрощался словами «Хорошего дня», но не подвёл итог и не предложил дальнейшую помощь. Основание — последнее сообщение оператора m13.",
+          "evidence_turns": [
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет: в сообщениях оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 70.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-015",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась и представилась в первом сообщении: «Здравствуйте, меня зовут Дина».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Данных в сообщении клиента было достаточно для ответа о сохранении ранее использованного логина после закрытия счёта.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Оператор объясняет, что ранее использованный логин остаётся в системе, и предлагает выбрать другой; идентификация для такого разъяснения не нужна.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос о связи занятого логина с закрытым счётом закрыт: оператор пояснила, что логин остаётся в системе. На вопрос, нужно ли ждать, дан корректный следующий шаг — использовать другой логин для регистрации.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо, а клиент не выражал недовольства или неудобства, требующих отдельной реакции.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы краткие и понятные, порядок объяснения и дальнейшего действия последователен: логин сохраняется в системе, для регистрации нужно выбрать другой.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась фразой «Спасибо за обращение, до свидания!», но не подвела итог и не предложила дальнейшую помощь.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в репликах оператора нет.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-016",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте, меня зовут Антон».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": false,
+          "rationale": "Сообщения «Не пускает» было недостаточно для рекомендации, но оператор не уточнил, где клиент пытается войти, и сразу предложил переустановить приложение. Клиенту пришлось уточнить, что он за компьютером.",
+          "evidence_turns": [
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация для уточнения, где расположен веб-кабинет, не требовалась.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос о входе закрыт: оператор объяснил, что Freedom Finance Global — информационный сайт, и указал веб-кабинет tradernet.global. Клиент подтвердил: «Вот это я и хотел узнать»; первоначальный совет переустановить приложение был не по ситуации, но затем оператор дал нужный ответ.",
+          "evidence_turns": [
+            10,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор не грубил; клиент не выражал явного недовольства, а подтвердил, что получил нужный ответ: «Вот это я и хотел узнать».",
+          "evidence_turns": [
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Был заметный сбой: оператор сначала без уточнения посоветовал переустановить приложение, а затем ответил «Ну, тогда сайт». После уточнения клиента оператор ясно объяснил, где находится вход в веб-кабинет; явного ожидания без предупреждения не было.",
+          "evidence_turns": [
+            10,
+            11,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался словами «Пожалуйста, до свидания», но не подвёл итог и не предложил дальнейшую помощь, поэтому завершение неполное.",
+          "evidence_turns": [
+            14,
+            16
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в репликах оператора нет.",
+          "evidence_turns": [
+            10,
+            12,
+            14,
+            16
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 69.38,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-017",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался по-русски и представился в первом ответе: «Здравствуйте! Я Олег».",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Поскольку клиент видел несколько похожих бумаг, оператор уточнил, знает ли он точный тикер; узнав, что тикер есть, предложил искать по нему. Основание — m10–m12.",
+          "evidence_turns": [
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация для общей подсказки по поиску бумаги и навигации в приложении не требовалась.",
+          "evidence_turns": [
+            1,
+            13
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос — как найти нужную облигацию среди похожих — закрыт: оператор посоветовал ввести точный тикер, открыть найденную бумагу и проверить её перед заполнением параметров приказа. Клиент подтвердил, что нашёл нужную бумагу.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент не выражал недовольства или неудобства, требующего отдельной реакции.",
+          "evidence_turns": [
+            11,
+            13,
+            15
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы ясные и идут в понятном порядке: искать по тикеру, открыть бумагу и проверить её перед заполнением приказа. Явной паузы внутри общения оператора или ожидания проверки с его стороны не было.",
+          "evidence_turns": [
+            11,
+            13
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался: «Хорошего дня!», но не подвёл итог и не предложил дальнейшую помощь; закрытие чата не указано как обрыв.",
+          "evidence_turns": [
+            15
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в репликах оператора нет.",
+          "evidence_turns": [
+            11,
+            13,
+            15
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 93.75,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-018",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте, меня зовут Саша».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос «Где посмотреть причину?» можно было обработать общей инструкцией без уточнений. Это следует из формулировки клиента о том, что приказы отклоняются.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: запрос касался общей консультации о просмотре причины отклонения, а не данных по счёту или защищённой операции.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 0,
+          "rationale": "Вопрос, где посмотреть причину отклонения, остался без ответа. Оператор без оснований заявил: «точно биржа отменяет ваш приказ, ничего не сделать», а затем признал: «Тогда не знаю», поэтому ответа по существу нет и рекомендация недостоверна.",
+          "evidence_turns": [
+            1,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "После того как клиент усомнился в категоричном выводе — «Почему точно?» — оператор ответил «Тогда не знаю», не разобрав вопрос и оставив клиента без помощи.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 4,
+          "rationale": "Оператор сначала уверенно сообщил неподтверждённую причину, из-за чего клиенту пришлось переспросить: «Почему точно? Я даже бумагу вам не назвал». Последующий ответ «Тогда не знаю» не прояснил ситуацию.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор закрыл чат без подведения итога, предложения дальнейшей помощи и прощания. Системное событие подтверждает, что чат закрыл оператор, а не что связь оборвалась.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 24.62,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-019",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте, я Мария».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Оператор уточнил, есть ли у клиента тикер, после ответа предложил искать по этим буквам и сверить карточку бумаги перед покупкой. Так он учёл исходную проблему с похожими бумагами и дал следующий шаг.",
+          "evidence_turns": [
+            1,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Клиент спрашивал, как найти нужную бумагу среди похожих; для такой консультации идентификация не требуется.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Запрос о том, как найти нужную бумагу среди похожих, закрыт: оператор указал искать по буквам тикера и перед покупкой сверить карточку бумаги с желаемой. Существенных открытых вопросов не осталось.",
+          "evidence_turns": [
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент выразил благодарность, недовольства или неудобства в диалоге не высказывал.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы ясные и последовательные: оператор уточнил наличие тикера, затем объяснил, где его искать и как проверить выбранную бумагу. Явного ожидания, связанного с действиями оператора, не было.",
+          "evidence_turns": [
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался словами «До свидания!», но не подвёл итог и не предложил дальнейшую помощь; необходимы оба элемента завершения.",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В сообщениях оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 93.75,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-020",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом ответе: «Здравствуйте, я Егор».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Запрос о том, как убрать галочку в окне покупки, был понятен с первого сообщения; уточнение не требовалось.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Клиент спрашивает, как отключить маржу в приказе; для такой общей инструкции идентификация не нужна.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 15,
+          "rationale": "Основной вопрос закрыт: оператор указал открыть «Настройки приказа» и снять галочку. На вопрос о влиянии настройки на уже купленное оператор ответил, что она относится к заполняемому приказу, но пояснение о существующей позиции осталось не вполне прямым.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент не выражал недовольства или неудобства, требующего отдельной реакции.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы сформулированы ясно и последовательно: оператор дал инструкцию, затем объяснил, к какому приказу относится настройка. Явного ожидания проверки со стороны оператора в диалоге не было.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался фразой «Хорошего дня!», но не подвёл итог и не предложил дальнейшую помощь, поэтому оба необходимых элемента завершения не выполнены.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 84.62,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-021",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась по-русски и представилась в первом ответе: «Здравствуйте! Меня зовут Олеся».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: запрос был сформулирован достаточно конкретно, уточнять дополнительные детали не требовалось. Основание — вопросы клиента в m0 и m4.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: консультация носила общий информационный характер и не требовала идентификации. Основание — вопрос клиента о биржах.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Оба вопроса закрыты: оператор подтвердил, что это разные биржи, и простыми словами описал их типичные различия. Существенных вопросов без ответа не осталось.",
+          "evidence_turns": [
+            1,
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и доброжелательно; клиент не выражал недовольства или неудобства. Это видно по ответу «Рада помочь» и прощанию.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ оператора понятный и последовательный, клиент подтвердил понимание. Явного ожидания или паузы, требовавших предупреждения, в участке оператора не было.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась фразой «До свидания!», но не подвела итог и не предложила дальнейшую помощь; необходимы оба элемента завершения.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-022",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом ответе: «Здравствуйте, я Кирилл».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": false,
+          "rationale": "Для ответа на просьбу подобрать облигации не хватало данных, но оператор не уточнил предпочтения и цели клиента, а предложил вложить деньги лично. Это видно по запросу клиента и ответу оператора.",
+          "evidence_turns": [
+            1,
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация для общего вопроса о выборе облигаций не требуется.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 0,
+          "rationale": "Клиент просил помочь выбрать облигации, чтобы увеличить деньги; ответа по существу не получил. Вместо консультации оператор предложил передать деньги ему лично и затем подтвердил, что это делается в обход компании: «через компанию оформлять не надо».",
+          "evidence_turns": [
+            1,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "После того как клиент выразил недоверие фразой «Вы серьёзно?», оператор не отреагировал на его обеспокоенность и подтвердил, что предложение личное и вне компании.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Реплики оператора сформулированы понятно и последовательно; клиенту не пришлось переспрашивать из-за неясности формулировок. Явного ожидания или паузы на проверку не было.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "После отказа клиента оператор не подвёл итог, не предложил дальнейшую помощь и не попрощался; чат закрыл сам оператор.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Оператор предложил перевести ему деньги на личную карту для инвестирования и подтвердил, что это можно сделать в обход компании.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 31.25,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-ru-023",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Да: в первом ответе оператор поздоровался и представился: «Здравствуйте, я Марк».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: для ответа на вопрос «Как найти облигации в приложении?» изначально было достаточно информации; уточнять детали не требовалось.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спрашивал, как найти облигации в приложении; это общий вопрос о навигации, не требующий проверки личности.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "10: оператор подсказал открыть «Котировки» и искать по названию или тикеру, поэтому часть запроса закрыта. Однако клиент хотел посмотреть, какие облигации доступны, а способ найти их без заранее известного названия или тикера не объяснён.",
+          "evidence_turns": [
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да: оператор общался вежливо — поздоровался, а в завершение ответил «Хорошо. Всего доброго». Клиент не выражал недовольства или неудобства.",
+          "evidence_turns": [
+            10,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "10: ответы сформулированы понятно и последовательно; длительного ожидания или проверки информации оператором не было. Инструкция в m9 ясна, хотя и не полностью закрывает запрос клиента.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет: оператор попрощался словами «Всего доброго», но не подвёл итог и не предложил дальнейшую помощь перед завершением диалога.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Да: оператор предложил личную платную консультацию вне компании: «за плату объясню, какие бумаги взять» и «Это будет моя частная консультация».",
+          "evidence_turns": [
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 76.92,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-ru-024",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась и представилась в первом ответе: «Здравствуйте, я Света».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: исходных данных хватало, чтобы объяснить, что для покупки нужен торговый счёт, а средства на D-счёте напрямую не используются. Это видно из сообщений клиента «С какого покупать акции?» и «если деньги сейчас видны на D-счёте?».",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: вопрос касается общего порядка использования D-счёта и торгового счёта, а не данных или операций по конкретному счёту клиента.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Все существенные вопросы закрыты: оператор пояснила, что средства с D-счёта напрямую для покупки бумаг не используются, и подтвердила, что в приказе нужно ориентироваться на торговый счёт. Клиент подтвердил, что понял ответ: «Понятно, спасибо».",
+          "evidence_turns": [
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо; клиент не выражал недовольства или неудобства, требующих отдельной реакции. В ответах нет грубости или резкого обрыва.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы ясные и последовательные: оператор объяснила, что D-счёт напрямую не используется для покупки, и подтвердила, что в приказе следует смотреть на торговый счёт. Ожидание подключения было обозначено перед переводом: «Оператор скоро подключится к чату».",
+          "evidence_turns": [
+            8,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась словами «Хорошего дня!», но не подвела итог и не предложила дальнейшую помощь. Поэтому выполнен только один из двух необходимых элементов завершения.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-025",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась на русском и представилась в первом ответе: «Здравствуйте! Меня зовут Валерия».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Клиент не сообщил, с каким вопросом нужна помощь, поэтому оператор уточнила потребность: «С чем помочь?».",
+          "evidence_turns": [
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Запрос на подключение оператора не требовал идентификации.",
+          "evidence_turns": [
+            5
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": null,
+          "rationale": "Клиент попросил только подключить оператора, а после уточнения «С чем помочь?» покинул чат, не сформулировав запрос.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо; клиент не выражал недовольства или неудобства, на которые требовалось отдельно отреагировать.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответ оператора краткий и понятный: она представилась и спросила, чем помочь. Явного ожидания со стороны оператора не было.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "После первого ответа оператора клиент покинул чат, поэтому у неё не было возможности подвести итог и попрощаться.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 100.0,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-026",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор в первом сообщении поздоровался по-русски и представился: «Добрый день, я Виктор».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Данных для ответа хватало: клиент спросил, где скачать реквизиты пополнения, а затем уточнил, какую кнопку нажать.",
+          "evidence_turns": [
+            1,
+            11
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Клиент спрашивал только о навигации в приложении, поэтому идентификация не требовалась.",
+          "evidence_turns": [
+            1,
+            11
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 0,
+          "rationale": "Клиент хотел узнать, где скачать реквизиты и какую кнопку нажать; оператор ответил лишь «Всё есть в приложении», не указав путь или кнопку. Ответа по существу нет.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Оператор не был груб, но клиент сообщил, что в приложении много кнопок и попросил помочь с выбором; ответ «Всё есть в приложении» не отреагировал на эту конкретную трудность.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "В целом реплики понятны, но ответ «Всё есть в приложении» слишком общий и не помогает продолжить по запрошенному пути; это заметный сбой в ведении диалога.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор закрыл чат после ответа без предложения дальнейшей помощи и прощания; закрытие чата не является обрывом.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В сообщениях оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 31.54,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-027",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась и представилась в первом сообщении: «Здравствуйте, меня зовут Инга».",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A — клиент уже обозначил запрос и контекст; уточнения для указания пути к отчёту не требовались.",
+          "evidence_turns": [
+            1,
+            5,
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A — клиент спрашивал, где найти отчёт и тариф; идентификация для такой общей консультации не требовалась.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Все существенные вопросы закрыты: оператор указала путь к отчёту и как его скачать, где в документе отображается тариф, где посмотреть тариф в веб-кабинете и как выбрать период для сверки. Ответы дают клиенту понятный следующий шаг.",
+          "evidence_turns": [
+            11,
+            13,
+            17,
+            20,
+            22
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и отреагировала на затруднение клиента с поиском отчёта, сразу указав путь в приложении: «Откройте „Меню → Отчёты и документы → Отчёт брокера“».",
+          "evidence_turns": [
+            5,
+            11
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы последовательные и понятные: после выбора периода оператор объяснила, где найти тариф и как посмотреть его в веб-кабинете. Явного ожидания или паузы, требующей предупреждения, не было.",
+          "evidence_turns": [
+            11,
+            13,
+            15,
+            17
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась фразой «Хорошего вечера!», но не подвела итог и не предложила дальнейшую помощь, поэтому выполнен только один из двух необходимых элементов завершения.",
+          "evidence_turns": [
+            23,
+            24
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            11,
+            24
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-028",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровалась по-русски и представилась в первом ответе: «Здравствуйте, я Ирина».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: для указания нужного раздела уточнения не требовались; запрос клиента был сформулирован до подключения оператора.",
+          "evidence_turns": [
+            1,
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: клиент спросил, где найти раздел для обновления персональных данных, а не просил изменить сведения или раскрыть информацию по счёту.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Оператор указала полный путь к поручению «Изменение сведений» и уточнила, что для анкетных данных нужно выбрать именно его в разделе «Персональные данные». Оба существенных вопроса — где обновить данные и не перепутать пункт с банковскими реквизитами — закрыты.",
+          "evidence_turns": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общалась вежливо и конкретно сняла опасение клиента о выборе неверного поручения: «Для анкетных данных выберите именно “Изменение сведений”».",
+          "evidence_turns": [
+            5,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Ответы ясные и последовательные; перед паузой оператор предупредила: «Сейчас проверю путь», а затем дала пошаговый путь и уточнение.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощалась словами «До свидания!», но не подвела итог и не предложила дальнейшую помощь, поэтому обязательны не оба элемента завершения.",
+          "evidence_turns": [
+            16
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            12,
+            14,
+            16
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 92.31,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-029",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте, я Алексей» (m9).",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Уточнять недостающие данные не требовалось: клиент искал вход, а бот предложил открыть торговую платформу (m0, m3).",
+          "evidence_turns": [
+            1,
+            4
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Клиент спрашивал, где найти вход, а оператор указал сайт; раскрытия персональных данных или защищённого действия не было (m10, m11).",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос, где войти в веб-версию, закрыт: оператор указал tradernet.global, после чего клиент сообщил «Вошёл» (m11, m12).",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Оператор ответил грубо и оскорбительно: «Вы вообще читать умеете?» (m9).",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Инструкция понятна и последовательна: оператор назвал сайт и уточнил, что там находится вход в веб-версию (m11). Явного ожидания или паузы, о которой нужно было предупредить, не было.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор только попрощался: «До свидания»; итога или предложения дальнейшей помощи не было (m13).",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Оператор оскорбил клиента фразой «Вы вообще читать умеете?» (m9).",
+          "evidence_turns": [
+            10
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 69.23,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-ru-030",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался и представился в первом сообщении: «Здравствуйте, я Полина».",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Чтобы проверить, о каком именно документе речь, оператор уточнил его название. Клиент ответил «Брокерский отчёт», после чего оператор дал указание, где найти тариф.",
+          "evidence_turns": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация для ответа на вопрос, где в отчёте смотреть тариф, не требовалась.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Вопрос о том, где смотреть тариф в брокерском отчёте, закрыт: оператор указал блок «Информация о счёте» на первой странице. Клиент подтвердил, что нашёл нужное место: «Да, вижу теперь».",
+          "evidence_turns": [
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо; клиент не выражал недовольства или неудобства, требующего отдельной реакции.",
+          "evidence_turns": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Ответы оператора ясные и последовательные, однако перед паузой до первого ответа оператора он сам не предупредил об ожидании; сообщение об ожидании было от бота. Это один заметный сбой, не мешавший клиенту понять ответ.",
+          "evidence_turns": [
+            8,
+            10,
+            12
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался, но не подвёл итог и не предложил дальнейшую помощь: «Спасибо за обращение, до свидания!»",
+          "evidence_turns": [
+            13,
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорбления, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            10,
+            14
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 88.13,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p4-ru-001",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор в первом ответе поздоровался и представился на русском: «меня зовут [Имя скрыто] Здравствуйте». Основание — m12.",
+          "evidence_turns": [
+            13
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: по вопросу «как вы вообще вот помогаете?» и уточнению о рекомендациях можно было ответить без дополнительных данных. Это подтверждает m24.",
+          "evidence_turns": [
+            25
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "N/A: оператор объяснял сферу работы поддержки и отсутствие рекомендаций по ценным бумагам, не раскрывая данные счета и не выполняя защищенное действие. Основание — вопрос клиента и ответ оператора в m24–m25.",
+          "evidence_turns": [
+            25,
+            26
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 10,
+          "rationale": "Вопросы о рекомендациях по бумагам и технической помощи оператор закрыл: пояснил, что рекомендаций не дает, и привел пример помощи с выводом денег (m25, m35). Однако на вопрос, что делать при отсутствии персонального менеджера, не уточнил статус клиента и не предложил дальнейший шаг, ограничившись тем, что клиенту придется торговать самостоятельно (m28–m29).",
+          "evidence_turns": [
+            26,
+            29,
+            30,
+            36
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Оператор оставался вежливым, но после того как клиент описала неприятное чувство и ощущение, что ее «отфутболили», не отреагировал конкретно на это неудобство. Фраза «я вас понимаю» далее переходит к объяснению, что клиента неправильно проинформировали (m31–m33, m40–m42).",
+          "evidence_turns": [
+            32,
+            34,
+            41,
+            43
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Основное объяснение в целом понятно, но изложение местами сбивчивое и повторяется; особенно неясно сформулировано объяснение про неверное информирование клиента. При этом клиент могла продолжить разговор и уточнить вопрос о технической помощи (m34–m35, m42).",
+          "evidence_turns": [
+            35,
+            36,
+            43
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "N/A: системное событие фиксирует, что разговор завершил клиент, поэтому у оператора не было возможности закончить диалог.",
+          "evidence_turns": [
+            44
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании и раскрытия конфиденциальной информации в репликах оператора не обнаружено. В частности, оператор описывает только границы работы поддержки (m25–m27).",
+          "evidence_turns": [
+            26,
+            28
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 50.83,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": false,
+          "rationale": "Оператор представился, но в первом сообщении не поздоровался: «Да компания федеброкер меня зовут [Имя скрыто]».",
+          "evidence_turns": [
+            3
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "N/A: клиент сообщил, что приказ по уже обсуждавшейся ценной бумаге снова отклоняется, после чего оператор проверил ситуацию с трейдерами и ответил. Основание — m8 и m10.",
+          "evidence_turns": [
+            9,
+            11
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": true,
+          "rationale": "Перед соединением с трейдером оператор запросил полное имя и адрес; после предоставления данных подтвердил их и попросил ожидать на линии. Основание — m11–m14.",
+          "evidence_turns": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Оператор объяснил, что бумагу нельзя купить на бирже и что стакан может отображаться из-за доступа других юрисдикций; также подтвердил, что выставить заявку на продажу не получится. Вопросы клиента закрыты ответами по существу (m63–m68).",
+          "evidence_turns": [
+            64,
+            65,
+            66,
+            67,
+            68,
+            69
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо, поблагодарил клиента за ожидание и ответил на его вопросы; явного недовольства или неудобства, требующего отдельной реакции, клиент не выражал. Основание — m59–m70.",
+          "evidence_turns": [
+            60,
+            64,
+            71
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Оператор предупредил об ожидании перед консультацией: «Сейчас прошу вас ожидать на линии», а после возвращения поблагодарил клиента и последовательно объяснил результат. Основание — m14, m59, m63–m68.",
+          "evidence_turns": [
+            15,
+            60,
+            64,
+            66
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Оператор попрощался, но не подвёл итог и не предложил дальнейшую помощь: «Благодарю вас за уделенное время всего хорошего до свидания». Основание — последняя реплика оператора m70.",
+          "evidence_turns": [
+            71
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации клиенту в репликах оператора не выявлено.",
+          "evidence_turns": [
+            3,
+            71
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 82.35,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p4-ru-003",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор поздоровался по-русски и представился в первом ответе: «Здравствуйте, Фридом брокер меня зовут [Имя скрыто]» (m12).",
+          "evidence_turns": [
+            13
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Для проверки конкретного поручения оператору требовались дополнительные данные и подтверждение личности; он запросил данные для идентификации (m39), после чего подтвердил её и сообщил статус поручения (m64–m67).",
+          "evidence_turns": [
+            15,
+            17,
+            40,
+            65
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": true,
+          "rationale": "Запрос касался статуса поручения на брокерском счёте, поэтому требовал идентификации. Оператор подтвердил успешную идентификацию в m64 и только затем сообщил сведения о поручении в m65–m67.",
+          "evidence_turns": [
+            65,
+            66,
+            68
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "По вопросу о статусе оператор сообщил, что поручение принято и всё ещё обрабатывается (m65–m67), а затем предложил передать его на проверку профильному отделу и перезвонить с результатом (m70–m75). Существенный вопрос получил корректный следующий шаг.",
+          "evidence_turns": [
+            66,
+            68,
+            71,
+            76
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Оператор общался вежливо. На обеспокоенность клиента длительной обработкой и тем, что «акции же прыгают» (m68), он предложил направить поручение на проверку и сообщить результат звонком (m70).",
+          "evidence_turns": [
+            69,
+            71
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 4,
+          "rationale": "Объяснение способа подтверждения было неясным: после запутанной инструкции оператора о коде (m48) клиент переспросил, что имеется в виду (m49–m50), и оператору пришлось переформулировать просьбу (m53).",
+          "evidence_turns": [
+            49,
+            50,
+            51,
+            54
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "Клиент поблагодарил оператора (m76), после чего разговор был завершён клиентом (m77); это условие неприменимости критерия.",
+          "evidence_turns": [
+            77,
+            78
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора нет оскорблений, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            13,
+            76
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 90.53,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p4-ru-004",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Оператор в первом ответе поздоровался и представился: «Фридом брокера [Имя скрыто] Здравствуйте».",
+          "evidence_turns": [
+            15
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Сначала не хватало данных о конкретной облигации и счёте: оператор уточнил, какие облигации клиент хотел приобрести, попросил тикер, а затем предложил проверить брокерский счёт. Это помогло определить конкретный приказ до консультации.",
+          "evidence_turns": [
+            19,
+            30,
+            34,
+            38
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": true,
+          "rationale": "Для проверки счёта оператор запросил данные идентификации и SMS-код, после чего сообщил, что видит выставленный приказ на покупку. Подтверждение проверки предшествует раскрытию информации о счёте.",
+          "evidence_turns": [
+            47,
+            49,
+            71,
+            75,
+            79
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Основной вопрос о невозможности самостоятельно купить облигацию закрыт: оператор объяснил, что приказ по выпуску МФБР Финанс выставляют трейдеры, и сообщил, что рынок уже закрылся. На вопрос, как обходиться без звонка, предложил написать трейдерам на почту; повторно указал оба способа связи — звонок или письмо.",
+          "evidence_turns": [
+            90,
+            94,
+            98,
+            112
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Клиент объяснил, что не может обсуждать вопрос при коллегах и не хочет постоянно звонить; оператор не отреагировал на это сочувственно или адресно. Реплика «дайте шанс досказать» звучит резко на фоне попытки клиента объяснить ситуацию.",
+          "evidence_turns": [
+            29,
+            41,
+            87,
+            91,
+            92
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 4,
+          "rationale": "Клиенту пришлось несколько раз просить повторить адрес электронной почты и уточнять, что именно говорил оператор: «Так как ещё раз?», «Ещё раз повторите?» и «На эту почту надо писать постоянно, что ли?». Это указывает на неясность формулировок и порядка ответа.",
+          "evidence_turns": [
+            98,
+            99,
+            100,
+            104,
+            107,
+            111
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "Клиент завершил разговор; оператор произнёс реплику после события завершения, поэтому оценить завершение оператором нельзя.",
+          "evidence_turns": [
+            114,
+            115
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "В репликах оператора не выявлено оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации. Информация о приказе сообщена клиенту после проверки личности.",
+          "evidence_turns": [
+            79,
+            90,
+            94
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 74.74,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p4-ru-005",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": false,
+          "rationale": "Нет: в первом ответе оператор поздоровался, но не представился по имени. Основание — первое сообщение оператора: m16.",
+          "evidence_turns": [
+            17
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": true,
+          "rationale": "Да: для проверки возможности удаления счёта оператор уточнил номер, по которому проходила регистрация; клиент ответил, что это номер звонка. Основание — m19–m20.",
+          "evidence_turns": [
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": false,
+          "rationale": "Нет: клиент просил удалить счёт и исправить регистрацию, однако подтверждения проверки личности до обсуждения удаления не прозвучало. Уточнение номера телефона само по себе не подтверждает идентификацию; оператор обсуждал удаление счёта в m28–m29.",
+          "evidence_turns": [
+            20,
+            21,
+            29,
+            30
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "20: вопрос об удалении ошибочно оформленного счёта получил следующий шаг — позвонить утром, проверить возможность удаления и затем пройти регистрацию заново; по выбору документа оператор рекомендовал указать Кыргызстан и загранпаспорт, а ВНЖ Казахстана добавить отдельно. Основание — m43, m66 и m70.",
+          "evidence_turns": [
+            44,
+            67,
+            71
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Да: оператор общался вежливо, благодарил клиента за обращение; явного недовольства, на которое требовалось бы отдельно отреагировать, клиент не выражал. Основание — m71–m72.",
+          "evidence_turns": [
+            72,
+            73
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 4,
+          "rationale": "4: часть инструкций и срок ожидания сформулированы неясно: оператор говорит «там не знаю выход да» и «обычно это это через 02:00», после чего клиент уточняет, лучше ли попробовать утром. Это затрудняло понимание порядка действий, хотя дальнейшие шаги оператор обозначил.",
+          "evidence_turns": [
+            33,
+            36,
+            40,
+            44
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Нет: оператор поблагодарил клиента за обращение, но не предложил дальнейшую помощь и не подвёл итог; обязательные элементы завершения не выполнены вместе. Основание — m71–m73.",
+          "evidence_turns": [
+            72,
+            73,
+            74
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Нет: в репликах оператора не выявлено оскорбления клиента, предложения платной услуги в обход компании или раскрытия конфиденциальной информации.",
+          "evidence_turns": [
+            17,
+            75
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 56.0,
+        "critical_flag": false
+      }
+    }
+  ]
+}
