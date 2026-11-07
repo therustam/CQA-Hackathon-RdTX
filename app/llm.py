@@ -37,7 +37,8 @@ def call(system, user):
     model = model_name()
     extra = {"betas": ["server-side-fallback-2026-07-01"], "fallbacks": "default"} if model in FALLBACK_MODELS else {}
     started = time.monotonic()
-    resp = anthropic.Anthropic().beta.messages.create(
+    # SDK retries 429/5xx with backoff; 4 retries keeps a 5-way parallel batch alive under rate limits
+    resp = anthropic.Anthropic(max_retries=4).beta.messages.create(
         model=model,
         max_tokens=16000,
         # stable per checklist version -> cached across a batch
