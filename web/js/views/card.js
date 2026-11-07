@@ -1,5 +1,5 @@
 // Conversation card: transcript + per-criterion verdicts with evidence, appeal and decision forms.
-import { h, icon, fmt, usd, CHANNEL, WHO, TYPE, SUBTYPE_FALLBACK } from "../ui.js";
+import { h, icon, fmt, usd, tone, CHANNEL, WHO, TYPE, SUBTYPE_FALLBACK } from "../ui.js";
 
 export function verdict(row, meta) {
   if (!row || row.status === "missing") return { text: "нет ответа", cls: "cqa-v-missing" };
@@ -81,17 +81,18 @@ export function decisionForm(ctx, appeal, meta, onDone) {
   h("div", { class: "cqa-form-row" }, h("button", { class: "cqa-btn cqa-btn-primary", type: "submit" }, "Сохранить решение")));
 }
 
+// Layout: summary panel (id, total, sections) → gross-error alert → split: transcript | criteria.
+// Criteria are compact rows; the selected one expands to explanation, evidence and appeal tools.
 export async function viewCard(ctx, cid) {
-  const { S, api, toast, base, main, route_, refreshShared, renderTop, canEvaluate, NO_KEY, checklistQuery, currentChecklist, checklistSelect } = ctx;
-
+  const { S, api, toast, base, main } = ctx;
   let conv, ev;
   try {
     [conv, ev] = await Promise.all([
       api(`/api/conversations/${encodeURIComponent(cid)}`),
-      api(`/api/conversations/${encodeURIComponent(cid)}/evaluation?${checklistQuery()}`),
+      api(`/api/conversations/${encodeURIComponent(cid)}/evaluation?${ctx.checklistQuery()}`),
     ]);
   } catch (e) {
-    main.replaceChildren(h("div", { class: "cqa-page" }, h("div", { class: "cqa-notice cqa-notice-error" }, e.message),
+    main.replaceChildren(h("div", { class: "cqa-page" }, h("div", { class: "cqa-notice cqa-notice-error" }, icon("alert"), e.message),
       h("a", { href: "#/" }, "К списку диалогов")));
     return;
   }
@@ -103,28 +104,29 @@ export async function viewCard(ctx, cid) {
   let openForm = null; // {cid, kind}
   let busy = false;
 
-  const card = h("div", { class: "cqa-card" });
-  const vitalsSlot = h("div");
-  const bandSlot = h("div");
-  const resultsBody = h("div", { class: "cqa-results-body" });
+  const summarySlot = h("div");
+  const alertSlot = h("div", { class: "cqa-stack" });
+  const resultsBody = h("div", { class: "cqa-scroll cqa-crits" });
+  const resultsCount = h("span", { class: "cqa-panel-note" });
   const audio = conv.has_audio ? h("audio", {
     class: "cqa-audio", controls: true, preload: "none",
     src: `${base}/api/conversations/${encodeURIComponent(cid)}/audio`,
   }) : null;
 
   // transcript: original order and timestamps, ids match the model's evidence ids
-  const transcript = h("div", { class: "cqa-transcript", tabindex: "0", "aria-label": "Транскрипт" },
+  const transcript = h("div", { class: "cqa-scroll cqa-transcript", tabindex: "0", "aria-label": "Транскрипт" },
     msgs.map((m) => {
       const time = isCall && m.timestamp ? m.timestamp.slice(11, 19) : m.timestamp;
       const timeCell = audio && m.audio_offset != null
         ? h("button", { type: "button", title: `${m.timestamp} · позиция в записи ${Math.round(m.audio_offset)} с`,
-          onclick: () => seek(m) }, time)
+          onclick: () => seek(m) }, icon("play"), time)
         : h("span", { title: m.timestamp }, time);
       const el = h("div", { class: `cqa-msg cqa-msg-${m.speaker}${m.internal ? " cqa-msg-internal" : ""}`, id: `cqa-${m.id}` },
         h("span", { class: "cqa-msg-id" }, m.id),
-        h("span", { class: "cqa-msg-time" }, timeCell),
-        h("div", null,
-          h("div", { class: "cqa-msg-who" }, WHO[m.speaker] || m.speaker,
+        h("div", { class: "cqa-msg-main" },
+          h("div", { class: "cqa-msg-head" },
+            h("span", { class: "cqa-msg-who" }, WHO[m.speaker] || m.speaker),
+            h("span", { class: "cqa-msg-time" }, timeCell),
             m.internal ? h("span", { class: "cqa-msg-note" }, "внутренняя консультация, клиент на удержании") : null,
             m.duplicate ? h("span", { class: "cqa-msg-note" }, "дубль") : null),
           h("div", { class: "cqa-msg-text" }, m.text)));
@@ -173,80 +175,92 @@ export async function viewCard(ctx, cid) {
     }
   }
 
+  // clicking the open criterion again collapses it; an evidence chip always opens and jumps
   function selectCriterion(id, focusId) {
-    selected = id;
-    for (const el of resultsBody.querySelectorAll(".cqa-crit")) el.setAttribute("aria-selected", String(el.dataset.cid === id));
-    const row = ev && ev.final.criteria.find((c) => c.id === id);
+    selected = selected === id && !focusId ? null : id;
+    for (const el of resultsBody.querySelectorAll(".cqa-crit")) {
+      const on = el.dataset.cid === selected;
+      el.classList.toggle("cqa-crit-open", on);
+      el.querySelector(".cqa-crit-head").setAttribute("aria-expanded", String(on));
+    }
+    const row = selected && ev && ev.final.criteria.find((c) => c.id === selected);
     highlight(row, focusId);
     if (focusId && isCall) seek(msgs[order.get(focusId)]);
   }
 
-  function renderVitals() {
-    const fin = ev && ev.final, orig = ev && ev.original;
-    const changed = ev && fin.total !== orig.total;
+  const ref = (critId, msgId, label) => h("button", { class: "cqa-ref", type: "button", title: "Перейти к реплике",
+    onclick: (e) => { e.stopPropagation(); selectCriterion(critId, msgId); } }, label || msgId);
+
+  function renderTop() {
+    const pill = h("label", { class: "cqa-filter" }, h("span", null, "Чек-лист"), ctx.checklistSelect(() => ctx.route_(), ""));
     const evalBtn = h("button", {
-      class: `cqa-btn ${ev ? "" : "cqa-btn-signal"}`, type: "button", disabled: busy || !canEvaluate(),
-      title: canEvaluate() ? null : NO_KEY,
+      class: `cqa-btn${ev ? "" : " cqa-btn-primary"}`, type: "button", disabled: busy || !ctx.canEvaluate(),
+      title: ctx.canEvaluate() ? null : ctx.NO_KEY,
       onclick: async () => {
         busy = true;
-        renderVitals();
+        renderTop();
         try {
           ev = await api("/api/evaluate", { body: { conversation_id: cid, checklist_id: S.checklistId, force: !!ev } });
         } catch (e) { toast(e.message, true); }
         busy = false;
         renderAll();
       },
-    }, busy ? "Оценивается…" : ev ? "Переоценить" : "Оценить диалог");
-    vitalsSlot.replaceChildren(h("section", { class: "cqa-vitals", "aria-label": "Сводка" },
-      h("div", null,
-        h("a", { class: "cqa-back", href: "#/" }, icon("back"), "Диалоги"),
-        h("h1", null, cid),
-        h("div", { class: "cqa-vitals-meta" },
-          h("span", null, h("b", null, CHANNEL[conv.channel] || conv.channel)),
-          h("span", null, "Язык ", h("b", null, conv.language)),
-          h("span", null, h("b", null, msgs.length), " реплик"),
-          h("span", null, "Набор ", h("b", null, conv.group_id)),
-          ev && ev.status !== "error" ? h("span", null, h("b", null, ev.model), ` · ${usd(ev.cost_usd)} · ${fmt((ev.latency_ms || 0) / 1000)} с`) : null)),
-      h("div", { class: "cqa-score" },
-        h("div", { class: "cqa-score-label" }, changed ? "Итог после решения" : "Итог"),
-        h("div", { class: "cqa-score-value" }, fin ? fmt(fin.total) : "—", h("small", null, "/ 100")),
-        changed ? h("div", { class: "cqa-score-trail" }, "Исходно ", h("s", null, fmt(orig.total)), " → ", h("b", null, fmt(fin.total))) : null),
-      h("div", { class: "cqa-vitals-actions" }, checklistSelect(() => route_()), evalBtn),
-      fin && fin.sections.length ? h("div", { class: "cqa-sections" }, fin.sections.map((s) => {
-        if (s.available != null) {
-          return h("div", { class: "cqa-section-cell" },
-            h("span", null, s.title), h("b", null, `${fmt(s.percent)}%`),
-            h("span", { class: "cqa-section-bar", "aria-hidden": "true" }, h("i", { style: `width:${s.percent}%` })),
-            h("span", { style: "grid-column:1/-1" }, `${fmt(s.earned)} из ${fmt(s.available)} баллов`));
-        }
-        // flag-only (or all-N/A) section: a flag, not an empty meter
-        const flags = fin.flags.filter((f) => fin.criteria.some((c) => c.id === f.criterion_id && c.section === s.id));
-        const hasFlagCriteria = fin.criteria.some((c) => c.section === s.id && c.type === "flag");
-        return h("div", { class: "cqa-section-cell" },
-          h("span", null, s.title),
-          flags.length
-            ? h("span", { class: "cqa-section-flag" }, "выявлено",
-              flags.flatMap((f) => f.evidence_ids).map((id) => h("button", { class: "cqa-ref", type: "button",
-                onclick: () => selectCriterion(flags[0].criterion_id, id) }, id)))
-            : h("b", null, hasFlagCriteria ? "не выявлено" : "N/A"));
-      })) : null));
+    }, icon("run"), busy ? "Оценивается…" : ev ? "Переоценить" : "Оценить диалог");
+    ctx.setTop([["Диалоги", "#/"], [cid]], [pill, evalBtn]);
+  }
 
-    const bands = [];
-    if (fin && fin.flags.length) {
-      for (const f of fin.flags) {
-        const meta = ev.checklist.data.criteria.find((c) => c.id === f.criterion_id) || {};
-        const labels = (f.subtypes.length ? f.subtypes : [null]).map((st) =>
-          ((meta.subtypes || []).find((x) => x.id === st) || {}).label || st || SUBTYPE_FALLBACK);
-        bands.push(h("div", { class: "cqa-band cqa-band-alert", role: "alert" },
-          h("b", null, `${f.criterion_id} · ${f.title}:`), h("span", null, labels.join(", ")),
-          f.evidence_ids.map((id) => h("button", { class: "cqa-ref", type: "button", onclick: () => selectCriterion(f.criterion_id, id) }, id)),
-          h("span", null, "в итог не входит, отмечена отдельно")));
+  function renderSummary() {
+    const fin = ev && ev.final, orig = ev && ev.original;
+    const changed = ev && fin.total !== orig.total;
+    const meta = [
+      h("span", { class: "cqa-with-icon" }, icon(isCall ? "phone" : "chat"), CHANNEL[conv.channel] || conv.channel),
+      h("span", { class: "cqa-lang" }, conv.language),
+      h("span", null, `${msgs.length} реплик`),
+      h("span", null, `набор ${conv.group_id}`),
+      ev && ev.status !== "error" ? h("span", null, `${ev.model} · ${usd(ev.cost_usd)} · ${fmt((ev.latency_ms || 0) / 1000)} с`) : null,
+    ];
+    const sections = fin && fin.sections.length ? h("div", { class: "cqa-secstats" }, fin.sections.map((s) => {
+      if (s.available != null) {
+        return h("div", { class: "cqa-secstat" },
+          h("span", { class: "cqa-secstat-title" }, s.title),
+          h("div", { class: "cqa-secstat-value" }, h("b", null, `${fmt(s.percent)}%`), h("span", null, `${fmt(s.earned)} из ${fmt(s.available)}`)),
+          h("span", { class: `cqa-minibar cqa-minibar-wide cqa-tone-${tone(s.percent)}`, "aria-hidden": "true" }, h("i", { style: `width:${s.percent}%` })));
       }
+      // flag-only (or all-N/A) section: a flag, not an empty meter
+      const flags = fin.flags.filter((f) => fin.criteria.some((c) => c.id === f.criterion_id && c.section === s.id));
+      const hasFlagCriteria = fin.criteria.some((c) => c.section === s.id && c.type === "flag");
+      return h("div", { class: "cqa-secstat" },
+        h("span", { class: "cqa-secstat-title" }, s.title),
+        h("div", { class: "cqa-secstat-value" }, flags.length
+          ? h("span", { class: "cqa-tag cqa-tag-alert" }, "выявлено")
+          : h("span", { class: `cqa-tag${hasFlagCriteria ? " cqa-tag-ok" : ""}` }, hasFlagCriteria ? "не выявлено" : "N/A")),
+        flags.length ? h("div", { class: "cqa-refs" }, flags.flatMap((f) => f.evidence_ids.map((id) => ref(f.criterion_id, id)))) : null);
+    })) : null;
+    summarySlot.replaceChildren(h("section", { class: "cqa-panel cqa-summary", "aria-label": "Сводка" },
+      h("div", { class: "cqa-summary-top" },
+        h("div", { class: "cqa-summary-id" }, h("h1", null, cid), h("div", { class: "cqa-meta" }, meta)),
+        h("div", { class: "cqa-summary-score" },
+          h("span", { class: "cqa-summary-label" }, changed ? "Итог после апелляций" : "Итог"),
+          h("div", { class: "cqa-bignum" }, fin && fin.total != null ? fmt(fin.total) : "—", h("small", null, "/ 100")),
+          changed ? h("span", { class: "cqa-summary-trail" }, "ИИ ", h("s", null, fmt(orig.total)), " → ", h("b", null, fmt(fin.total))) : null)),
+      sections));
+
+    const alerts = [];
+    for (const f of (fin && fin.flags) || []) {
+      const m = ev.checklist.data.criteria.find((c) => c.id === f.criterion_id) || {};
+      const labels = (f.subtypes.length ? f.subtypes : [null]).map((st) =>
+        ((m.subtypes || []).find((x) => x.id === st) || {}).label || st || SUBTYPE_FALLBACK);
+      alerts.push(h("div", { class: "cqa-alert", role: "alert" }, icon("alert"),
+        h("b", null, f.title), h("span", null, labels.join(", ")),
+        h("div", { class: "cqa-refs" }, f.evidence_ids.map((id) => ref(f.criterion_id, id))),
+        h("span", { class: "cqa-alert-note" }, "в итог не входит, отмечено отдельно")));
     }
-    if (ev && ev.status === "error") bands.push(h("div", { class: "cqa-band cqa-band-err", role: "alert" }, `Оценка не выполнена: ${ev.errors.join("; ")}`));
-    if (ev && ev.status === "needs_review") bands.push(h("div", { class: "cqa-band cqa-band-warn" },
+    if (ev && ev.status === "error") alerts.push(h("div", { class: "cqa-notice cqa-notice-error", role: "alert" }, icon("alert"),
+      `Оценка не выполнена: ${ev.errors.join("; ")}`));
+    if (ev && ev.status === "needs_review") alerts.push(h("div", { class: "cqa-notice cqa-notice-warn" }, icon("alert"),
       `Ответ модели не прошёл проверку после повтора — нужна ручная проверка: ${ev.errors.join("; ")}`));
-    bandSlot.replaceChildren(...bands);
+    alertSlot.replaceChildren(...alerts);
+    alertSlot.hidden = !alerts.length;
   }
 
   function critRow(meta, row, orig) {
@@ -256,6 +270,7 @@ export async function viewCard(ctx, cid) {
     const subLabels = (row.subtypes || []).map((st) => ((meta.subtypes || []).find((x) => x.id === st) || {}).label || st);
     const range = row.checked_range || [];
     const formOpen = openForm && openForm.cid === meta.id;
+    const isOpen = selected === meta.id;
     const actions = [];
     if (S.role === "specialist" && !openAppeal && ev.status !== "error") {
       actions.push(h("button", { class: "cqa-btn cqa-btn-sm", type: "button",
@@ -277,48 +292,45 @@ export async function viewCard(ctx, cid) {
         renderAll();
       });
     }
-    return h("article", {
-      class: "cqa-crit", "data-cid": meta.id, tabindex: "0", "aria-selected": String(selected === meta.id),
-      onclick: () => selectCriterion(meta.id),
-      onkeydown: (e) => { if (e.key === "Enter" && e.target === e.currentTarget) selectCriterion(meta.id); },
-    },
-    h("span", { class: "cqa-crit-num" }, meta.id),
-    h("div", null, h("div", { class: "cqa-crit-title" }, meta.title),
-      h("div", { class: "cqa-crit-type" }, `${TYPE[meta.type] || meta.type}${meta.na_allowed ? " · N/A допустим" : ""}`)),
-    verdictBox(row, meta),
-    h("div", { class: "cqa-pts" }, meta.type === "flag"
-      ? [h("b", null, "—"), h("span", null, "без баллов")]
-      : scored
-        ? [h("b", null, `${fmt(row.points)} из ${fmt(meta.weight)}`), h("span", null, `вес ${fmt(meta.weight)} → ${fmt(row.redistributed_weight)}`)]
-        : [h("b", null, "—"), h("span", null, row.status === "na" ? `вес ${fmt(meta.weight)} перераспределён` : "не учтён")]),
-    h("div", { class: "cqa-crit-body" },
-      row.explanation ? h("p", { class: "cqa-expl" }, row.explanation) : null,
-      row.status === "na" && row.na_reason ? h("p", { class: "cqa-na-reason" }, h("b", null, "Причина N/A: "), row.na_reason) : null,
-      subLabels.length ? h("div", { class: "cqa-chips" }, subLabels.map((l) => h("span", { class: "cqa-tag cqa-tag-alert" }, l))) : null,
-      (row.evidence_ids || []).length || range.length === 2 ? h("div", { class: "cqa-refs" },
-        (row.evidence_ids || []).length ? "Основание:" : null,
-        (row.evidence_ids || []).map((id) => h("button", { class: "cqa-ref", type: "button", title: "Перейти к реплике",
-          onclick: (e) => { e.stopPropagation(); selectCriterion(meta.id, id); } }, id)),
-        range.length === 2 ? h("button", { class: "cqa-ref", type: "button", title: "Перейти к проверенному участку",
-          onclick: (e) => { e.stopPropagation(); selectCriterion(meta.id, range[0]); } },
-        `Проверен участок ${range[0]}–${range[1]}`) : null) : null,
-      typeof row.confidence === "number" && row.confidence < 0.6 ? h("span", { class: "cqa-tag cqa-tag-warn" }, "низкая уверенность модели") : null,
-      appeals.length ? h("dl", { class: "cqa-trail" }, appeals.flatMap((a) => [
-        h("dt", null, "Апелляция"), h("dd", null, a.comment),
-        a.status === "open" ? [h("dt", null, "Статус"), h("dd", null, "ждёт решения проверяющего")]
-          : [h("dt", null, "Исходно (ИИ)"), h("dd", null, verdict(orig, meta).text),
-            h("dt", null, "Решение"), h("dd", null, a.action === "confirm" ? "оценка подтверждена" :
-              `изменено на ${verdict({ ...row, ...a.override, status: a.override?.applicable === false ? "na" : meta.type === "flag" ? "flag" : "scored" }, meta).text}`, ` — ${a.reason}`)],
-      ])) : null,
-      actions.length ? h("div", { class: "cqa-crit-actions" }, actions) : null,
-      form));
+    const pts = meta.type === "flag" ? h("span", { class: "cqa-pts-note" }, "без баллов")
+      : scored ? [h("b", null, fmt(row.points)), h("span", null, ` / ${fmt(meta.weight)}`)]
+        : h("span", { class: "cqa-pts-note" }, row.status === "na" ? "вес перераспределён" : "не учтён");
+    return h("article", { class: `cqa-crit${isOpen ? " cqa-crit-open" : ""}`, "data-cid": meta.id },
+      h("button", { class: "cqa-crit-head", type: "button", "aria-expanded": String(isOpen), onclick: () => selectCriterion(meta.id) },
+        h("span", { class: "cqa-crit-num" }, meta.id),
+        h("span", { class: "cqa-crit-title" }, meta.title,
+          openAppeal ? h("span", { class: "cqa-tag cqa-tag-warn" }, "апелляция") : appeals.length ? h("span", { class: "cqa-tag cqa-tag-plain" }, "пересмотрено") : null),
+        verdictBox(row, meta),
+        h("span", { class: "cqa-pts" }, pts),
+        h("span", { class: "cqa-crit-chev", "aria-hidden": "true" }, icon("next"))),
+      h("div", { class: "cqa-crit-body" },
+        h("div", { class: "cqa-crit-type" }, `${TYPE[meta.type] || meta.type}${meta.na_allowed ? " · N/A допустим" : ""}`,
+          scored && row.redistributed_weight !== meta.weight ? ` · вес ${fmt(meta.weight)} → ${fmt(row.redistributed_weight)}` : ""),
+        row.explanation ? h("p", { class: "cqa-expl" }, row.explanation) : null,
+        row.status === "na" && row.na_reason ? h("p", { class: "cqa-na-reason" }, h("b", null, "Причина N/A: "), row.na_reason) : null,
+        subLabels.length ? h("div", { class: "cqa-badges" }, subLabels.map((l) => h("span", { class: "cqa-tag cqa-tag-alert" }, l))) : null,
+        (row.evidence_ids || []).length || range.length === 2 ? h("div", { class: "cqa-refs" },
+          (row.evidence_ids || []).length ? h("span", { class: "cqa-muted" }, "Основание") : null,
+          (row.evidence_ids || []).map((id) => ref(meta.id, id)),
+          range.length === 2 ? ref(meta.id, range[0], `участок ${range[0]}–${range[1]}`) : null) : null,
+        typeof row.confidence === "number" && row.confidence < 0.6 ? h("span", { class: "cqa-tag cqa-tag-warn" }, "низкая уверенность модели") : null,
+        appeals.length ? h("dl", { class: "cqa-trail" }, appeals.flatMap((a) => [
+          h("dt", null, "Апелляция"), h("dd", null, a.comment),
+          a.status === "open" ? [h("dt", null, "Статус"), h("dd", null, "ждёт решения проверяющего")]
+            : [h("dt", null, "Исходно (ИИ)"), h("dd", null, verdict(orig, meta).text),
+              h("dt", null, "Решение"), h("dd", null, a.action === "confirm" ? "оценка подтверждена" :
+                `изменено на ${verdict({ ...row, ...a.override, status: a.override?.applicable === false ? "na" : meta.type === "flag" ? "flag" : "scored" }, meta).text}`, ` — ${a.reason}`)],
+        ])) : null,
+        actions.length ? h("div", { class: "cqa-crit-actions" }, actions) : null,
+        form));
   }
 
   function renderResults() {
     if (!ev) {
+      resultsCount.textContent = "";
       resultsBody.replaceChildren(h("div", { class: "cqa-empty" },
         h("h2", null, "Диалог ещё не оценён"),
-        h("p", null, `Чек-лист v${(currentChecklist() || {}).id}. Модель вернёт ответ по каждому критерию со ссылками на реплики; баллы и итог посчитает код.`)));
+        h("p", null, `Чек-лист v${(ctx.currentChecklist() || {}).id}. Модель ответит по каждому критерию со ссылками на реплики, баллы и итог посчитает код.`)));
       return;
     }
     const metaById = new Map(ev.checklist.data.criteria.map((c) => [c.id, c]));
@@ -329,6 +341,7 @@ export async function viewCard(ctx, cid) {
     if (loose.length) groups.push([{ id: "", title: "Без секции" }, loose]);
     const secScore = new Map(ev.final.sections.map((s) => [s.id, s]));
     const decided = ev.appeals.filter((a) => a.status === "decided");
+    resultsCount.textContent = `${ev.final.criteria.length} · нажмите, чтобы раскрыть`;
     resultsBody.replaceChildren(
       ...groups.filter(([, rows]) => rows.length).map(([s, rows]) => h("section", null,
         h("h3", { class: "cqa-sec-title" }, s.title, h("span", null, secScore.get(s.id) && secScore.get(s.id).available != null
@@ -339,29 +352,32 @@ export async function viewCard(ctx, cid) {
         h("ol", null,
           h("li", null, `Оценка ИИ (${ev.model || "—"}, ${new Date(ev.created_at).toLocaleString("ru-RU")}): итог ${fmt(ev.original.total)}`),
           decided.map((a) => h("li", null, `Решение проверяющего по критерию ${a.criterion_id}: ${a.action === "confirm" ? "подтверждено" : "изменено"} — ${a.reason}`)),
-          h("li", null, h("b", null, `Финальный результат: ${fmt(ev.final.total)}`)))),
-      h("p", { class: "cqa-meta-line" },
-        `Чек-лист v${ev.checklist.id} «${ev.checklist.name}» · токены: вход ${ev.usage?.input_tokens ?? "—"}, кэш ${ev.usage?.cache_read_tokens ?? "—"}, выход ${ev.usage?.output_tokens ?? "—"} · стоимость ${usd(ev.cost_usd)}`));
+          h("li", null, h("b", null, `Финальный результат: ${fmt(ev.final.total)}`))),
+        h("p", { class: "cqa-meta-line" },
+          `Чек-лист v${ev.checklist.id} «${ev.checklist.name}» · токены: вход ${ev.usage?.input_tokens ?? "—"}, кэш ${ev.usage?.cache_read_tokens ?? "—"}, выход ${ev.usage?.output_tokens ?? "—"} · ${usd(ev.cost_usd)}`)));
   }
 
   function renderAll() {
-    renderVitals();
+    renderTop();
+    renderSummary();
     renderResults();
-    if (selected) selectCriterion(selected);
-    refreshShared().then(() => renderTop("list")).catch(() => {});
+    if (selected) { const id = selected; selected = null; selectCriterion(id); }
+    ctx.refreshShared().then(ctx.renderTop).catch(() => {});
   }
 
-  card.append(vitalsSlot, bandSlot, h("div", { class: "cqa-chart" },
-    h("section", { class: "cqa-notes", "aria-label": "Транскрипт" },
-      h("div", { class: "cqa-notes-head" }, h("h2", null, "Транскрипт"),
-        h("span", { class: "cqa-muted" }, isCall ? "время звонка — нажмите, чтобы прослушать" : "исходные метки времени"),
-        audio, conv.has_audio ? h("a", { href: `${base}/api/conversations/${encodeURIComponent(cid)}/audio?player=true`, target: "_blank", rel: "noopener" }, "Открыть запись") : null),
-      transcript),
-    h("section", { class: "cqa-results", "aria-label": "Результаты по критериям" },
-      h("div", { class: "cqa-results-head" }, h("h2", null, "Оценка по критериям"),
-        ev ? h("span", { class: "cqa-muted" }, "нажмите на критерий или реплику-основание") : null),
-      resultsBody)));
-  main.replaceChildren(card);
-  renderVitals();
+  main.replaceChildren(h("div", { class: "cqa-card" },
+    summarySlot, alertSlot,
+    h("div", { class: "cqa-split" },
+      h("section", { class: "cqa-panel cqa-pane", "aria-label": "Транскрипт" },
+        h("div", { class: "cqa-panel-head" }, h("h2", null, "Транскрипт"),
+          h("span", { class: "cqa-panel-note" }, isCall ? "нажмите на время, чтобы прослушать" : "исходные метки времени"),
+          conv.has_audio ? h("a", { class: "cqa-panel-link", href: `${base}/api/conversations/${encodeURIComponent(cid)}/audio?player=true`, target: "_blank", rel: "noopener" }, "Открыть запись") : null),
+        audio ? h("div", { class: "cqa-audio-bar" }, audio) : null,
+        transcript),
+      h("section", { class: "cqa-panel cqa-pane", "aria-label": "Результаты по критериям" },
+        h("div", { class: "cqa-panel-head" }, h("h2", null, "Критерии"), resultsCount),
+        resultsBody))));
+  renderTop();
+  renderSummary();
   renderResults();
 }

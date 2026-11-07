@@ -68,7 +68,12 @@ export async function viewList(ctx) {
     h("button", { class: "cqa-btn", type: "button", onclick: () => openImport(ctx) }, icon("upload"), "Импорт"),
     exportLink, runBtn]);
 
-  const filter = (label, el) => h("label", { class: "cqa-filter" }, h("span", null, label), el);
+  // a pill is "active" when it narrows the list (value other than the first "all" option)
+  const filter = (label, el) => {
+    const pill = h("label", { class: "cqa-filter", "data-active": el.selectedIndex > 0 }, h("span", null, label), el);
+    el.addEventListener("change", () => pill.toggleAttribute("data-active", el.selectedIndex > 0));
+    return pill;
+  };
   const localSelect = (key, options) => h("select", { onchange: (e) => { S.filters[key] = e.target.value; renderRows(); } },
     options.map(([v, l]) => h("option", { value: v, selected: S.filters[key] === v }, l)));
   const groupSelect = h("select", { onchange: (e) => { S.group = e.target.value; store("cqa.group", S.group); load(); } },
@@ -85,6 +90,9 @@ export async function viewList(ctx) {
     filter("Канал", localSelect("channel", [["", "Все"], ["agent chat", "Чат"], ["voice call", "Звонок"]])),
     filter("Статус", localSelect("status", STATUS)),
     filter("Итог", localSelect("score", SCORE)));
+  const reset = h("button", { class: "cqa-filter-reset", type: "button", hidden: true,
+    onclick: () => { Object.assign(S.filters, { lang: "", channel: "", status: "", score: "", q: "" }); viewList(ctx); } }, "Сбросить");
+  toolbar.append(reset);
 
   const tbody = h("tbody");
   const table = h("table", { class: "cqa-table" },
@@ -130,6 +138,7 @@ export async function viewList(ctx) {
 
   function renderRows() {
     const rows = items.filter(matches);
+    reset.hidden = !Object.values(S.filters).some(Boolean);
     const evaluated = items.filter((i) => i.evaluation && i.evaluation.status !== "error").length;
     const flagged = items.filter((i) => i.evaluation && i.evaluation.flags.length).length;
     foot.replaceChildren(
