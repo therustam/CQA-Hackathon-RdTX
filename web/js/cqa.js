@@ -105,7 +105,7 @@ export function mount(root, config = {}) {
 
   const checklistQuery = () => (S.checklistId ? `checklist_id=${S.checklistId}` : "");
   // evaluation controls stay visible but disabled with the reason when no model key is configured
-  const NO_KEY = "Оценка недоступна: не задан ANTHROPIC_API_KEY в .env";
+  const NO_KEY = "Оценка недоступна: задайте OPENAI_API_KEY или ANTHROPIC_API_KEY в .env";
   const canEvaluate = () => !!S.config.has_api_key;
   const currentChecklist = () => S.checklists.find((c) => c.id === S.checklistId) || S.checklists[0];
 
@@ -329,7 +329,7 @@ export function mount(root, config = {}) {
     page.append(head, toolbar, body);
     if (!S.config.has_api_key) {
       toolbar.after(h("div", { class: "cqa-notice cqa-notice-warn" },
-        "API-ключ модели не задан (ANTHROPIC_API_KEY в .env): импорт, просмотр, апелляции и редактор работают, новая оценка — нет."));
+        "API-ключ модели не задан (OPENAI_API_KEY или ANTHROPIC_API_KEY в .env): импорт, просмотр, апелляции и редактор работают, новая оценка — нет."));
     }
 
     function matches(it) {

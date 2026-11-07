@@ -12,7 +12,7 @@
 
 ## Модель и промпт
 
-- **Модель**: `claude-opus-5-5` (Anthropic), effort `medium`, structured output по `contracts/llm_output.schema.json`. Модель отвечает только `applicable / answer / step / explanation / evidence_ids / checked_range / na_reason / confidence`; все числа считает `app/scorer.py`.
+- **Модель**: провайдер выбирается по ключу (`OPENAI_API_KEY` имеет приоритет над `ANTHROPIC_API_KEY`), по умолчанию `gpt-4o-mini` или `claude-opus-5-5`; structured output использует `contracts/llm_output.schema.json`. Модель отвечает только `applicable / answer / step / explanation / evidence_ids / checked_range / na_reason / confidence`; все числа считает `app/scorer.py`.
 - **Промпт компилируется из чек-листа** (`app/prompt.py`): общая преамбула о формате данных + `instructions` чек-листа + блок на каждый критерий (правило, условие N/A, подсказка `guidance`, ступени, подтипы). В коде нет ни одного названия или правила критерия — это проверяет тест `test_no_criterion_wording_in_code`.
 - **Кэширование**: system-промпт зависит только от версии чек-листа и помечен `cache_control`, поэтому в пакете он оплачивается почти один раз.
 - **Отказ модели** (`stop_reason=refusal`): включён серверный fallback `fallbacks="default"` (бета `server-side-fallback-2026-07-01`) для моделей, которые его поддерживают.

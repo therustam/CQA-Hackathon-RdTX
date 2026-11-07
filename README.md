@@ -26,9 +26,9 @@ python -m uvicorn app.main:app --reload
 Откройте http://127.0.0.1:8000.
 
 В `.env`:
-- `ANTHROPIC_API_KEY` — ключ Claude API; без него работает всё, кроме новой оценки.
+- `OPENAI_API_KEY` или `ANTHROPIC_API_KEY` — ключ выбранного провайдера; при наличии обоих используется OpenAI. Без ключа работает всё, кроме новой оценки.
 - `CQA_SOURCE_URL` — ссылка «Открыть GET для DEV» со стр. 3 гайда **без** `&group_id=DEV`. `group_id` вводится в интерфейсе.
-- `CQA_MODEL` (по умолчанию `claude-opus-5-5`), `CQA_EFFORT` (`medium`), `CQA_DB` (`cqa.db`).
+- `CQA_MODEL` (по умолчанию `gpt-4o-mini` для OpenAI или `claude-opus-5-5` для Anthropic), `CQA_EFFORT` (`medium`), `CQA_DB` (`cqa.db`).
 
 Тесты (ключ не нужен, модель подменяется): `python -m pytest -q`.
 
@@ -40,7 +40,7 @@ python -m uvicorn app.main:app --reload
 
 ## Модель и стоимость
 
-- Модель: **Claude Opus 5.5** (`claude-opus-5-5`, Anthropic), $4 / 1M входных токенов, $20 / 1M выходных, чтение из кэша $0,20 / 1M.
+- Модель выбирается по ключу: **OpenAI `gpt-4o-mini`** ($0,15 / 1M входных токенов, $0,60 / 1M выходных) или **Claude Opus 5.5** (`claude-opus-5-5`, $4 / 1M входных токенов, $20 / 1M выходных).
 - Один вызов на диалог со structured output; повтор — только если ответ не прошёл проверку.
 - Стоимость считается по фактическому расходу токенов каждой оценки и показывается в карточке, в списке (средняя) и в пакетном прогоне.
 - Оценка до замеров: system-промпт ≈ 4–5 тыс. токенов (в пакете читается из кэша), диалог ≈ 1–4 тыс., ответ с рассуждением ≈ 2–4 тыс. — **порядка $0,05–0,10 за оценку**. Замените на измеренную цифру после первого прогона DEV.
@@ -52,7 +52,7 @@ web/ (HTML/CSS/JS, #cqa-root)  ──fetch──>  FastAPI app/main.py
                                               ├─ importer.py   GET организаторов по group_id / загрузка JSON
                                               ├─ transcript.py ID реплик, сортировка, удержание, смещения в записи
                                               ├─ prompt.py     промпт из сохранённого чек-листа
-                                              ├─ llm.py        Claude: structured output, кэш промпта, стоимость
+                                              ├─ llm.py        OpenAI/Claude: structured output, кэш промпта, стоимость
                                               ├─ evaluator.py  проверка ответа + один повтор
                                               ├─ scorer.py     баллы, N/A, секции, итог (Decimal, half-up)
                                               └─ db.py         SQLite: диалоги, версии чек-листа, оценки, апелляции

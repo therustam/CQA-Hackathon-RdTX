@@ -186,7 +186,8 @@ def _has_usable_evaluation(cid, checklist_id):
 
 @app.get("/api/config")
 def config():
-    return {"model": llm.model_name(), "has_api_key": bool(os.getenv("ANTHROPIC_API_KEY")),
+    return {"model": llm.model_name(), "provider": llm.provider_name(),
+            "has_api_key": bool(llm.provider_name()),
             "source_configured": bool(os.getenv("CQA_SOURCE_URL"))}
 
 
