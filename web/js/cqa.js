@@ -3,6 +3,7 @@
 // Shell: fixed sidebar + top bar; only the content area scrolls, so switching screens never shifts the frame.
 import { h, icon, usd, store, errorText } from "./ui.js";
 import { viewList } from "./views/list.js";
+import { viewOverview } from "./views/overview.js";
 import { viewCard } from "./views/card.js";
 import { viewAppeals } from "./views/appeals.js";
 import { viewChecklist } from "./views/checklist.js";
@@ -88,7 +89,8 @@ export function mount(root, config = {}) {
           onclick: () => { root.toggleAttribute("data-collapsed"); store("cqa.nav", root.hasAttribute("data-collapsed") ? "collapsed" : "open"); renderSide(); } },
         icon("panel"))),
       h("nav", { class: "cqa-nav", "aria-label": "Разделы" },
-        item("#/", "list", "Диалоги", "chat"),
+        item("#/", "overview", "Обзор", "overview"),
+        item("#/dialogs", "list", "Диалоги", "chat"),
         item("#/appeals", "appeals", "Апелляции", "appeals", S.openAppeals),
         item("#/checklist", "checklist", "Чек-листы", "checklist")),
       h("div", { class: "cqa-side-foot" },
@@ -197,7 +199,7 @@ export function mount(root, config = {}) {
       const cid = decodeURIComponent(hash.slice(4));
       current = "list";
       renderSide();
-      setTop([["Диалоги", "#/"], [cid]]);
+      setTop([["Диалоги", "#/dialogs"], [cid]]);
       return viewCard(ctx, cid);
     }
     if (hash.startsWith("#/appeals")) {
@@ -212,9 +214,14 @@ export function mount(root, config = {}) {
       setTop([["Чек-листы"]]);
       return viewChecklist(ctx);
     }
-    current = "list";
+    if (hash.startsWith("#/dialogs")) {
+      current = "list";
+      renderSide();
+      return viewList(ctx);
+    }
+    current = "overview";
     renderSide();
-    return viewList(ctx);
+    return viewOverview(ctx);
   }
   window.addEventListener("hashchange", route_);
 

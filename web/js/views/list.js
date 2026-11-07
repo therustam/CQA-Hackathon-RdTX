@@ -144,7 +144,7 @@ export async function viewList(ctx) {
     foot.replaceChildren(
       h("span", null, `Показано ${rows.length} из ${items.length}`),
       h("span", null, `оценено ${evaluated}`),
-      flagged ? h("span", null, `грубых ошибок ${flagged}`) : null);
+      flagged ? h("span", null, `грубых ошибок ${flagged}`) : "");
     if (!rows.length) {
       tbody.replaceChildren(h("tr", { class: "cqa-empty-row" }, h("td", { colspan: "7" }, h("div", { class: "cqa-empty" },
         items.length

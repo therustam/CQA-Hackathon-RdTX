@@ -93,7 +93,7 @@ export async function viewCard(ctx, cid) {
     ]);
   } catch (e) {
     main.replaceChildren(h("div", { class: "cqa-page" }, h("div", { class: "cqa-notice cqa-notice-error" }, icon("alert"), e.message),
-      h("a", { href: "#/" }, "К списку диалогов")));
+      h("a", { href: "#/dialogs" }, "К списку диалогов")));
     return;
   }
   const isCall = conv.channel === "voice call";
@@ -206,7 +206,7 @@ export async function viewCard(ctx, cid) {
         renderAll();
       },
     }, icon("run"), busy ? "Оценивается…" : ev ? "Переоценить" : "Оценить диалог");
-    ctx.setTop([["Диалоги", "#/"], [cid]], [pill, evalBtn]);
+    ctx.setTop([["Диалоги", "#/dialogs"], [cid]], [pill, evalBtn]);
   }
 
   function renderSummary() {

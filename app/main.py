@@ -18,7 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, model_validator
 
 from app import db, evaluator, export, importer, llm
-from app.scorer import score
+from app.scorer import score, summarize
 from app.transcript import prepare
 
 load_dotenv()
@@ -242,9 +242,8 @@ async def upload(file: UploadFile = File(...), group_id: str = Form("")):
 
 # ---------- conversations ----------
 
-@app.get("/api/conversations")
-def conversations(group_id: str | None = None, checklist_id: int | None = None):
-    cl = _checklist_or_404(checklist_id)
+def _latest(group_id, cl):
+    """Each conversation with its latest evaluation for this checklist: (row, ev, appeals, original, final)."""
     where, args = ("where group_id=?", (group_id,)) if group_id else ("", ())
     rows = db.query(f"select id, group_id, channel, language, audio_url is not null and audio_url!='' has_audio,"
                     f" json_array_length(transcript) messages from conversations {where} order by id", args)
@@ -252,19 +251,48 @@ def conversations(group_id: str | None = None, checklist_id: int | None = None):
         "select e.* from evaluations e join (select conversation_id, max(id) id from evaluations"
         " where checklist_id=? group by conversation_id) m on e.id=m.id", (cl["id"],))}
     appeals = _appeals([e["id"] for e in evs.values()])
+    out = []
     for r in rows:
         ev = evs.get(r["id"])
-        r["evaluation"] = None
-        if ev:
-            ev["raw"] = json.loads(ev["raw"] or "{}")
-            mine = appeals.get(ev["id"], [])
-            original, final = _scores(cl["data"], ev, mine)
-            r["evaluation"] = {"id": ev["id"], "status": ev["status"], "cost_usd": ev["cost_usd"],
-                               "total": original["total"], "final_total": final["total"],
-                               "flags": final["flags"], "complete": final["complete"],
-                               "appeals_open": sum(a["status"] == "open" for a in mine),
-                               "appeals_total": len(mine)}
+        if not ev:
+            out.append((r, None, [], None, None))
+            continue
+        ev["raw"] = json.loads(ev["raw"] or "{}")
+        mine = appeals.get(ev["id"], [])
+        out.append((r, ev, mine, *_scores(cl["data"], ev, mine)))
+    return out
+
+
+@app.get("/api/conversations")
+def conversations(group_id: str | None = None, checklist_id: int | None = None):
+    cl = _checklist_or_404(checklist_id)
+    rows = []
+    for r, ev, mine, original, final in _latest(group_id, cl):
+        r["evaluation"] = None if not ev else {
+            "id": ev["id"], "status": ev["status"], "cost_usd": ev["cost_usd"],
+            "total": original["total"], "final_total": final["total"],
+            "flags": final["flags"], "complete": final["complete"],
+            "appeals_open": sum(a["status"] == "open" for a in mine),
+            "appeals_total": len(mine)}
+        rows.append(r)
     return {"checklist_id": cl["id"], "items": rows}
+
+
+@app.get("/api/stats")
+def stats(group_id: str | None = None, checklist_id: int | None = None):
+    """Overview screen: aggregates of code-computed final scores (after reviewer decisions)."""
+    cl = _checklist_or_404(checklist_id)
+    latest = _latest(group_id, cl)
+    done = [(r, ev, mine, final) for r, ev, mine, _, final in latest if ev and ev["status"] != "error"]
+    out = summarize(cl["data"], [({"language": r["language"], "channel": r["channel"]}, final) for r, _, _, final in done])
+    costs = [ev["cost_usd"] for _, ev, _, _ in done if ev["cost_usd"] is not None]
+    out.update({"checklist_id": cl["id"], "checklist_name": cl["name"], "conversations": len(latest),
+                "errors": sum(bool(ev) and ev["status"] == "error" for _, ev, *_ in latest),
+                "appeals_open": sum(a["status"] == "open" for *_, mine, _ in done for a in mine),
+                "appeals_decided": sum(a["status"] == "decided" for *_, mine, _ in done for a in mine),
+                "changed_by_appeal": sum(o["total"] != f["total"] for _, ev, _, o, f in latest if ev and ev["status"] != "error"),
+                "cost_usd": round(sum(costs), 6) if costs else None})
+    return out
 
 
 @app.get("/api/conversations/{cid}")

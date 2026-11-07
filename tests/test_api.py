@@ -95,6 +95,11 @@ def test_full_flow_evaluate_appeal_decide(client):
     row = next(i for i in client.get("/api/conversations").json()["items"] if i["id"] == "t-chat")
     assert row["evaluation"]["final_total"] == 94.38 and row["evaluation"]["appeals_total"] == 1
 
+    stats = client.get("/api/stats", params={"group_id": "T"}).json()
+    assert (stats["conversations"], stats["evaluated"], stats["avg_total"]) == (2, 1, 94.38)
+    assert (stats["changed_by_appeal"], stats["appeals_decided"], stats["appeals_open"]) == (1, 1, 0)
+    assert next(c for c in stats["criteria"] if c["id"] == "04")["missed"] == 0
+
 
 def test_decision_rejects_na_where_not_allowed(client):
     upload(client)

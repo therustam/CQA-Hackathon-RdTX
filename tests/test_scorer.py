@@ -125,3 +125,18 @@ def test_custom_weights_still_normalise_to_100():
 def test_step_outside_scale_is_rejected():
     with pytest.raises(ValueError):
         score(CHECKLIST, {**worked_example(), "04": step(12)})
+
+
+def test_summarize_overview_aggregates():
+    from app.scorer import summarize
+    a = score(CHECKLIST, worked_example())                       # 88.13
+    b = score(CHECKLIST, {**worked_example(), "04": step(20)})   # 75.5 of 80 -> 94.38
+    out = summarize(CHECKLIST, [({"language": "RU", "channel": "agent chat"}, a), ({"language": "EN", "channel": "agent chat"}, b)])
+    assert (a["total"], b["total"]) == (88.13, 94.38)
+    assert out["avg_total"] == 91.26  # 91.255 rounds half-up
+    assert out["buckets"] == {"low": 0, "mid": 1, "high": 1} and out["flagged"] == 0
+    assert [x["key"] for x in out["by_language"]] == ["EN", "RU"]
+    crit = {c["id"]: c for c in out["criteria"]}
+    assert (crit["04"]["judged"], crit["04"]["missed"], crit["04"]["earned_percent"]) == (2, 1, 87.5)
+    assert (crit["02"]["judged"], crit["02"]["na"]) == (0, 2)
+    assert (crit["08"]["judged"], crit["08"]["missed"], crit["08"]["earned_percent"]) == (2, 0, None)

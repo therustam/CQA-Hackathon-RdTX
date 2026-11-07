@@ -77,3 +77,44 @@ def score(checklist, raw, overrides=None):
     return {"total": _num(sum(b.values(), ZERO) * HUNDRED / total_w) if total_w and complete else None,
             "complete": complete,
             "flags": flags, "criteria": rows, "sections": sections}
+
+
+def _mean(values):
+    values = [Decimal(str(v)) for v in values if v is not None]
+    return _num(sum(values, ZERO) / len(values)) if values else None
+
+
+def summarize(checklist, finals):
+    """Overview aggregates. finals: [(attrs, score(...) result)] with attrs like {"language", "channel"}.
+
+    Averages use the same half-up rounding as totals; a criterion "misses" when it earned less than
+    its weight (scored) or was raised (flag).
+    """
+    totals = [f["total"] for _, f in finals if f["total"] is not None]
+    buckets = {"low": 0, "mid": 0, "high": 0}
+    for t in totals:
+        buckets["low" if t < 70 else "mid" if t < 90 else "high"] += 1
+
+    def by(key):
+        groups = {}
+        for attrs, f in finals:
+            groups.setdefault(attrs.get(key), []).append(f["total"])
+        return [{"key": k, "n": len(v), "avg": _mean(v)} for k, v in sorted(groups.items(), key=lambda kv: str(kv[0]))]
+
+    criteria = []
+    for c in checklist["criteria"]:
+        rows = [r for _, f in finals for r in f["criteria"] if r["id"] == c["id"]]
+        if c["type"] == "flag":
+            judged = [r for r in rows if r["status"] == "flag"]
+            missed, earned = sum(r.get("answer") == "yes" for r in judged), None
+        else:
+            judged = [r for r in rows if r["status"] == "scored" and r["points"] is not None]
+            missed = sum(Decimal(str(r["points"])) < Decimal(str(r["weight"])) for r in judged)
+            weight = sum((Decimal(str(r["weight"])) for r in judged), ZERO)
+            earned = _num(sum((Decimal(str(r["points"])) for r in judged), ZERO) * HUNDRED / weight) if weight else None
+        criteria.append({"id": c["id"], "title": c["title"], "section": c.get("section"), "type": c["type"],
+                         "judged": len(judged), "na": sum(r["status"] == "na" for r in rows),
+                         "missed": missed, "earned_percent": earned})
+    return {"evaluated": len(finals), "scored": len(totals), "avg_total": _mean(totals),
+            "flagged": sum(bool(f["flags"]) for _, f in finals), "buckets": buckets,
+            "by_language": by("language"), "by_channel": by("channel"), "criteria": criteria}
