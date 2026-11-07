@@ -110,7 +110,7 @@
   background: var(--cqa-surface); font-size: 12px; }
 .cqa-team-label { color: var(--cqa-text-3); }
 .cqa-team b { font-size: 14px; }
-.cqa-team-members { color: var(--cqa-text-2); line-height: 1.4; }
+.cqa-team-members { margin: 4px 0 0; padding: 0; list-style: none; color: var(--cqa-text-2); line-height: 1.5; }
 .cqa-root[data-collapsed] .cqa-team { display: none; }
 @media (max-width: 900px) { .cqa-team { display: none; } }
 .cqa-model { display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 13px; color: var(--cqa-text-2); white-space: nowrap; min-width: 0; }

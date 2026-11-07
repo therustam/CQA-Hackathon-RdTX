@@ -9,8 +9,8 @@ import { viewAppeals } from "./views/appeals.js";
 import { viewChecklist } from "./views/checklist.js";
 
 const ROLES = [["specialist", "Специалист"], ["reviewer", "Проверяющий"]];
-// Authors shown in the sidebar footer. shortcut: names are filled in by the team, empty until provided.
-const TEAM = { name: "RdTX", members: [] };
+// Authors shown in the sidebar footer.
+const TEAM = { name: "RdTX", members: ["Мусин Рустам", "Жусупов Даниал", "Болат Темірлан", "Шефер Владислав"] };
 
 export function mount(root, config = {}) {
   const base = (config.apiBaseUrl || "").replace(/\/$/, "");
@@ -98,7 +98,7 @@ export function mount(root, config = {}) {
       h("div", { class: "cqa-side-foot" },
         h("div", { class: "cqa-team", title: ["Команда " + TEAM.name, ...TEAM.members].join(", ") },
           h("span", { class: "cqa-team-label" }, "Сделано командой"), h("b", null, TEAM.name),
-          TEAM.members.length ? h("span", { class: "cqa-team-members" }, TEAM.members.join(" · ")) : null),
+          TEAM.members.length ? h("ul", { class: "cqa-team-members" }, TEAM.members.map((n) => h("li", null, n))) : null),
         h("div", { class: `cqa-model${S.config.has_api_key ? "" : " cqa-model-off"}`,
           title: S.config.has_api_key ? `Модель ${S.config.model}` : NO_KEY },
         h("i", { "aria-hidden": "true" }),
