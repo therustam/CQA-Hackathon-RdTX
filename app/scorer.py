@@ -44,6 +44,8 @@ def score(checklist, raw, overrides=None):
             row["status"] = "na"
         elif c["type"] == "flag":
             row["status"] = "flag"
+            if r.get("answer") != "yes":
+                row["subtypes"] = []
         else:
             row["status"] = "scored"
             weight = Decimal(str(row["weight"]))
@@ -71,6 +73,7 @@ def score(checklist, raw, overrides=None):
     flags = [{"criterion_id": x["id"], "title": x["title"], "subtypes": x.get("subtypes") or [],
               "evidence_ids": x.get("evidence_ids") or []}
              for x in rows if x["status"] == "flag" and x.get("answer") == "yes"]
-    return {"total": _num(sum(b.values(), ZERO) * HUNDRED / total_w) if total_w else None,
-            "complete": all(x["status"] != "missing" for x in rows),
+    complete = all(x["status"] != "missing" for x in rows)
+    return {"total": _num(sum(b.values(), ZERO) * HUNDRED / total_w) if total_w and complete else None,
+            "complete": complete,
             "flags": flags, "criteria": rows, "sections": sections}

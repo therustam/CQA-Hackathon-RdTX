@@ -12,10 +12,10 @@
           "answer": {"anyOf": [{"type": "string", "enum": ["yes", "no"]}, {"type": "null"}]},
           "step": {"anyOf": [{"type": "number"}, {"type": "null"}]},
           "subtypes": {"type": "array", "items": {"type": "string"}},
-          "explanation": {"type": "string"},
+          "explanation": {"type": "string", "minLength": 1},
           "evidence_ids": {"type": "array", "items": {"type": "string"}},
-          "checked_range": {"type": "array", "items": {"type": "string"}},
-          "confidence": {"type": "number"}
+          "checked_range": {"type": "array", "items": {"type": "string"}, "maxItems": 2},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
         },
         "required": ["criterion_id", "applicable", "na_reason", "answer", "step", "subtypes",
                      "explanation", "evidence_ids", "checked_range", "confidence"],

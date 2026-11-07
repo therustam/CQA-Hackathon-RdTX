@@ -1,6 +1,6 @@
 """Agreement of stored AI answers with the team's reference labels, per criterion and per language.
 
-Usage:  python -m scripts.bench [--gold data/gold.json] [--checklist ID] [--out docs/eval_report.md]
+Usage:  python -m scripts.bench [--gold data/gold.json] [--checklist ID] [--out PATH]
 gold.json: {"p1-ru-001": {"01": "yes", "02": "na", "04": 20, "08": "no"}, ...}
 Compares the AI's original answers (appeal decisions are ignored). Scale criteria also report
 agreement within one step.
@@ -35,6 +35,8 @@ def main():
 
     gold = json.loads(Path(args.gold).read_text("utf-8"))
     cl = db.checklist(args.checklist)
+    if cl is None:
+        sys.exit("чек-лист не найден")
     meta = {c["id"]: c for c in cl["data"]["criteria"]}
     hits = defaultdict(lambda: [0, 0, 0])  # (criterion, language) -> [exact, within one step, total]
     missing, diffs = [], []
@@ -42,19 +44,18 @@ def main():
         conv = db.conversation(cid)
         eid = db.latest_evaluation_id(cid, cl["id"]) if conv else None
         ev = db.evaluation(eid) if eid else None
-        if not ev or ev["status"] == "error":
+        if not ev or ev["status"] != "ok":
             missing.append(cid)
-            continue
         for crit, want in labels.items():
             if crit not in meta:
                 continue
-            got = ai_value(ev["raw"].get(crit))
-            exact = str(got) == str(want)
+            got = ai_value(ev["raw"].get(crit)) if ev and ev["status"] == "ok" else None
+            exact = got == want
             near = exact
             if meta[crit]["type"] == "scale" and isinstance(got, (int, float)) and isinstance(want, (int, float)):
                 steps = sorted(s["value"] for s in meta[crit]["scale"])
                 near = got in steps and want in steps and abs(steps.index(got) - steps.index(want)) <= 1
-            for key in ((crit, conv["language"]), (crit, "все")):
+            for key in ((crit, conv["language"] if conv else "неизвестен"), (crit, "все")):
                 hits[key][0] += exact
                 hits[key][1] += near
                 hits[key][2] += 1
@@ -63,7 +64,8 @@ def main():
 
     langs = ["все", "RU", "KZ", "EN"]
     pct = lambda h: f"{100 * h[0] / h[2]:.0f}% ({h[0]}/{h[2]})" if h[2] else "—"
-    lines = [f"# Согласие с эталоном — чек-лист v{cl['id']}", "",
+    lines = [f"# Согласие с разметкой — чек-лист v{cl['id']}", "",
+             f"Файл разметки: {Path(args.gold).name}. Это согласие с указанной разметкой, не эталон организаторов.", "",
              f"Размечено диалогов: {len(gold)}, без оценки: {len(missing)}", "",
              "| Критерий | " + " | ".join(langs) + " | ±1 ступень (все) |",
              "|---|" + "---|" * (len(langs) + 1)]
@@ -86,4 +88,5 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")
     main()

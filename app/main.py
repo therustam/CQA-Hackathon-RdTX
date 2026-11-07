@@ -13,11 +13,11 @@ from typing import Literal
 import httpx
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
-from fastapi.responses import RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, model_validator
 
-from app import db, evaluator, importer, llm
+from app import db, evaluator, export, importer, llm
 from app.scorer import score
 from app.transcript import prepare
 
@@ -39,7 +39,7 @@ async def revalidate_ui(request, call_next):
 # ---------- models (validation at the API boundary) ----------
 
 class Step(BaseModel):
-    value: int | float
+    value: int | float = Field(allow_inf_nan=False)
     label: str = ""
 
 
@@ -55,10 +55,11 @@ class Section(BaseModel):
 
 class Criterion(BaseModel):
     id: str = Field(min_length=1, max_length=20)
+    export_id: str = ""  # criterion code in the organizers' results file
     section: str = ""
     title: str = Field(min_length=1)
     type: Literal["binary", "scale", "flag"]
-    weight: int | float = Field(ge=0)
+    weight: int | float = Field(ge=0, allow_inf_nan=False)
     na_allowed: bool = False
     rule: str = ""
     na_condition: str = ""
@@ -91,6 +92,8 @@ class Checklist(BaseModel):
         if len(ids) != len(set(ids)):
             raise ValueError("идентификаторы критериев должны быть уникальны")
         sections = {s.id for s in self.sections}
+        if len(sections) != len(self.sections):
+            raise ValueError("идентификаторы секций должны быть уникальны")
         unknown = [c.id for c in self.criteria if c.section and c.section not in sections]
         if unknown:
             raise ValueError(f"критерии {unknown} ссылаются на несуществующую секцию")
@@ -124,7 +127,7 @@ class DecisionReq(BaseModel):
     reason: str = Field(min_length=1, max_length=4000)
     applicable: bool = True
     answer: Literal["yes", "no"] | None = None
-    step: int | float | None = None
+    step: int | float | None = Field(default=None, allow_inf_nan=False)
 
 
 # ---------- helpers ----------
@@ -148,7 +151,7 @@ def _appeals(eval_ids):
         return {}
     marks = ",".join("?" * len(eval_ids))
     out = {}
-    for a in db.query(f"select * from appeals where evaluation_id in ({marks}) order by id", tuple(eval_ids)):
+    for a in db.query(f"select * from appeals where evaluation_id in ({marks}) order by coalesce(decision_order,0),id", tuple(eval_ids)):
         a["override"] = json.loads(a["override"]) if a["override"] else None
         out.setdefault(a["evaluation_id"], []).append(a)
     return out
@@ -171,6 +174,8 @@ def eval_view(ev):
 def run_evaluation(cid, cl):
     rec = db.conversation(cid)
     try:
+        if rec is None or rec.get("import_error"):
+            raise ValueError(rec.get("import_error") if rec else "диалог не найден")
         result = evaluator.evaluate(cl["data"], rec)
     except Exception as e:  # stored so the UI can show the failure and offer a retry
         result = {"status": "error", "errors": [f"{type(e).__name__}: {e}"[:500]], "model": llm.model_name()}
@@ -178,8 +183,8 @@ def run_evaluation(cid, cl):
 
 
 def _has_usable_evaluation(cid, checklist_id):
-    return db.one("select 1 from evaluations where conversation_id=? and checklist_id=? and status!='error'",
-                  (cid, checklist_id)) is not None
+    ev = db.evaluation(db.latest_evaluation_id(cid, checklist_id))
+    return bool(ev and ev["status"] == "ok" and not ev["errors"])
 
 
 # ---------- config & import ----------
@@ -197,9 +202,15 @@ def groups():
 
 
 def _store(records, problems, group_id):
+    imported = 0
+    problems = list(problems)
     for r in records:
-        db.upsert_conversation(r, group_id)
-    return {"group_id": group_id, "imported": len(records), "problems": problems}
+        try:
+            db.upsert_conversation(r, group_id)
+            imported += 1
+        except ValueError as e:
+            problems.append(str(e))
+    return {"group_id": group_id, "imported": imported, "problems": problems}
 
 
 @app.post("/api/import")
@@ -225,7 +236,7 @@ async def upload(file: UploadFile = File(...), group_id: str = Form("")):
     except importer.ImportErrorWithDetail as e:
         raise HTTPException(422, str(e))
     data = payload.get("data") if isinstance(payload, dict) else None
-    group = group_id.strip() or (data or {}).get("dataset_group_id") or "upload"
+    group = group_id.strip() or (data.get("dataset_group_id") if isinstance(data, dict) else None) or "upload"
     return _store(records, problems, group)
 
 
@@ -263,6 +274,7 @@ def conversation(cid: str):
                            " where conversation_id=? order by id desc", (cid,))
     return {"conversation_id": cid, "group_id": rec["group_id"], "channel": rec["channel"],
             "language": rec["language"], "has_audio": bool(rec["audio_url"]),
+            "import_error": rec.get("import_error"),
             "messages": prepare(rec), "evaluations": evaluations}
 
 
@@ -277,12 +289,14 @@ _audio_cache = {}
 
 
 @app.get("/api/conversations/{cid}/audio")
-def audio(cid: str):
+def audio(cid: str, player: bool = False):
     """audio_url is a player page with a 1-hour signed mp3 link; resolve it so our <audio> can seek."""
     rec = _conversation_or_404(cid)
     url = rec["audio_url"]
     if not url or not url.startswith("https://"):
         raise HTTPException(404, "у диалога нет записи")
+    if player:
+        return RedirectResponse(url)
     hit = _audio_cache.get(cid)
     if hit and hit[1] > time.time():
         return RedirectResponse(hit[0])
@@ -341,7 +355,9 @@ POOL = ThreadPoolExecutor(max_workers=5)
 def batch(req: BatchReq):
     cl = _checklist_or_404(req.checklist_id)
     if req.conversation_ids:
-        ids = req.conversation_ids
+        ids = list(dict.fromkeys(req.conversation_ids))
+        for cid in ids:
+            _conversation_or_404(cid)
     elif req.group_id:
         ids = [r["id"] for r in db.query("select id from conversations where group_id=? order by id", (req.group_id,))]
     else:
@@ -358,12 +374,34 @@ def batch(req: BatchReq):
         if not req.force and _has_usable_evaluation(cid, cl["id"]):
             return bump("skipped")
         ev = db.evaluation(run_evaluation(cid, cl))
-        bump("failed" if ev["status"] == "error" else "done", ev["cost_usd"])
+        bump("failed" if ev["status"] != "ok" else "done", ev["cost_usd"])
 
     futures = [POOL.submit(one, cid) for cid in ids]
-    threading.Thread(target=lambda: (wait(futures), job.update(running=False)), daemon=True).start()
+    def finish():
+        wait(futures)
+        for future in futures:
+            if future.exception() is not None:
+                bump("failed")
+        with LOCK:
+            job["running"] = False
+    threading.Thread(target=finish, daemon=True).start()
     JOBS[job["id"]] = job
     return job
+
+
+@app.get("/api/export")
+def export_results(group_id: str | None = None, checklist_id: int | None = None):
+    """Organizers' results.json (format 1.0) for a set, from the AI's latest complete evaluations."""
+    cl = _checklist_or_404(checklist_id)
+    where, args = ("where group_id=?", (group_id,)) if group_id else ("", ())
+    ids = [r["id"] for r in db.query(f"select id from conversations {where}", args)]
+    doc = export.document(cl, ids)
+    issues = export.problems(doc, expected_ids=ids,
+                             transcript_lengths={cid: len(db.conversation(cid)["transcript"]) for cid in ids})
+    if issues:
+        raise HTTPException(422, issues)
+    return JSONResponse(doc,
+                        headers={"Content-Disposition": 'attachment; filename="results.json"'})
 
 
 @app.get("/api/batch/{job_id}")
@@ -385,6 +423,8 @@ def evaluation(eval_id: int):
 
 @app.post("/api/evaluations/{eval_id}/appeals")
 def create_appeal(eval_id: int, req: AppealReq):
+    if not req.comment.strip():
+        raise HTTPException(422, "нужен комментарий")
     ev = db.evaluation(eval_id)
     if not ev:
         raise HTTPException(404, "оценка не найдена")
@@ -412,27 +452,46 @@ def _appeal_view(appeal_id):
     final = next(c for c in view["final"]["criteria"] if c["id"] == a["criterion_id"])
     rec = db.conversation(view["conversation_id"])
     wanted = set(original.get("evidence_ids") or []) | set(original.get("checked_range") or [])
-    fragment = [m for m in prepare(rec) if m["id"] in wanted]
+    messages = prepare(rec)
+    checked = original.get("checked_range") or []
+    if len(checked) == 2:
+        positions = {m["id"]: i for i, m in enumerate(messages)}
+        if all(mid in positions for mid in checked):
+            lo, hi = sorted(positions[mid] for mid in checked)
+            wanted.update(m["id"] for m in messages[lo:hi + 1])
+    fragment = [m for m in messages if m["id"] in wanted]
     # this decision's own effect: earlier decisions applied before and after it
-    earlier = {x["criterion_id"]: x["override"] for x in view["appeals"] if x["override"] and x["id"] < a["id"]}
+    earlier = {x["criterion_id"]: x["override"] for x in view["appeals"] if x["override"]
+               and (a["decision_order"] is None or x["decision_order"] < a["decision_order"])}
     cl, raw = view["checklist"]["data"], view["raw"] or {}
     before = score(cl, raw, earlier)["total"]
     after = score(cl, raw, {**earlier, a["criterion_id"]: a["override"]} if a["override"] else earlier)["total"]
-    decided_value = next(c for c in score(cl, raw, {a["criterion_id"]: a["override"]} if a["override"] else {})["criteria"]
+    previous = next(c for c in score(cl, raw, earlier)["criteria"] if c["id"] == a["criterion_id"])
+    decided_value = next(c for c in score(cl, raw, {**earlier, a["criterion_id"]: a["override"]} if a["override"] else earlier)["criteria"]
                          if c["id"] == a["criterion_id"])
     return {**a, "conversation_id": view["conversation_id"], "channel": rec["channel"], "language": rec["language"],
             "criterion": next(c for c in cl["criteria"] if c["id"] == a["criterion_id"]),
-            "original": original, "final": final, "decided": decided_value, "fragment": fragment,
+            "original": original, "previous": previous, "final": final, "decided": decided_value, "fragment": fragment,
             "total": before, "final_total": after, "current_total": view["final"]["total"]}
 
 
 @app.post("/api/appeals/{appeal_id}/decision")
 def decide(appeal_id: int, req: DecisionReq):
+    # Serialize decisions so their order and their observed current result agree.
+    with db.connect() as con:
+        con.execute("begin immediate")
+        _save_decision(con, appeal_id, req)
+    return _appeal_view(appeal_id)
+
+
+def _save_decision(con, appeal_id, req):
     a = db.one("select * from appeals where id=?", (appeal_id,))
     if not a:
         raise HTTPException(404, "апелляция не найдена")
     if a["status"] != "open":
         raise HTTPException(409, "апелляция уже рассмотрена")
+    if not req.reason.strip():
+        raise HTTPException(422, "нужна причина решения")
     ev = db.evaluation(a["evaluation_id"])
     c = next(c for c in db.checklist(ev["checklist_id"])["data"]["criteria"] if c["id"] == a["criterion_id"])
     override = None
@@ -449,12 +508,12 @@ def decide(appeal_id: int, req: DecisionReq):
             if req.answer not in ("yes", "no"):
                 raise HTTPException(422, "нужен ответ yes или no")
             override = {"applicable": True, "answer": req.answer, "step": None}
-        current = (ev["raw"] or {}).get(a["criterion_id"], {})
+        current = next(r for r in eval_view(ev)["final"]["criteria"] if r["id"] == a["criterion_id"])
         if all(current.get(k) == override[k] for k in ("applicable", "answer", "step")):
-            raise HTTPException(422, "новая оценка совпадает с оценкой ИИ — выберите «Подтвердить оценку»")
-    db.execute("update appeals set status='decided', action=?, reason=?, override=?, decided_at=? where id=?",
-               (req.action, req.reason.strip(), json.dumps(override) if override else None, db.now(), appeal_id))
-    return _appeal_view(appeal_id)
+            raise HTTPException(422, "новая оценка совпадает с текущей — выберите «Подтвердить оценку»")
+    order = con.execute("select coalesce(max(decision_order),0)+1 from appeals").fetchone()[0]
+    con.execute("update appeals set status='decided', action=?, reason=?, override=?, decided_at=?, decision_order=? where id=?",
+                (req.action, req.reason.strip(), json.dumps(override) if override else None, db.now(), order, appeal_id))
 
 
 app.mount("/", StaticFiles(directory=WEB, html=True), name="web")

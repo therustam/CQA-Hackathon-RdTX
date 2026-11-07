@@ -2,6 +2,7 @@
 import json
 import os
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -10,7 +11,7 @@ DEFAULT_CHECKLIST = Path(__file__).parent.parent / "contracts" / "default_checkl
 SCHEMA = """
 create table if not exists conversations(
   id text primary key, group_id text, channel text, language text, audio_url text,
-  transcript text not null, imported_at text);
+  transcript text not null, imported_at text, import_error text);
 create table if not exists checklists(
   id integer primary key autoincrement, name text, data text not null, created_at text);
 create table if not exists evaluations(
@@ -21,7 +22,7 @@ create index if not exists evaluations_conv on evaluations(conversation_id, chec
 create table if not exists appeals(
   id integer primary key autoincrement, evaluation_id integer not null, criterion_id text not null,
   comment text not null, status text not null default 'open', created_at text,
-  action text, reason text, override text, decided_at text);
+  action text, reason text, override text, decided_at text, decision_order integer);
 """
 
 
@@ -33,10 +34,15 @@ def now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+@contextmanager
 def connect():
     con = sqlite3.connect(path(), timeout=30)
     con.row_factory = sqlite3.Row
-    return con
+    try:
+        with con:
+            yield con
+    finally:
+        con.close()
 
 
 def query(sql, args=()):
@@ -58,6 +64,13 @@ def init():
     with connect() as con:
         con.execute("pragma journal_mode=wal")
         con.executescript(SCHEMA)
+        if "import_error" not in {r["name"] for r in con.execute("pragma table_info(conversations)")}:
+            con.execute("alter table conversations add column import_error text")
+        if "decision_order" not in {r["name"] for r in con.execute("pragma table_info(appeals)")}:
+            con.execute("alter table appeals add column decision_order integer")
+            for order, row in enumerate(con.execute(
+                    "select id from appeals where status='decided' order by decided_at,id").fetchall(), 1):
+                con.execute("update appeals set decision_order=? where id=?", (order, row["id"]))
         if not con.execute("select 1 from checklists").fetchone():
             data = json.loads(DEFAULT_CHECKLIST.read_text("utf-8"))
             con.execute("insert into checklists(name, data, created_at) values (?,?,?)",
@@ -65,9 +78,22 @@ def init():
 
 
 def upsert_conversation(record, group_id):
-    execute("insert or replace into conversations values (?,?,?,?,?,?,?)",
-            (record["conversation_id"], group_id, record.get("channel"), record.get("language"),
-             record.get("audio_url"), json.dumps(record["transcript"], ensure_ascii=False), now()))
+    # Evidence IDs must keep pointing at the same source, including after a repeated import.
+    with connect() as con:
+        con.execute("begin immediate")
+        old = con.execute("select * from conversations where id=?", (record["conversation_id"],)).fetchone()
+        repairing = old and old["import_error"] and not record.get("import_error") and old["group_id"] == group_id
+        if old and not repairing and (old["group_id"] != group_id or any(old[k] != record.get(k) for k in ("channel", "language"))
+                    or json.loads(old["transcript"]) != record["transcript"]
+                    or old["import_error"] != record.get("import_error")):
+            raise ValueError(f"{record['conversation_id']}: повторный импорт меняет исходный диалог или набор")
+        con.execute("insert into conversations(id,group_id,channel,language,audio_url,transcript,imported_at,import_error)"
+                    " values (?,?,?,?,?,?,?,?) on conflict(id) do update set"
+                    " channel=excluded.channel, language=excluded.language, transcript=excluded.transcript,"
+                    " import_error=excluded.import_error, audio_url=excluded.audio_url, imported_at=excluded.imported_at",
+                    (record["conversation_id"], group_id, record.get("channel"), record.get("language"),
+                     record.get("audio_url"), json.dumps(record["transcript"], ensure_ascii=False), now(),
+                     record.get("import_error")))
 
 
 def conversation(cid):

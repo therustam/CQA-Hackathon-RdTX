@@ -1,4 +1,5 @@
 import json
+import copy
 from pathlib import Path
 
 import pytest
@@ -54,9 +55,13 @@ def test_scale_steps_proportional_to_weight():
 
 
 def test_all_weighted_na_gives_no_total():
+    checklist = copy.deepcopy(CHECKLIST)
+    for c in checklist["criteria"]:
+        if c["type"] != "flag":
+            c["na_allowed"] = True
     raw = {cid: NA for cid in ("01", "02", "03", "04", "05", "06", "07")}
     raw["08"] = no()
-    r = score(CHECKLIST, raw)
+    r = score(checklist, raw)
     assert r["total"] is None
     assert all(s["percent"] is None for s in r["sections"])
 
@@ -74,6 +79,9 @@ def test_flag_is_separate_from_total():
     assert r["total"] == 88.13
     assert [f["criterion_id"] for f in r["flags"]] == ["08"]
     assert r["flags"][0]["subtypes"] == ["off_book_offer"]
+    changed = score(CHECKLIST, raw, {"08": no()})
+    assert changed["flags"] == [] and by_id(changed)["08"]["subtypes"] == []
+    assert raw["08"]["subtypes"] == ["off_book_offer"]
 
 
 def test_override_recalculates_and_keeps_original_fields():
@@ -96,7 +104,7 @@ def test_missing_criterion_marks_incomplete():
     r = score(CHECKLIST, raw)
     assert r["complete"] is False
     assert by_id(r)["05"]["status"] == "missing"
-    assert r["total"] == 85.38  # 55.5 / 65 = 85.3846
+    assert r["total"] is None  # Missing is not N/A: there is no final total yet.
 
 
 def test_sections():

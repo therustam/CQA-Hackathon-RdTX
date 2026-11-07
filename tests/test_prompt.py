@@ -15,11 +15,14 @@ def test_system_prompt_is_compiled_from_checklist():
     for c in CHECKLIST["criteria"]:
         assert f"Критерий {c['id']}. {c['title']}" in system
         assert c["rule"] in system
+        assert c["guidance"] in system
+        if c["na_allowed"]:
+            assert c["na_condition"] in system
         for s in c["scale"]:
             assert f"- {s['value']} — {s['label']}" in system
     assert "N/A не допускается" in system and "Условие N/A: Данных для ответа хватало" in system
     assert "off_book_offer" in system
-    assert CHECKLIST["instructions"].splitlines()[0] in system
+    assert CHECKLIST["instructions"] in system
 
 
 def test_replaced_criterion_reaches_prompt_without_code_change():
@@ -45,3 +48,5 @@ def test_no_criterion_wording_in_code():
         for name, text in texts.items():
             assert c["title"] not in text, f"criterion title {c['title']!r} hardcoded in {name}"
             assert c["rule"][:40] not in text, f"criterion rule hardcoded in {name}"
+            if c.get("export_id"):
+                assert f'"{c["export_id"]}"' not in text, f"export code {c['export_id']!r} hardcoded in {name}"

@@ -7,6 +7,8 @@ data/*
 docs/source/
 *.db
 *.db-journal
+*.db-wal
+*.db-shm
 
 # design-skill scratch (screenshots contain DEV data); surfaces/ (direction contract) is kept
 .impeccable/review/

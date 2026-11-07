@@ -30,6 +30,7 @@ const ICON_PATHS = {
   play: "M7 5l12 7-12 7z",
   plus: "M12 5v14M5 12h14",
   run: "M4 12h12m0 0l-5-5m5 5l-5 5M20 5v14",
+  download: "M12 4v12m0 0l-5-5m5 5l5-5M4 20h16",
 };
 function icon(name) {
   const ns = "http://www.w3.org/2000/svg";
@@ -293,6 +294,11 @@ export function mount(root, config = {}) {
       },
     }, icon("run"), "Оценить набор");
 
+    const exportLink = h("a", {
+      class: "cqa-btn", download: "results.json",
+      title: "Результаты набора в формате организаторов (JSON 1.0)",
+    }, icon("download"), "Скачать results.json");
+
     const head = h("div", { class: "cqa-page-head" },
       h("h1", null, "Диалоги"),
       h("span", { class: "cqa-sub" }, "Импорт, оценка по чек-листу и результаты"));
@@ -305,7 +311,7 @@ export function mount(root, config = {}) {
       h("div", { class: "cqa-spacer" }),
       h("label", { class: "cqa-field" }, "Набор", groupSelect),
       h("label", { class: "cqa-field" }, "Чек-лист", checklistSelect(load)),
-      runBtn);
+      exportLink, runBtn);
 
     const chips = (key, options) => h("div", { class: "cqa-chips", role: "group" },
       options.map(([value, label]) => h("button", {
@@ -399,6 +405,10 @@ export function mount(root, config = {}) {
     }
 
     async function load() {
+      const exportQuery = new URLSearchParams();
+      if (S.group) exportQuery.set("group_id", S.group);
+      if (S.checklistId) exportQuery.set("checklist_id", S.checklistId);
+      exportLink.href = `${base}/api/export?${exportQuery}`;
       try {
         const q = new URLSearchParams();
         if (S.group) q.set("group_id", S.group);
@@ -447,9 +457,10 @@ export function mount(root, config = {}) {
   }
 
   function decisionForm(appeal, meta, onDone) {
-    let action = "confirm", applicable = true;
-    let answer = appeal.original && appeal.original.answer;
-    let step = appeal.original && appeal.original.step;
+    const current = appeal.final || appeal.original;
+    let action = "confirm", applicable = current?.applicable !== false;
+    let answer = current && current.answer;
+    let step = current && current.step;
     const reason = h("textarea", { class: "cqa-textarea", rows: "3", required: true, placeholder: "Обоснование решения" });
     const err = h("div", { class: "cqa-form-error", role: "alert" });
     const changeBox = h("div", { class: "cqa-form-row" });
@@ -542,7 +553,10 @@ export function mount(root, config = {}) {
 
     function seek(m) {
       if (!audio || m.audio_offset == null) return;
-      audio.currentTime = Math.max(0, m.audio_offset - 1);
+      const position = Math.max(0, m.audio_offset - 1);
+      // Browsers discard the first seek before the recording metadata has loaded.
+      if (audio.readyState === 0) audio.addEventListener("loadedmetadata", () => { audio.currentTime = position; }, { once: true });
+      else audio.currentTime = position;
       audio.play().catch(() => {});
     }
     if (audio) {
@@ -676,7 +690,7 @@ export function mount(root, config = {}) {
       if (formOpen && openForm.kind === "appeal") {
         form = appealForm(ev.id, meta.id, (view) => { ev = view; openForm = null; renderAll(); });
       } else if (formOpen && openForm.kind === "decision" && openAppeal) {
-        form = decisionForm({ ...openAppeal, original: orig }, meta, async () => {
+        form = decisionForm({ ...openAppeal, original: orig, final: row }, meta, async () => {
           ev = await api(`/api/evaluations/${ev.id}`);
           openForm = null;
           renderAll();
@@ -704,13 +718,16 @@ export function mount(root, config = {}) {
           (row.evidence_ids || []).length ? "Основание:" : null,
           (row.evidence_ids || []).map((id) => h("button", { class: "cqa-ref", type: "button", title: "Перейти к реплике",
             onclick: (e) => { e.stopPropagation(); selectCriterion(meta.id, id); } }, id)),
-          range.length === 2 ? h("span", null, ` проверен участок ${range[0]}–${range[1]}`) : null) : null,
+          range.length === 2 ? h("button", { class: "cqa-ref", type: "button", title: "Перейти к проверенному участку",
+            onclick: (e) => { e.stopPropagation(); selectCriterion(meta.id, range[0]); } },
+          `Проверен участок ${range[0]}–${range[1]}`) : null) : null,
         typeof row.confidence === "number" && row.confidence < 0.6 ? h("span", { class: "cqa-tag cqa-tag-warn" }, "низкая уверенность модели") : null,
         appeals.length ? h("dl", { class: "cqa-trail" }, appeals.flatMap((a) => [
           h("dt", null, "Апелляция"), h("dd", null, a.comment),
           a.status === "open" ? [h("dt", null, "Статус"), h("dd", null, "ждёт решения проверяющего")]
             : [h("dt", null, "Исходно (ИИ)"), h("dd", null, verdict(orig, meta).text),
-              h("dt", null, "Решение"), h("dd", null, a.action === "confirm" ? "оценка подтверждена" : `изменено на ${verdict(row, meta).text}`, ` — ${a.reason}`)],
+              h("dt", null, "Решение"), h("dd", null, a.action === "confirm" ? "оценка подтверждена" :
+                `изменено на ${verdict({ ...row, ...a.override, status: a.override?.applicable === false ? "na" : meta.type === "flag" ? "flag" : "scored" }, meta).text}`, ` — ${a.reason}`)],
         ])) : null,
         actions.length ? h("div", { class: "cqa-crit-actions" }, actions) : null,
         form));
@@ -757,7 +774,7 @@ export function mount(root, config = {}) {
       h("section", { class: "cqa-notes", "aria-label": "Транскрипт" },
         h("div", { class: "cqa-notes-head" }, h("h2", null, "Транскрипт"),
           h("span", { class: "cqa-muted" }, isCall ? "время звонка — нажмите, чтобы прослушать" : "исходные метки времени"),
-          audio, conv.has_audio ? h("a", { href: `${base}/api/conversations/${encodeURIComponent(cid)}/audio`, target: "_blank", rel: "noopener" }, "Открыть запись") : null),
+          audio, conv.has_audio ? h("a", { href: `${base}/api/conversations/${encodeURIComponent(cid)}/audio?player=true`, target: "_blank", rel: "noopener" }, "Открыть запись") : null),
         transcript),
       h("section", { class: "cqa-results", "aria-label": "Результаты по критериям" },
         h("div", { class: "cqa-results-head" }, h("h2", null, "Оценка по критериям"),
@@ -791,8 +808,8 @@ export function mount(root, config = {}) {
     for (const a of rows) {
       const meta = a.criterion;
       const decidedBlock = (x) => {
-        const from = verdict(x.original, meta).text, to = verdict(x.decided, meta).text;
-        const changed = x.action === "change" && from !== to;
+        const from = verdict(x.previous || x.original, meta).text, to = verdict(x.decided, meta).text;
+        const changed = x.action === "change";
         return h("div", { class: "cqa-case-col" },
           h("h3", { class: "cqa-case-title" }, "Решение проверяющего: ",
             h("span", { class: "cqa-case-outcome" }, changed ? `изменено ${from} → ${to}` : "оценка подтверждена")),

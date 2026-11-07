@@ -1,4 +1,6 @@
 import json
+import copy
+import pytest
 from pathlib import Path
 
 from app.evaluator import evaluate, validate
@@ -71,3 +73,56 @@ def test_evaluate_marks_needs_review_after_second_failure():
     call, calls = fake(bad, bad)
     out = evaluate(CHECKLIST, CHAT, call)
     assert out["status"] == "needs_review" and "01" not in out["raw"] and len(out["raw"]) == 7
+
+
+def test_price_matches_dated_model_names():
+    from app import llm
+    usage = {"input_tokens": 1_000_000, "output_tokens": 1_000_000, "cache_write_tokens": 0, "cache_read_tokens": 1_000_000}
+    assert llm.cost_usd("gpt-4o-mini-2024-07-18", usage) == 0.15 + 0.60 + 0.075
+    assert llm.cost_usd("gpt-6-luna", usage) == 0.10 + 0.50 + 0.01
+
+
+@pytest.mark.parametrize("changes", [
+    {"evidence_ids": [], "checked_range": []},
+    {"checked_range": ["m3"]},
+    {"explanation": " "},
+    {"confidence": 2},
+    {"confidence": True},
+    {"applicable": "false"},
+])
+def test_validate_requires_usable_evidence_and_metadata(changes):
+    data = good()
+    data["results"][0].update(changes)
+    results, errors = validate(CHECKLIST, data, IDS)
+    assert errors and "01" not in results
+
+
+def test_na_needs_reason_and_valid_range_can_support_absence():
+    data = good()
+    data["results"][1]["na_reason"] = " "
+    results, errors = validate(CHECKLIST, data, IDS)
+    assert errors and "02" not in results
+    data = good()
+    data["results"][0].update(answer="no", evidence_ids=[], checked_range=["m0", "m3"])
+    assert validate(CHECKLIST, data, IDS)[1] == []
+
+
+def test_duplicate_is_invalid_even_if_all_criteria_are_present():
+    from app.export import record
+    data = good()
+    data["results"].append(copy.deepcopy(data["results"][0]))
+    call, _ = fake(data, data)
+    ev = evaluate(CHECKLIST, CHAT, call)
+    assert ev["status"] == "needs_review" and "01" not in ev["raw"]
+    assert record(CHECKLIST, "t-chat", ev)["status"] == "error"
+
+
+@pytest.mark.parametrize("data", [None, [], {"results": None}, {"results": [None]}])
+def test_malformed_model_data_is_rejected(data):
+    assert validate(CHECKLIST, data, IDS)[1]
+
+
+def test_boolean_is_not_a_numeric_scale_step():
+    custom = {"criteria": [{"id": "s", "type": "scale", "scale": [{"value": 1}, {"value": 0}]}]}
+    result = item("s", step=True)
+    assert validate(custom, {"results": [result]}, IDS)[1]
