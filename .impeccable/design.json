@@ -1,0 +1,635 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T09:58:38+00:00",
+  "title": "Design System: CQA",
+  "extensions": {
+    "colorMeta": {
+      "chart-green": {
+        "role": "primary",
+        "displayName": "Chart Green",
+        "canonical": "#12392b",
+        "cssVar": "--cqa-green",
+        "tonalRamp": [
+          "#123a2c",
+          "#20654c",
+          "#2d8f6c",
+          "#3bba8c",
+          "#60cda6",
+          "#8bdabe",
+          "#bdeada",
+          "#ecf9f4"
+        ]
+      },
+      "chart-green-2": {
+        "role": "primary",
+        "displayName": "Chart Green Raised",
+        "canonical": "#1d553f",
+        "cssVar": "--cqa-green-2",
+        "tonalRamp": [
+          "#13392a",
+          "#226349",
+          "#308d68",
+          "#3eb787",
+          "#63caa1",
+          "#8dd8bb",
+          "#bee9d8",
+          "#ecf9f4"
+        ]
+      },
+      "green-ink": {
+        "role": "primary",
+        "displayName": "Green Ink",
+        "canonical": "#e9f3ea",
+        "cssVar": "--cqa-green-ink",
+        "tonalRamp": [
+          "#1b311d",
+          "#2f5633",
+          "#437a48",
+          "#569e5e",
+          "#78b57e",
+          "#9cc9a0",
+          "#c7e0c9",
+          "#eef6ef"
+        ]
+      },
+      "green-ink-2": {
+        "role": "primary",
+        "displayName": "Green Ink Muted",
+        "canonical": "#b9d3c1",
+        "cssVar": "--cqa-green-ink-2",
+        "tonalRamp": [
+          "#1e2f23",
+          "#33513c",
+          "#497456",
+          "#5e9670",
+          "#7fae8d",
+          "#a1c4ac",
+          "#caded0",
+          "#eff5f1"
+        ]
+      },
+      "signal-green": {
+        "role": "secondary",
+        "displayName": "Signal Green",
+        "canonical": "#a6e07b",
+        "cssVar": "--cqa-signal",
+        "tonalRamp": [
+          "#233e0f",
+          "#3c6b19",
+          "#569924",
+          "#6fc62f",
+          "#8dd756",
+          "#abe283",
+          "#d0efb9",
+          "#f1faea"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#17201b",
+        "cssVar": "--cqa-ink",
+        "tonalRamp": [
+          "#202d26",
+          "#374d41",
+          "#4f6e5d",
+          "#668e78",
+          "#85a895",
+          "#a6bfb1",
+          "#cddbd3",
+          "#f0f4f2"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink 2",
+        "canonical": "#46524b",
+        "cssVar": "--cqa-ink-2",
+        "tonalRamp": [
+          "#232926",
+          "#3d4841",
+          "#57665d",
+          "#718479",
+          "#8e9f95",
+          "#acb9b1",
+          "#d0d7d3",
+          "#f1f3f2"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Ink 3",
+        "canonical": "#6a756f",
+        "cssVar": "--cqa-ink-3",
+        "tonalRamp": [
+          "#242826",
+          "#3f4642",
+          "#5a635e",
+          "#74807a",
+          "#919c96",
+          "#afb6b2",
+          "#d2d6d3",
+          "#f2f3f2"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "cssVar": "--cqa-paper",
+        "tonalRamp": [
+          "#262626",
+          "#424242",
+          "#5e5e5e",
+          "#7a7a7a",
+          "#969696",
+          "#b2b2b2",
+          "#d4d4d4",
+          "#f2f2f2"
+        ]
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "Paper 2",
+        "canonical": "#f3f6f2",
+        "cssVar": "--cqa-paper-2",
+        "tonalRamp": [
+          "#232d1f",
+          "#3c4e36",
+          "#56704d",
+          "#6f9164",
+          "#8da983",
+          "#acc0a5",
+          "#d0dccc",
+          "#f1f5f0"
+        ]
+      },
+      "paper-3": {
+        "role": "neutral",
+        "displayName": "Paper 3",
+        "canonical": "#e8ede7",
+        "cssVar": "--cqa-paper-3",
+        "tonalRamp": [
+          "#232c21",
+          "#3c4c39",
+          "#556c51",
+          "#6f8c69",
+          "#8ca588",
+          "#abbda8",
+          "#d0dacd",
+          "#f1f4f0"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#d5dcd4",
+        "cssVar": "--cqa-rule",
+        "tonalRamp": [
+          "#232a22",
+          "#3d493c",
+          "#576855",
+          "#71876e",
+          "#8ea18c",
+          "#adbaab",
+          "#d0d8cf",
+          "#f1f4f1"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Rule Strong",
+        "canonical": "#aab6ad",
+        "cssVar": "--cqa-rule-strong",
+        "tonalRamp": [
+          "#232925",
+          "#3d4740",
+          "#57665b",
+          "#718476",
+          "#8f9e92",
+          "#adb8b0",
+          "#d0d7d2",
+          "#f1f3f2"
+        ]
+      },
+      "yes": {
+        "role": "tertiary",
+        "displayName": "Pass Green",
+        "canonical": "#17673b",
+        "cssVar": "--cqa-yes",
+        "tonalRamp": [
+          "#0e3f24",
+          "#186c3e",
+          "#229a58",
+          "#2dc873",
+          "#54d990",
+          "#82e3ae",
+          "#b8efd1",
+          "#eafaf1"
+        ]
+      },
+      "yes-bg": {
+        "role": "tertiary",
+        "displayName": "Pass Tint",
+        "canonical": "#e2f2e3",
+        "cssVar": "--cqa-yes-bg",
+        "tonalRamp": [
+          "#18351a",
+          "#295c2c",
+          "#3a823f",
+          "#4ca952",
+          "#6fbe74",
+          "#95d099",
+          "#c3e4c5",
+          "#edf7ee"
+        ]
+      },
+      "no": {
+        "role": "tertiary",
+        "displayName": "Fail Red",
+        "canonical": "#a8231b",
+        "cssVar": "--cqa-no",
+        "tonalRamp": [
+          "#420e0b",
+          "#721812",
+          "#a3221a",
+          "#d32c22",
+          "#e2534b",
+          "#ea817b",
+          "#f3b8b4",
+          "#fbeae9"
+        ]
+      },
+      "no-bg": {
+        "role": "tertiary",
+        "displayName": "Fail Tint",
+        "canonical": "#fbe6e3",
+        "cssVar": "--cqa-no-bg",
+        "tonalRamp": [
+          "#43110a",
+          "#741d11",
+          "#a52918",
+          "#d6361f",
+          "#e55c48",
+          "#ec8779",
+          "#f4bbb3",
+          "#fcebe9"
+        ]
+      },
+      "na": {
+        "role": "tertiary",
+        "displayName": "Not-applicable Grey",
+        "canonical": "#56625b",
+        "cssVar": "--cqa-na",
+        "tonalRamp": [
+          "#242926",
+          "#3e4742",
+          "#58655d",
+          "#728279",
+          "#909d95",
+          "#aeb7b2",
+          "#d1d6d3",
+          "#f1f3f2"
+        ]
+      },
+      "na-bg": {
+        "role": "tertiary",
+        "displayName": "Not-applicable Tint",
+        "canonical": "#e9ede9",
+        "cssVar": "--cqa-na-bg",
+        "tonalRamp": [
+          "#222a22",
+          "#3c493c",
+          "#556855",
+          "#6e876e",
+          "#8ca18c",
+          "#abbaab",
+          "#cfd8cf",
+          "#f1f4f1"
+        ]
+      },
+      "amber": {
+        "role": "tertiary",
+        "displayName": "Pending Amber",
+        "canonical": "#7a4f00",
+        "cssVar": "--cqa-amber",
+        "tonalRamp": [
+          "#4c3200",
+          "#855600",
+          "#bd7a00",
+          "#f59f00",
+          "#ffb52e",
+          "#ffc966",
+          "#ffe0a8",
+          "#fff6e5"
+        ]
+      },
+      "amber-bg": {
+        "role": "tertiary",
+        "displayName": "Pending Tint",
+        "canonical": "#fff0cf",
+        "cssVar": "--cqa-amber-bg",
+        "tonalRamp": [
+          "#4c3500",
+          "#855b00",
+          "#bd8200",
+          "#f5a800",
+          "#ffbe2e",
+          "#ffcf66",
+          "#ffe4a8",
+          "#fff7e5"
+        ]
+      },
+      "alert-red": {
+        "role": "tertiary",
+        "displayName": "Alert Red",
+        "canonical": "#b3261e",
+        "cssVar": "--cqa-alert",
+        "tonalRamp": [
+          "#420e0b",
+          "#721813",
+          "#a2221b",
+          "#d22d23",
+          "#e1544c",
+          "#e9827c",
+          "#f3b8b5",
+          "#fbeae9"
+        ]
+      },
+      "highlight": {
+        "role": "tertiary",
+        "displayName": "Evidence Highlight",
+        "canonical": "#f1f8c8",
+        "cssVar": "--cqa-hl",
+        "tonalRamp": [
+          "#3b4409",
+          "#67760f",
+          "#92a715",
+          "#bed91c",
+          "#d0e746",
+          "#dcee77",
+          "#ebf5b2",
+          "#f9fce8"
+        ]
+      },
+      "highlight-rule": {
+        "role": "tertiary",
+        "displayName": "Evidence Rule",
+        "canonical": "#8fb93a",
+        "cssVar": "--cqa-hl-rule",
+        "tonalRamp": [
+          "#2d3a12",
+          "#4e6520",
+          "#6f902d",
+          "#90ba3a",
+          "#a9cd60",
+          "#c0da8b",
+          "#dbeabd",
+          "#f5f9ec"
+        ]
+      },
+      "range": {
+        "role": "tertiary",
+        "displayName": "Checked Range",
+        "canonical": "#f6f8ee",
+        "cssVar": "--cqa-range",
+        "tonalRamp": [
+          "#303616",
+          "#535e27",
+          "#768637",
+          "#99ad47",
+          "#b1c26b",
+          "#c6d293",
+          "#dee6c2",
+          "#f5f8ed"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus",
+        "canonical": "#2f7a52",
+        "cssVar": "--cqa-focus",
+        "tonalRamp": [
+          "#153725",
+          "#256040",
+          "#34885c",
+          "#44b177",
+          "#68c593",
+          "#91d4b0",
+          "#c0e7d2",
+          "#edf8f2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Conversation total in the vitals strip only; 48px on phones."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Conversation identifier in the strip; page titles at 30px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Appeal headings, decision outcome, empty states, criterion numbers."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "Panel heads and editor block heads."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Transcript, explanations (max 75ch), table cells; 16px on phones."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Bot and system lines, small buttons, chips, trail boxes."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Sentence-case field names above controls; table headers."
+      },
+      "section-heading": {
+        "displayName": "Section heading",
+        "purpose": "Uppercase green criteria section titles with a 2px green rule."
+      },
+      "index": {
+        "displayName": "Index",
+        "purpose": "m-ids, timestamps and uppercase speaker roles in transcript rows."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All state transitions (button background .15s, row hover .12-.15s), toast entry .3s, evidence flash 1.4s."
+      },
+      {
+        "name": "evidence-flash",
+        "value": "1.4s background Signal Green to Evidence Highlight",
+        "purpose": "Arrival on a cited message."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation and transition none",
+        "purpose": "Under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "1100px"
+      },
+      {
+        "name": "phone",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Chart Green fill for the main commit action (save, decide).",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Сохранить решение</button>",
+      "css": ".ds-btn{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:6px;border:1px solid var(--cqa-rule-strong);background:var(--cqa-paper);color:var(--cqa-ink);font-size:17px;font-weight:500;cursor:pointer;transition:background-color .15s cubic-bezier(0.16,1,0.3,1);}.ds-btn:hover{background:var(--cqa-paper-2);}.ds-btn:focus-visible{outline:3px solid var(--cqa-focus);outline-offset:2px;}.ds-btn[disabled]{opacity:.5;cursor:not-allowed;}.ds-btn-primary{background:var(--cqa-green);border-color:var(--cqa-green);color:var(--cqa-green-ink);}.ds-btn-primary:hover{background:var(--cqa-green-2);}"
+    },
+    {
+      "name": "Signal Button",
+      "kind": "button",
+      "refersTo": "button-signal",
+      "description": "Signal Green call to action: run evaluation; disabled with a reason title when no API key.",
+      "html": "<button class=\"ds-btn ds-btn-signal\">Оценить</button> <button class=\"ds-btn ds-btn-signal\" disabled title=\"Нет API-ключа: оценка недоступна\">Оценить</button>",
+      "css": ".ds-btn{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:6px;border:1px solid var(--cqa-rule-strong);background:var(--cqa-paper);color:var(--cqa-ink);font-size:17px;font-weight:500;cursor:pointer;transition:background-color .15s cubic-bezier(0.16,1,0.3,1);}.ds-btn:hover{background:var(--cqa-paper-2);}.ds-btn:focus-visible{outline:3px solid var(--cqa-focus);outline-offset:2px;}.ds-btn[disabled]{opacity:.5;cursor:not-allowed;}.ds-btn-signal{background:var(--cqa-signal);border-color:var(--cqa-signal);color:var(--cqa-green);font-weight:700;}.ds-btn-signal:hover{background:#b9ea95;}"
+    },
+    {
+      "name": "Secondary and Ghost Buttons",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Default stroked button and the strokeless inline ghost.",
+      "html": "<button class=\"ds-btn\">Импорт</button> <button class=\"ds-btn ds-btn-ghost\">Апелляция</button>",
+      "css": ".ds-btn{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:6px;border:1px solid var(--cqa-rule-strong);background:var(--cqa-paper);color:var(--cqa-ink);font-size:17px;font-weight:500;cursor:pointer;transition:background-color .15s cubic-bezier(0.16,1,0.3,1);}.ds-btn:hover{background:var(--cqa-paper-2);}.ds-btn:focus-visible{outline:3px solid var(--cqa-focus);outline-offset:2px;}.ds-btn[disabled]{opacity:.5;cursor:not-allowed;}.ds-btn-ghost{border-color:transparent;background:transparent;color:var(--cqa-green-2);}.ds-btn-ghost:hover{background:var(--cqa-paper-2);}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Sentence-case field name above a 40px stroked control.",
+      "html": "<label class=\"ds-field\">Набор организаторов (group_id)<input class=\"ds-input\" placeholder=\"group_id\"></label>",
+      "css": ".ds-field{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:4px;font-size:14px;font-weight:500;color:var(--cqa-ink-2);}.ds-input{font:inherit;font-size:16px;font-weight:400;color:var(--cqa-ink);height:40px;padding:0 12px;border:1px solid var(--cqa-rule-strong);border-radius:6px;background:var(--cqa-paper);}.ds-input::placeholder{color:var(--cqa-ink-3);}.ds-input:focus-visible{outline:3px solid var(--cqa-focus);outline-offset:2px;}"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Underlined text tabs under a 5px green top rule; amber pending count.",
+      "html": "<nav class=\"ds-top\"><b class=\"ds-brand\">CQA</b><a href=\"#\" aria-current=\"page\">Диалоги</a><a href=\"#\">Апелляции <span class=\"ds-count\">2</span></a><a href=\"#\">Чек-лист</a></nav>",
+      "css": ".ds-top{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:flex;align-items:stretch;gap:4px;height:64px;padding:0 28px;border-top:5px solid var(--cqa-green);border-bottom:1px solid var(--cqa-rule);background:var(--cqa-paper);}.ds-brand{align-self:center;font-size:19px;color:var(--cqa-green);margin-right:24px;}.ds-top a{display:flex;align-items:center;gap:8px;padding:0 14px;color:var(--cqa-ink-2);text-decoration:none;font-weight:500;border-bottom:3px solid transparent;margin-bottom:-1px;}.ds-top a:hover{color:var(--cqa-ink);background:var(--cqa-paper-2);}.ds-top a[aria-current=page]{color:var(--cqa-green);border-bottom-color:var(--cqa-green);}.ds-top a:focus-visible{outline:3px solid var(--cqa-focus);outline-offset:2px;}.ds-count{min-width:24px;padding:0 7px;border-radius:12px;background:var(--cqa-amber-bg);color:var(--cqa-amber);font-size:14px;font-weight:700;line-height:22px;text-align:center;}"
+    },
+    {
+      "name": "Filter Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "34px pill toggles; pressed fills Chart Green.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">Все</button> <button class=\"ds-chip\" aria-pressed=\"false\">Звонки</button>",
+      "css": ".ds-chip{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--cqa-rule-strong);background:var(--cqa-paper);color:var(--cqa-ink-2);font-size:15px;cursor:pointer;}.ds-chip:hover{background:var(--cqa-paper-2);}.ds-chip[aria-pressed=true]{background:var(--cqa-green);border-color:var(--cqa-green);color:var(--cqa-green-ink);}.ds-chip:focus-visible{outline:3px solid var(--cqa-focus);outline-offset:2px;}"
+    },
+    {
+      "name": "Verdict Boxes",
+      "kind": "chip",
+      "refersTo": "verdict-yes",
+      "description": "Boxed word verdicts with a 2px stroke in their tint pair.",
+      "html": "<span class=\"ds-v ds-v-yes\">ДА</span> <span class=\"ds-v ds-v-no\">НЕТ</span> <span class=\"ds-v ds-v-na\">N/A</span> <span class=\"ds-v ds-v-step\">2/3</span> <span class=\"ds-v ds-v-alert\">ДА</span>",
+      "css": ".ds-v{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center;min-width:84px;height:34px;padding:0 10px;border-radius:4px;border:2px solid;font-weight:700;font-size:16px;}.ds-v-yes{color:var(--cqa-yes);border-color:var(--cqa-yes);background:var(--cqa-yes-bg);}.ds-v-no{color:var(--cqa-no);border-color:var(--cqa-no);background:var(--cqa-no-bg);}.ds-v-na{color:var(--cqa-na);border-color:var(--cqa-rule-strong);background:var(--cqa-na-bg);}.ds-v-step{color:var(--cqa-green);border-color:var(--cqa-green);background:var(--cqa-paper);}.ds-v-alert{color:#fff;border-color:var(--cqa-alert);background:var(--cqa-alert);}"
+    },
+    {
+      "name": "Evidence Chip",
+      "kind": "chip",
+      "refersTo": "evidence-ref",
+      "description": "m-id citation that seeks and highlights the message.",
+      "html": "<span class=\"ds-refs\">Основание: <button class=\"ds-ref\">m9</button><button class=\"ds-ref\">m11</button></span>",
+      "css": ".ds-refs{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--cqa-ink-3);}.ds-ref{height:26px;padding:0 8px;border:1px solid var(--cqa-hl-rule);background:var(--cqa-hl);color:var(--cqa-green);border-radius:4px;font:inherit;font-weight:700;cursor:pointer;}.ds-ref:hover{background:var(--cqa-signal);}.ds-ref:focus-visible{outline:3px solid var(--cqa-focus);outline-offset:2px;}"
+    },
+    {
+      "name": "Ruled Chart Entry",
+      "kind": "card",
+      "refersTo": "",
+      "description": "Appeal or editor entry: 2px green top rule, ruled head, no card box.",
+      "html": "<section class=\"ds-case\"><div class=\"ds-case-head\"><h2>p1-ru-022 · 04</h2><span class=\"ds-tag\">на проверке</span></div><div class=\"ds-case-body\"><div>Апелляция специалиста<p class=\"ds-quote\">Оператор уточнил запрос в m5.</p></div><div>Решение<b class=\"ds-outcome\">Изменено: ДА</b></div></div></section>",
+      "css": ".ds-case{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;border-top:2px solid var(--cqa-green);padding-bottom:12px;color:var(--cqa-ink);}.ds-case-head{display:flex;align-items:center;gap:14px;padding:14px 0 10px;border-bottom:1px solid var(--cqa-rule);}.ds-case-head h2{margin:0;font-size:22px;}.ds-tag{height:26px;padding:0 9px;border-radius:4px;font-size:14px;font-weight:600;background:var(--cqa-amber-bg);color:var(--cqa-amber);display:inline-flex;align-items:center;}.ds-case-body{display:grid;grid-template-columns:1fr 1fr;}.ds-case-body>div{padding:16px 24px 8px 0;font-weight:600;color:var(--cqa-ink-2);}.ds-case-body>div+div{border-left:1px solid var(--cqa-rule);padding-left:24px;}.ds-quote{font-weight:400;color:var(--cqa-ink);background:var(--cqa-amber-bg);padding:10px 14px;border-radius:6px;}.ds-outcome{display:block;font-size:22px;color:var(--cqa-ink);}"
+    },
+    {
+      "name": "Vitals Strip",
+      "kind": "custom",
+      "refersTo": "vitals-strip",
+      "description": "Flat Chart Green band with identifier, total, section bars and the gross-error flag chip.",
+      "html": "<header class=\"ds-vitals\"><div><h1>p1-ru-022</h1><div class=\"ds-meta\"><b>Чат</b> Язык <b>RU</b></div></div><div class=\"ds-score\">Итог<div class=\"ds-total\">85<small>/ 100</small></div></div><div class=\"ds-cells\"><div>Начало и понимание запроса <b>100%</b><i><u style=\"width:100%\"></u></i></div><div>Грубые нарушения <span class=\"ds-flag\">выявлено m11</span></div></div></header>",
+      "css": ".ds-vitals{--cqa-green:#12392b;--cqa-green-2:#1d553f;--cqa-green-ink:#e9f3ea;--cqa-green-ink-2:#b9d3c1;--cqa-signal:#a6e07b;--cqa-ink:#17201b;--cqa-ink-2:#46524b;--cqa-ink-3:#6a756f;--cqa-paper:#fff;--cqa-paper-2:#f3f6f2;--cqa-rule:#d5dcd4;--cqa-rule-strong:#aab6ad;--cqa-yes:#17673b;--cqa-yes-bg:#e2f2e3;--cqa-no:#a8231b;--cqa-no-bg:#fbe6e3;--cqa-na:#56625b;--cqa-na-bg:#e9ede9;--cqa-amber:#7a4f00;--cqa-amber-bg:#fff0cf;--cqa-alert:#b3261e;--cqa-hl:#f1f8c8;--cqa-hl-rule:#8fb93a;--cqa-focus:#2f7a52;font-family:'Golos Text','Segoe UI',system-ui,sans-serif;font-variant-numeric:tabular-nums;background:var(--cqa-green);color:var(--cqa-green-ink);padding:18px 28px 20px;display:grid;grid-template-columns:1fr auto;gap:8px 40px;align-items:end;}.ds-vitals h1{margin:0;font-size:34px;letter-spacing:-0.02em;color:#fff;}.ds-meta{color:var(--cqa-green-ink-2);display:flex;gap:18px;}.ds-meta b{color:var(--cqa-green-ink);}.ds-score{text-align:right;font-size:14px;color:var(--cqa-green-ink-2);}.ds-total{font-size:64px;font-weight:700;line-height:1;letter-spacing:-0.03em;color:#fff;}.ds-total small{font-size:22px;font-weight:400;color:var(--cqa-green-ink-2);letter-spacing:0;}.ds-cells{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px;padding-top:12px;border-top:1px solid var(--cqa-green-2);font-size:14px;color:var(--cqa-green-ink-2);}.ds-cells b{color:#fff;}.ds-cells i{display:block;height:6px;background:var(--cqa-green-2);border-radius:3px;overflow:hidden;margin-top:4px;}.ds-cells u{display:block;height:100%;background:var(--cqa-signal);}.ds-flag{display:inline-block;background:var(--cqa-alert);color:#fff;font-weight:700;border-radius:4px;padding:2px 10px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clinical Chart",
+    "overview": "Each conversation is a patient chart. Vitals sit in a flat deep-green strip across the top (identifier, channel, language, the total at display size, one bar per section), a red alert band drops beneath it when a gross error is found, and the body below is ruled paper: transcript notes on the left, one fixed row per criterion on the right. Every finding is boxed, scored, and cited to a numbered message (m0, m1, ...), and the reviewer's decision is written into the chart beneath the AI result instead of replacing it.\n\nThe system is dense, flat and ruled. Structure comes from horizontal rules (2px green to open an entry, 1px grey between rows), tinted bands, and fixed column furniture, not from cards, shadows or panels floating on a grey canvas. Numbers are tabular everywhere so totals, weights and timestamps align in columns. Colour carries meaning (green = brand and pass, red = fail and gross error, amber = pending review, pale yellow-green = cited evidence) and every coloured state also carries a word.\n\nIt refuses the KPI-tile SaaS dashboard: no sidebar, no grid of stat cards, no gradients, glass or drop shadows. The surface was built for a projector as much as a desk, hence a 17px body and heavy, short labels.",
+    "keyCharacteristics": [
+      "Flat deep-green vitals strip with the total at 64px; light-green signal as the single bright accent.",
+      "Ruled chart paper: entries open with a 2px green top rule, rows divide with 1px grey rules.",
+      "Boxed word verdicts (ДА / НЕТ / N/A / step of max) and m-id evidence chips that seek the transcript.",
+      "Tabular numerals and m-ids / 01-08 as primary index type.",
+      "No shadows, gradients, cards or decorative icons."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Signal Green is the only bright colour on the page. It fills progress and marks the next action; it never tints a surface larger than a row.",
+        "section": "colors"
+      },
+      {
+        "name": "The Word-With-Colour Rule",
+        "body": "No state is colour alone. Every tint carries its word: ДА, НЕТ, N/A, \"выявлено\", \"на проверке\".",
+        "section": "colors"
+      },
+      {
+        "name": "The Red Is Gross Rule",
+        "body": "Solid Alert Red means a gross error, nothing else. Ordinary failures use the Fail Red pair on its pale tint.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Numerals are tabular on the root. Totals, weights, timestamps and m-ids always line up.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Uppercases Rule",
+        "body": "Uppercase appears in exactly two places: criteria section headings and transcript speaker roles. Field names, page titles and everything else stay sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled Chart Rule",
+        "body": "Separate with rules and bands, never with shadows or floating cards. An entry opens with a 2px Chart Green top rule; rows inside it divide with 1px Rule.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do open every entry (appeal, editor block, sticky save bar) with a 2px Chart Green top rule and divide rows with 1px Rule.",
+      "Do give every verdict a boxed word (ДА / НЕТ / N/A / step of max) in its tint pair with a 2px stroke.",
+      "Do cite evidence with m-id chips that scroll to and highlight the message.",
+      "Do keep numerals tabular and right-align numeric columns.",
+      "Do write field names as sentence-case subheads above their control.",
+      "Do disable model-dependent actions with a `title` stating the reason when no API key is configured.",
+      "Do honour reduced motion: animations and transitions are removed under `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "Don't use box shadows, gradients, glass or floating cards; depth is bands and rules.",
+      "Don't put a border box, radius or grey head band on chart entries.",
+      "Don't use glyphs (check marks, crosses) as verdicts or decorative icons; the only icons are the back chevron and inline button SVGs.",
+      "Don't put small uppercase labels above headings or fields; uppercase is limited to criteria section headings and speaker roles.",
+      "Don't use solid Alert Red for anything but gross errors.",
+      "Don't show a meter for a flag-only section; show the red \"выявлено\" chip or \"не выявлено\".",
+      "Don't mark the playing transcript row with a side bar; invert the whole row to Chart Green.",
+      "Don't fabricate a Freedom Broker logo or brand assets."
+    ]
+  }
+}
