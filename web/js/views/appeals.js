@@ -1,5 +1,5 @@
 // Reviewer inbox: queue on the left, the selected case on the right (AI verdict, specialist comment, fragment, decision).
-import { h, icon, fmt, CHANNEL, WHO } from "../ui.js";
+import { h, icon, fmt, message, CHANNEL } from "../ui.js";
 import { verdict, verdictBox, decisionForm } from "./card.js";
 
 const when = (iso) => (iso ? new Date(iso).toLocaleString("ru-RU", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "");
@@ -88,12 +88,8 @@ export async function viewAppeals(ctx, status) {
         a.original.na_reason ? h("p", { class: "cqa-na-reason" }, h("b", null, "Причина N/A: "), a.original.na_reason) : null),
       block("Комментарий специалиста", h("blockquote", { class: "cqa-quote" }, a.comment)),
       block("Фрагмент диалога", a.fragment.length
-        ? h("div", { class: "cqa-fragment" }, a.fragment.map((m) => h("div", { class: `cqa-msg cqa-msg-${m.speaker}` },
-          h("span", { class: "cqa-msg-id" }, m.id),
-          h("div", null,
-            h("div", { class: "cqa-msg-head" }, h("span", { class: "cqa-msg-who" }, WHO[m.speaker] || m.speaker),
-              h("span", { class: "cqa-msg-time" }, a.channel === "voice call" && m.timestamp ? m.timestamp.slice(11, 19) : m.timestamp)),
-            h("div", { class: "cqa-msg-text" }, m.text)))))
+        ? h("div", { class: "cqa-fragment" }, a.fragment.map((m) =>
+          message(m, a.channel === "voice call" && m.timestamp ? m.timestamp.slice(11, 19) : m.timestamp)))
         : h("p", { class: "cqa-muted" }, "Модель не указала реплик — откройте карточку диалога.")),
       block(a.status === "open" ? "Решение" : "Решение проверяющего", decision));
   }

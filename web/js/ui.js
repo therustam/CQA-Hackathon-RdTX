@@ -33,6 +33,7 @@ const ICON_PATHS = {
   run: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
   x: "M18 6L6 18M6 6l12 12",
   check: "M20 6L9 17l-5-5",
+  edit: "M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z",
   search: "M21 21l-4.3-4.3M3 11a8 8 0 1 0 16 0a8 8 0 1 0-16 0",
   overview: "M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z",
   chat: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
@@ -81,6 +82,18 @@ export function dialog(root, title, ...body) {
   root.append(dlg);
   dlg.showModal();
   return dlg;
+}
+
+// One transcript line, messenger-style: client and bot on the left, the evaluated operator on the right,
+// system notes centred. Shared by the card and the appeal fragment so speakers look the same everywhere.
+export function message(m, time, ...notes) {
+  const who = WHO[m.speaker] || m.speaker;
+  return h("div", { class: `cqa-msg cqa-msg-${m.speaker}${m.internal ? " cqa-msg-internal" : ""}`, id: `cqa-${m.id}` },
+    m.speaker === "system" ? null : h("span", { class: "cqa-avatar", "aria-hidden": "true" }, who[0]),
+    h("div", { class: "cqa-bubble" },
+      h("div", { class: "cqa-msg-head" },
+        h("span", { class: "cqa-msg-who" }, who), h("span", { class: "cqa-msg-time" }, time), h("span", { class: "cqa-msg-id" }, m.id), notes),
+      h("div", { class: "cqa-msg-text" }, m.text)));
 }
 
 // "<70 / 70–90 / 90+" tone shared by score bars and numbers; always shown next to the number itself.

@@ -9,6 +9,8 @@ import { viewAppeals } from "./views/appeals.js";
 import { viewChecklist } from "./views/checklist.js";
 
 const ROLES = [["specialist", "Специалист"], ["reviewer", "Проверяющий"]];
+// Authors shown in the sidebar footer. shortcut: names are filled in by the team, empty until provided.
+const TEAM = { name: "RdTX", members: [] };
 
 export function mount(root, config = {}) {
   const base = (config.apiBaseUrl || "").replace(/\/$/, "");
@@ -94,6 +96,9 @@ export function mount(root, config = {}) {
         item("#/appeals", "appeals", "Апелляции", "appeals", S.openAppeals),
         item("#/checklist", "checklist", "Чек-листы", "checklist")),
       h("div", { class: "cqa-side-foot" },
+        h("div", { class: "cqa-team", title: ["Команда " + TEAM.name, ...TEAM.members].join(", ") },
+          h("span", { class: "cqa-team-label" }, "Сделано командой"), h("b", null, TEAM.name),
+          TEAM.members.length ? h("span", { class: "cqa-team-members" }, TEAM.members.join(" · ")) : null),
         h("div", { class: `cqa-model${S.config.has_api_key ? "" : " cqa-model-off"}`,
           title: S.config.has_api_key ? `Модель ${S.config.model}` : NO_KEY },
         h("i", { "aria-hidden": "true" }),
@@ -179,10 +184,22 @@ export function mount(root, config = {}) {
     route_: () => route_(),
     renderTop: () => renderSide(), // views call this after data changes (open-appeal count)
     onJob: (fn) => { jobListener = fn; },
+    // a screen with unsaved work registers isDirty(); leaving then asks first
+    guardLeave: (isDirty) => { dirtyCheck = isDirty; },
   };
 
   // ---------- router ----------
+  let dirtyCheck = null;
+  let lastHash = location.hash;
+  const onUnload = (e) => { if (dirtyCheck && dirtyCheck()) e.preventDefault(); };
+  window.addEventListener("beforeunload", onUnload);
   async function route_() {
+    if (dirtyCheck && dirtyCheck() && !confirm("Есть несохранённые изменения. Уйти без сохранения?")) {
+      if (location.hash !== lastHash) history.replaceState(null, "", lastHash || "#/");
+      return;
+    }
+    dirtyCheck = null;
+    lastHash = location.hash;
     jobListener = null;
     const hash = location.hash || "#/";
     try {
@@ -226,5 +243,5 @@ export function mount(root, config = {}) {
   window.addEventListener("hashchange", route_);
 
   route_();
-  return { destroy: () => { window.removeEventListener("hashchange", route_); clearInterval(pollTimer); } };
+  return { destroy: () => { window.removeEventListener("hashchange", route_); window.removeEventListener("beforeunload", onUnload); clearInterval(pollTimer); } };
 }

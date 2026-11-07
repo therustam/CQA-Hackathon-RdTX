@@ -1,5 +1,5 @@
 // Conversation card: transcript + per-criterion verdicts with evidence, appeal and decision forms.
-import { h, icon, fmt, usd, tone, CHANNEL, WHO, TYPE, SUBTYPE_FALLBACK } from "../ui.js";
+import { h, icon, fmt, usd, tone, message, CHANNEL, TYPE, SUBTYPE_FALLBACK } from "../ui.js";
 
 export function verdict(row, meta) {
   if (!row || row.status === "missing") return { text: "нет ответа", cls: "cqa-v-missing" };
@@ -121,15 +121,9 @@ export async function viewCard(ctx, cid) {
         ? h("button", { type: "button", title: `${m.timestamp} · позиция в записи ${Math.round(m.audio_offset)} с`,
           onclick: () => seek(m) }, icon("play"), time)
         : h("span", { title: m.timestamp }, time);
-      const el = h("div", { class: `cqa-msg cqa-msg-${m.speaker}${m.internal ? " cqa-msg-internal" : ""}`, id: `cqa-${m.id}` },
-        h("span", { class: "cqa-msg-id" }, m.id),
-        h("div", { class: "cqa-msg-main" },
-          h("div", { class: "cqa-msg-head" },
-            h("span", { class: "cqa-msg-who" }, WHO[m.speaker] || m.speaker),
-            h("span", { class: "cqa-msg-time" }, timeCell),
-            m.internal ? h("span", { class: "cqa-msg-note" }, "внутренняя консультация, клиент на удержании") : null,
-            m.duplicate ? h("span", { class: "cqa-msg-note" }, "дубль") : null),
-          h("div", { class: "cqa-msg-text" }, m.text)));
+      const el = message(m, timeCell,
+        m.internal ? h("span", { class: "cqa-msg-note" }, "внутренняя консультация, клиент на удержании") : null,
+        m.duplicate ? h("span", { class: "cqa-msg-note" }, "дубль") : null);
       msgEl.set(m.id, el);
       return el;
     }));
