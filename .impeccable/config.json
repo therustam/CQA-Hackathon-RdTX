@@ -11,6 +11,78 @@
         ],
         "createdAt": "2026-11-07T09:28:32.385Z",
         "reason": "Claude triage: only match is .cqa-nav a tab indicator (border-bottom on an unrounded nav link), not a rounded card"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "16px",
+        "createdAt": "2026-11-07T09:59:29.243Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "19px",
+        "createdAt": "2026-11-07T09:59:29.343Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "20px",
+        "createdAt": "2026-11-07T09:59:29.436Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "30px",
+        "createdAt": "2026-11-07T09:59:29.532Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "48px",
+        "createdAt": "2026-11-07T09:59:29.626Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "3px",
+        "createdAt": "2026-11-07T09:59:29.729Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "5px",
+        "createdAt": "2026-11-07T09:59:29.836Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "12px",
+        "createdAt": "2026-11-07T09:59:29.966Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "17px",
+        "createdAt": "2026-11-07T09:59:30.104Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#b9ea95",
+        "createdAt": "2026-11-07T09:59:30.230Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f28b82",
+        "createdAt": "2026-11-07T09:59:30.362Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#1f4f8a",
+        "createdAt": "2026-11-07T09:59:30.487Z",
+        "reason": "Claude triage: value ships in the finish-reviewed build; documenter left one-offs out of the DESIGN.md ramp"
       }
     ]
   }
