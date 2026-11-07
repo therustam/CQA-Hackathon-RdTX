@@ -104,6 +104,9 @@ export function mount(root, config = {}) {
   root.append(top, main);
 
   const checklistQuery = () => (S.checklistId ? `checklist_id=${S.checklistId}` : "");
+  // evaluation controls stay visible but disabled with the reason when no model key is configured
+  const NO_KEY = "Оценка недоступна: не задан ANTHROPIC_API_KEY в .env";
+  const canEvaluate = () => !!S.config.has_api_key;
   const currentChecklist = () => S.checklists.find((c) => c.id === S.checklistId) || S.checklists[0];
 
   async function refreshShared() {
@@ -129,7 +132,9 @@ export function mount(root, config = {}) {
           S.openAppeals ? h("span", { class: "cqa-count", "aria-label": `открыто ${S.openAppeals}` }, S.openAppeals) : null),
         link("#/checklist", "Чек-лист", "checklist")),
       h("div", { class: "cqa-top-right" },
-        h("div", { class: "cqa-model" }, "Модель ", h("b", null, S.config.model || "—")),
+        h("div", { class: "cqa-model" }, S.config.has_api_key
+          ? ["Модель ", h("b", null, S.config.model || "—")]
+          : ["Модель не подключена — ", h("b", null, "нет API-ключа")]),
         h("div", { class: "cqa-seg", role: "group", "aria-label": "Роль" },
           ...[["specialist", "Специалист"], ["reviewer", "Проверяющий"]].map(([id, label]) =>
             h("button", {
@@ -278,7 +283,7 @@ export function mount(root, config = {}) {
       S.groups.map((g) => h("option", { value: g.group_id, selected: g.group_id === S.group }, `${g.group_id} · ${g.n}`)));
 
     const runBtn = h("button", {
-      class: "cqa-btn cqa-btn-primary", type: "button",
+      class: "cqa-btn cqa-btn-primary", type: "button", disabled: !canEvaluate(), title: canEvaluate() ? null : NO_KEY,
       onclick: async () => {
         try {
           S.job = await api("/api/batch", { body: { group_id: S.group || null, checklist_id: S.checklistId } });
@@ -311,12 +316,13 @@ export function mount(root, config = {}) {
       class: "cqa-input", placeholder: "Поиск по ID", value: S.filters.q, "aria-label": "Поиск по ID",
       oninput: (e) => { S.filters.q = e.target.value; renderBody(true); },
     });
+    const group = (label, el) => h("div", { class: "cqa-filter-group" }, h("span", { class: "cqa-filter-label" }, label), el);
     const filters = () => h("div", { class: "cqa-toolbar" },
-      h("span", { class: "cqa-filter-label" }, "Язык"), chips("lang", [["", "Все"], ["RU", "RU"], ["KZ", "KZ"], ["EN", "EN"]]),
-      h("span", { class: "cqa-filter-label" }, "Канал"), chips("channel", [["", "Все"], ["agent chat", "Чат"], ["voice call", "Звонок"]]),
-      h("span", { class: "cqa-filter-label" }, "Статус"), chips("status", [["", "Все"], ["none", "Не оценён"], ["ok", "Оценён"],
-        ["review", "Проверка/ошибка"], ["appeal", "Апелляция"], ["flag", "Грубая ошибка"]]),
-      h("span", { class: "cqa-filter-label" }, "Итог"), chips("score", [["", "Любой"], ["low", "до 70"], ["mid", "70–90"], ["high", "90+"]]),
+      group("Язык", chips("lang", [["", "Все"], ["RU", "RU"], ["KZ", "KZ"], ["EN", "EN"]])),
+      group("Канал", chips("channel", [["", "Все"], ["agent chat", "Чат"], ["voice call", "Звонок"]])),
+      group("Статус", chips("status", [["", "Все"], ["none", "Не оценён"], ["ok", "Оценён"],
+        ["review", "Проверка/ошибка"], ["appeal", "Апелляция"], ["flag", "Грубая ошибка"]])),
+      group("Итог", chips("score", [["", "Любой"], ["low", "до 70"], ["mid", "70–90"], ["high", "90+"]])),
       h("div", { class: "cqa-spacer" }), search);
 
     const body = h("div");
@@ -368,7 +374,7 @@ export function mount(root, config = {}) {
               changed ? h("span", { class: "cqa-total-was" }, fmt(ev.total)) : null,
               h("span", { class: "cqa-total" }, ev ? fmt(ev.final_total) : "—")),
             h("td", { class: "cqa-num" }, ev ? null : h("button", {
-              class: "cqa-btn cqa-btn-sm", type: "button",
+              class: "cqa-btn cqa-btn-sm", type: "button", disabled: !canEvaluate(), title: canEvaluate() ? null : NO_KEY,
               onclick: async (e) => {
                 e.stopPropagation();
                 e.target.disabled = true;
@@ -584,7 +590,8 @@ export function mount(root, config = {}) {
       const fin = ev && ev.final, orig = ev && ev.original;
       const changed = ev && fin.total !== orig.total;
       const evalBtn = h("button", {
-        class: `cqa-btn ${ev ? "" : "cqa-btn-signal"}`, type: "button", disabled: busy,
+        class: `cqa-btn ${ev ? "" : "cqa-btn-signal"}`, type: "button", disabled: busy || !canEvaluate(),
+        title: canEvaluate() ? null : NO_KEY,
         onclick: async () => {
           busy = true;
           renderVitals();
@@ -610,14 +617,24 @@ export function mount(root, config = {}) {
           h("div", { class: "cqa-score-value" }, fin ? fmt(fin.total) : "—", h("small", null, "/ 100")),
           changed ? h("div", { class: "cqa-score-trail" }, "Исходно ", h("s", null, fmt(orig.total)), " → ", h("b", null, fmt(fin.total))) : null),
         h("div", { class: "cqa-vitals-actions" }, checklistSelect(() => route_()), evalBtn),
-        fin && fin.sections.length ? h("div", { class: "cqa-sections" }, fin.sections.map((s) =>
-          h("div", { class: "cqa-section-cell" },
-            h("span", null, s.title), h("b", null, s.percent == null ? "—" : `${fmt(s.percent)}%`),
-            h("span", { class: "cqa-section-bar", "aria-hidden": "true" }, h("i", { style: `width:${s.percent || 0}%` })),
-            h("span", { style: "grid-column:1/-1" }, s.available == null
-              ? (fin.flags.some((f) => fin.criteria.some((c) => c.id === f.criterion_id && c.section === s.id))
-                ? "выявлено нарушение" : "нарушений нет или N/A")
-              : `${fmt(s.earned)} из ${fmt(s.available)} баллов`)))) : null));
+        fin && fin.sections.length ? h("div", { class: "cqa-sections" }, fin.sections.map((s) => {
+          if (s.available != null) {
+            return h("div", { class: "cqa-section-cell" },
+              h("span", null, s.title), h("b", null, `${fmt(s.percent)}%`),
+              h("span", { class: "cqa-section-bar", "aria-hidden": "true" }, h("i", { style: `width:${s.percent}%` })),
+              h("span", { style: "grid-column:1/-1" }, `${fmt(s.earned)} из ${fmt(s.available)} баллов`));
+          }
+          // flag-only (or all-N/A) section: a flag, not an empty meter
+          const flags = fin.flags.filter((f) => fin.criteria.some((c) => c.id === f.criterion_id && c.section === s.id));
+          const hasFlagCriteria = fin.criteria.some((c) => c.section === s.id && c.type === "flag");
+          return h("div", { class: "cqa-section-cell" },
+            h("span", null, s.title),
+            flags.length
+              ? h("span", { class: "cqa-section-flag" }, "выявлено",
+                flags.flatMap((f) => f.evidence_ids).map((id) => h("button", { class: "cqa-ref", type: "button",
+                  onclick: () => selectCriterion(flags[0].criterion_id, id) }, id)))
+              : h("b", null, hasFlagCriteria ? "не выявлено" : "N/A"));
+        })) : null));
 
       const bands = [];
       if (fin && fin.flags.length) {
@@ -773,14 +790,17 @@ export function mount(root, config = {}) {
     page.append(queue);
     for (const a of rows) {
       const meta = a.criterion;
-      const decidedBlock = (x) => h("div", { class: "cqa-case-col" },
-        h("span", { class: "cqa-label" }, "Решение проверяющего"),
-        h("p", null, h("b", null, x.action === "confirm" ? "Оценка подтверждена" : `Изменено: ${verdict(x.original, meta).text} → ${verdict(x.final, meta).text}`)),
-        h("p", null, x.reason),
-        h("span", { class: "cqa-label" }, "Итог диалога"),
-        h("p", { class: "cqa-total" }, `${fmt(x.total)} → ${fmt(x.final_total)}`));
+      const decidedBlock = (x) => {
+        const from = verdict(x.original, meta).text, to = verdict(x.decided, meta).text;
+        const changed = x.action === "change" && from !== to;
+        return h("div", { class: "cqa-case-col" },
+          h("h3", { class: "cqa-case-title" }, "Решение проверяющего: ", changed ? `изменено ${from} → ${to}` : "оценка подтверждена"),
+          h("p", null, x.reason),
+          h("p", null, "Итог диалога этим решением: ", h("b", { class: "cqa-total" }, `${fmt(x.total)} → ${fmt(x.final_total)}`)),
+          h("p", { class: "cqa-sign" }, `Проверяющий · ${x.decided_at ? new Date(x.decided_at).toLocaleString("ru-RU") : ""}`));
+      };
       const right = a.status === "open"
-        ? h("div", { class: "cqa-case-col" }, h("span", { class: "cqa-label" }, "Решение"),
+        ? h("div", { class: "cqa-case-col" }, h("h3", { class: "cqa-case-title" }, "Решение"),
           S.role === "reviewer"
             ? decisionForm(a, meta, (r) => { right.replaceWith(decidedBlock(r)); refreshShared().then(() => renderTop("appeals")); })
             : h("p", { class: "cqa-muted" }, "Доступно в роли «Проверяющий»."))
@@ -791,17 +811,17 @@ export function mount(root, config = {}) {
           h("a", { href: `#/c/${encodeURIComponent(a.conversation_id)}`, class: "cqa-id" }, a.conversation_id),
           h("span", { class: "cqa-tag cqa-tag-plain" }, CHANNEL[a.channel] || a.channel),
           h("span", { class: "cqa-tag cqa-tag-plain" }, a.language),
-          h("span", { class: "cqa-muted" }, `итог сейчас ${fmt(a.final_total)}`)),
+          h("span", { class: "cqa-muted" }, `итог сейчас ${fmt(a.current_total)}`)),
         h("div", { class: "cqa-case-body" },
           h("div", { class: "cqa-case-col" },
-            h("span", { class: "cqa-label" }, "Спорная оценка ИИ"),
+            h("h3", { class: "cqa-case-title" },"Спорная оценка ИИ"),
             h("div", { class: "cqa-form-row" }, verdictBox(a.original, meta),
               a.original.status === "scored" ? h("span", null, `${fmt(a.original.points)} из ${fmt(meta.weight)} баллов`) : null),
             a.original.explanation ? h("p", null, a.original.explanation) : null,
             a.original.na_reason ? h("p", { class: "cqa-na-reason" }, h("b", null, "Причина N/A: "), a.original.na_reason) : null,
-            h("span", { class: "cqa-label" }, "Комментарий специалиста"),
+            h("h3", { class: "cqa-case-title" },"Комментарий специалиста"),
             h("p", { class: "cqa-quote" }, a.comment),
-            h("span", { class: "cqa-label" }, "Фрагмент диалога"),
+            h("h3", { class: "cqa-case-title" },"Фрагмент диалога"),
             a.fragment.length ? h("div", { class: "cqa-fragment" }, a.fragment.map((m) =>
               h("div", { class: `cqa-msg cqa-msg-${m.speaker}` },
                 h("span", { class: "cqa-msg-id" }, m.id),
@@ -936,7 +956,8 @@ export function mount(root, config = {}) {
       body,
       h("div", { class: "cqa-sticky-bar" }, sum, err, h("div", { class: "cqa-spacer" }),
         h("button", { class: "cqa-btn", type: "button", onclick: () => save(false) }, "Сохранить версию"),
-        h("button", { class: "cqa-btn cqa-btn-primary", type: "button", onclick: () => save(true) }, icon("run"),
+        h("button", { class: "cqa-btn cqa-btn-primary", type: "button", onclick: () => save(true),
+          disabled: !canEvaluate(), title: canEvaluate() ? null : NO_KEY }, icon("run"),
           `Сохранить и применить к ${S.group ? `набору ${S.group}` : "всем диалогам"}`)));
     render();
   }

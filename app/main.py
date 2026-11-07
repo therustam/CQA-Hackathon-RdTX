@@ -412,10 +412,17 @@ def _appeal_view(appeal_id):
     rec = db.conversation(view["conversation_id"])
     wanted = set(original.get("evidence_ids") or []) | set(original.get("checked_range") or [])
     fragment = [m for m in prepare(rec) if m["id"] in wanted]
+    # this decision's own effect: earlier decisions applied before and after it
+    earlier = {x["criterion_id"]: x["override"] for x in view["appeals"] if x["override"] and x["id"] < a["id"]}
+    cl, raw = view["checklist"]["data"], view["raw"] or {}
+    before = score(cl, raw, earlier)["total"]
+    after = score(cl, raw, {**earlier, a["criterion_id"]: a["override"]} if a["override"] else earlier)["total"]
+    decided_value = next(c for c in score(cl, raw, {a["criterion_id"]: a["override"]} if a["override"] else {})["criteria"]
+                         if c["id"] == a["criterion_id"])
     return {**a, "conversation_id": view["conversation_id"], "channel": rec["channel"], "language": rec["language"],
-            "criterion": next(c for c in view["checklist"]["data"]["criteria"] if c["id"] == a["criterion_id"]),
-            "original": original, "final": final, "fragment": fragment,
-            "total": view["original"]["total"], "final_total": view["final"]["total"]}
+            "criterion": next(c for c in cl["criteria"] if c["id"] == a["criterion_id"]),
+            "original": original, "final": final, "decided": decided_value, "fragment": fragment,
+            "total": before, "final_total": after, "current_total": view["final"]["total"]}
 
 
 @app.post("/api/appeals/{appeal_id}/decision")
@@ -441,6 +448,9 @@ def decide(appeal_id: int, req: DecisionReq):
             if req.answer not in ("yes", "no"):
                 raise HTTPException(422, "нужен ответ yes или no")
             override = {"applicable": True, "answer": req.answer, "step": None}
+        current = (ev["raw"] or {}).get(a["criterion_id"], {})
+        if all(current.get(k) == override[k] for k in ("applicable", "answer", "step")):
+            raise HTTPException(422, "новая оценка совпадает с оценкой ИИ — выберите «Подтвердить оценку»")
     db.execute("update appeals set status='decided', action=?, reason=?, override=?, decided_at=? where id=?",
                (req.action, req.reason.strip(), json.dumps(override) if override else None, db.now(), appeal_id))
     return _appeal_view(appeal_id)

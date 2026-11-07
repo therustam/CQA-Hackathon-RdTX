@@ -91,8 +91,24 @@ def test_decision_rejects_na_where_not_allowed(client):
     aid = client.get("/api/appeals").json()[0]["id"]
     r = client.post(f"/api/appeals/{aid}/decision", json={"action": "change", "reason": "r", "applicable": False})
     assert r.status_code == 422
+    same = client.post(f"/api/appeals/{aid}/decision", json={"action": "change", "reason": "r", "answer": "yes"})
+    assert same.status_code == 422  # identical to the AI answer: that is a confirmation
     ok = client.post(f"/api/appeals/{aid}/decision", json={"action": "confirm", "reason": "Оценка верна"}).json()
     assert ok["final_total"] == 88.13
+
+
+def test_each_decision_reports_its_own_effect(client):
+    upload(client)
+    ev = client.post("/api/evaluate", json={"conversation_id": "t-chat"}).json()
+    for cid in ("04", "05"):
+        client.post(f"/api/evaluations/{ev['id']}/appeals", json={"criterion_id": cid, "comment": "c"})
+    first, second = sorted(client.get("/api/appeals").json(), key=lambda a: a["id"])
+    client.post(f"/api/appeals/{first['id']}/decision", json={"action": "change", "reason": "r", "step": 20})
+    d2 = client.post(f"/api/appeals/{second['id']}/decision", json={"action": "change", "reason": "r", "answer": "no"}).json()
+    assert (d2["total"], d2["final_total"]) == (94.38, 75.63)  # 75.5/80 -> 60.5/80 = 75.625 half-up
+    d1 = next(a for a in client.get("/api/appeals?status=decided").json() if a["id"] == first["id"])
+    assert (d1["total"], d1["final_total"], d1["current_total"]) == (88.13, 94.38, 75.63)
+    assert d1["decided"]["step"] == 20
 
 
 def test_new_checklist_version_and_batch(client):
