@@ -285,6 +285,7 @@
 .cqa-case-col { padding: 16px 24px 8px 0; display: flex; flex-direction: column; gap: 10px; }
 .cqa-case-col + .cqa-case-col { border-left: 1px solid var(--cqa-rule); padding-left: 24px; }
 .cqa-case-title { font-size: 16px; font-weight: 600; color: var(--cqa-ink-2); margin-top: 6px; }
+.cqa-case-outcome { display: block; font-size: 22px; font-weight: 700; color: var(--cqa-ink); margin-top: 2px; }
 .cqa-sign { font-size: 14px; color: var(--cqa-ink-3); padding-top: 8px; border-top: 1px dashed var(--cqa-rule-strong); }
 .cqa-quote { padding: 10px 14px; background: var(--cqa-amber-bg); border-radius: 6px; color: var(--cqa-ink); }
 .cqa-fragment { border-top: 1px solid var(--cqa-rule); }
@@ -296,8 +297,10 @@
 
 /* ---------- checklist editor ---------- */
 .cqa-editor { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-.cqa-ed-block { border: 1px solid var(--cqa-rule-strong); border-radius: 8px; }
-.cqa-ed-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--cqa-paper-2); border-bottom: 1px solid var(--cqa-rule); flex-wrap: wrap; }
+/* editor entries are ruled like the rest of the chart, not cards */
+.cqa-ed-block { border-top: 2px solid var(--cqa-green); }
+.cqa-ed-head { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--cqa-rule); flex-wrap: wrap; }
+.cqa-ed-block .cqa-ed-grid { padding-left: 0; padding-right: 0; }
 .cqa-ed-head h2 { font-size: 18px; }
 .cqa-ed-grid { display: grid; grid-template-columns: 110px minmax(0, 1fr) 280px 190px 110px; gap: 12px; padding: 16px; align-items: end; }
 .cqa-ed-wide { grid-column: 1 / -1; }

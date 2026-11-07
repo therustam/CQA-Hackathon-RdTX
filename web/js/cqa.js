@@ -794,7 +794,8 @@ export function mount(root, config = {}) {
         const from = verdict(x.original, meta).text, to = verdict(x.decided, meta).text;
         const changed = x.action === "change" && from !== to;
         return h("div", { class: "cqa-case-col" },
-          h("h3", { class: "cqa-case-title" }, "Решение проверяющего: ", changed ? `изменено ${from} → ${to}` : "оценка подтверждена"),
+          h("h3", { class: "cqa-case-title" }, "Решение проверяющего: ",
+            h("span", { class: "cqa-case-outcome" }, changed ? `изменено ${from} → ${to}` : "оценка подтверждена")),
           h("p", null, x.reason),
           h("p", null, "Итог диалога этим решением: ", h("b", { class: "cqa-total" }, `${fmt(x.total)} → ${fmt(x.final_total)}`)),
           h("p", { class: "cqa-sign" }, `Проверяющий · ${x.decided_at ? new Date(x.decided_at).toLocaleString("ru-RU") : ""}`));
